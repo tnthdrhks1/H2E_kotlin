@@ -37,5 +37,4 @@ class ProfileActivity : AppCompatActivity() {
                 }
             }
     }
-
 }
