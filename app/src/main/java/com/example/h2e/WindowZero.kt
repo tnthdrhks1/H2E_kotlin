@@ -9,8 +9,6 @@ class WindowZero : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_window_zero)
 
-        setFrag(0)
-
         button1.setOnClickListener {
             setFrag(0)
         }

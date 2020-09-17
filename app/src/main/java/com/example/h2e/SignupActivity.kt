@@ -23,7 +23,7 @@ class SignupActivity : AppCompatActivity() {
             Signup()
         }
         button_home.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, ProfileActivity::class.java))
             finish()
         }
 
