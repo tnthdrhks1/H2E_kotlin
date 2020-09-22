@@ -23,7 +23,7 @@ class SignupActivity : AppCompatActivity() {
             Signup()
         }
         button_home.setOnClickListener {
-            startActivity(Intent(this, ProfileActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
 
@@ -52,7 +52,7 @@ class SignupActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Toast.makeText(baseContext, "Authentication successful\n welcome.",
                         Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this,  MainActivity::class.java))
+                    startActivity(Intent(this,  ProfileActivity::class.java))
                     finish()
                 }
                 else {

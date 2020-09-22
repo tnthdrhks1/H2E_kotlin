@@ -34,6 +34,12 @@ class ProfileActivity : AppCompatActivity() {
         button_woman.setOnClickListener {
             bmi_woman()
         }
+        button_next.setOnClickListener {
+            val nextIntent = Intent(this, CheckMealActivity::class.java)
+            nextIntent.putExtra("device_address", text_dev.text.toString()) //key: "email", value: inputEmail
+            startActivity(nextIntent)
+        }
+
     }
 
     private fun bmi_man() {
@@ -65,6 +71,7 @@ class ProfileActivity : AppCompatActivity() {
             if(task.isSuccessful){
                 Toast.makeText(baseContext, "success.",
                     Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, MainActivity::class.java))
             }
             else{
                 Toast.makeText(baseContext, "fail.",

@@ -67,12 +67,12 @@ class MainActivity : AppCompatActivity() {
         println("onstart")
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        //updateUI(currentUser) //이새끼가 에러일으키는 씹새끼임
+        updateUI(currentUser) //이새끼가 에러일으키는 씹새끼임
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if(currentUser != null){
-            startActivity(Intent(this, ProfileActivity::class.java))
+            startActivity(Intent(this, CheckMealActivity::class.java))
         }
         else{
             Toast.makeText(baseContext, "login failed.",
