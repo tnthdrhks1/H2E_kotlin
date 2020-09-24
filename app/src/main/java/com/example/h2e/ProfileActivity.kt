@@ -39,7 +39,6 @@ class ProfileActivity : AppCompatActivity() {
             nextIntent.putExtra("device_address", text_dev.text.toString()) //key: "email", value: inputEmail
             startActivity(nextIntent)
         }
-
     }
 
     private fun bmi_man() {
@@ -48,7 +47,7 @@ class ProfileActivity : AppCompatActivity() {
         var age = EditText_age.text.toString().toInt()
 
         bmi = 66.47 + (13.75*weight) + (5*height) - (6.76*age)
-        println(bmi)
+        bmi = Math.round(bmi).toDouble()
         var your_bmi = BmiClass(bmi)
         firestore?.collection("user")?.document(text_dev.text.toString())?.set(your_bmi)
     }
@@ -59,7 +58,7 @@ class ProfileActivity : AppCompatActivity() {
         var age = EditText_age.text.toString().toInt()
 
         bmi = 655.1 + (9.56*weight) + (1.85*height) - (4.68*age)
-        println(bmi)
+        bmi = Math.round(bmi).toDouble()
         var your_bmi = BmiClass(bmi)
         firestore?.collection("user")?.document(text_dev.text.toString())?.set(your_bmi)
     }

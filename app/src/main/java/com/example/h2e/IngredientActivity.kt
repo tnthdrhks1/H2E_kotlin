@@ -34,7 +34,50 @@ var dan : Double = 0.0
 var ji : Double = 0.0
 var kcal : Double = 0.0
 
-var Weight_Of_Dish : Double = 0.0
+var Weight_Of_Dish1 : Double = 0.0
+var Weight_Of_Dish2 : Double = 0.0
+var Weight_Of_Dish3 : Double = 0.0
+
+var weight: Any? = null
+var weight2: Any? = null
+var weight3: Any? = null
+var weight4: Any? = null
+var weight5: Any? = null
+var weight6: Any? = null
+
+var ingre1 : Any? = '0'
+var ingre2 : Any? = '0'
+var ingre3 : Any? = '0'
+var ingre4 : Any? = '0'
+var ingre5 : Any? = '0'
+var ingre6 : Any? = '0'
+var ingre7 : Any? = '0'
+var ingre8 : Any? = '0'
+var ingre9 : Any? = '0'
+var ingre10 : Any? = '0'
+var ingre11 : Any? = '0'
+var ingre12 : Any? = '0'
+var ingre13 : Any? = '0'
+var ingre14 : Any? = '0'
+var ingre15 : Any? = '0'
+
+var Weight_of_Food1 : Any? = '0'
+var Weight_of_Food2 : Any? = '0'
+var Weight_of_Food3 : Any? = '0'
+var Weight_of_Food4 : Any? = '0'
+var Weight_of_Food5 : Any? = '0'
+var Weight_of_Food6 : Any? = '0'
+var Weight_of_Food7 : Any? = '0'
+var Weight_of_Food8 : Any? = '0'
+var Weight_of_Food9 : Any? = '0'
+var Weight_of_Food10 : Any? = '0'
+var Weight_of_Food11 : Any? = '0'
+var Weight_of_Food12 : Any? = '0'
+var Weight_of_Food13 : Any? = '0'
+var Weight_of_Food14 : Any? = '0'
+var Weight_of_Food15 : Any? = '0'
+
+var wine0 = 0.0
 
 class IngredientActivity : AppCompatActivity() {
 
@@ -62,6 +105,7 @@ class IngredientActivity : AppCompatActivity() {
                             namedish4 = document.data["nameDish4"]
                             namedish5 = document.data["nameDish5"]
                             namedish6 = document.data["nameDish6"]
+
                         } else {
                             Toast.makeText(
                                 baseContext, "error",
@@ -73,8 +117,11 @@ class IngredientActivity : AppCompatActivity() {
             }
 
         ButtonCal.setOnClickListener {
-            GetIngredinet("user", namedish1.toString(), "dish1")
-            GetIngredinet("user", namedish2.toString(), "dish2")
+//            GetIngredinet(namedish1.toString(), "dish1")
+//            GetIngredinet(namedish2.toString(), "dish2")
+
+            FindIngredient(namedish1.toString())
+
             dish_weight1.setText(tan.toString())
             dish_weight2.setText(dan.toString())
             dish_weight3.setText(ji.toString())
@@ -84,53 +131,202 @@ class IngredientActivity : AppCompatActivity() {
             ji = 0.0
             kcal = 0.0
         }
+
+        Button_reset.setOnClickListener {
+            tan = 0.0
+            dan = 0.0
+            ji = 0.0
+            kcal = 0.0
+
+            dish_weight1.setText(tan.toString())
+            dish_weight2.setText(dan.toString())
+            dish_weight3.setText(ji.toString())
+            dish_weight4.setText(kcal.toString())
+        }
     }
 
-    private fun GetIngredinet(Coll: String, Docu: String, Field_weight: String) {
+    private fun FindIngredient(FoodName : Any?) {
+        firestore.collection("meal")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+                        if (document.id == FoodName) {
+                            ingre1 = document.data["ingre1"]
+                            ingre2 = document.data["ingre2"]
+                            ingre3 = document.data["ingre3"]
+                            ingre4 = document.data["ingre4"]
+                            ingre5 = document.data["ingre5"]
+                            ingre6 = document.data["ingre6"]
+                            ingre7 = document.data["ingre7"]
+                            ingre8 = document.data["ingre8"]
+                            ingre9 = document.data["ingre7"]
+                            ingre10 = document.data["ingre10"]
+                            ingre11 = document.data["ingre11"]
+                            ingre12 = document.data["ingre12"]
+                            ingre13 = document.data["ingre13"]
+                            ingre14 = document.data["ingre14"]
+                            ingre15 = document.data["ingre15"]
+
+                            Weight_of_Food1 = document.data["num1"]
+                            Weight_of_Food2 = document.data["num2"]
+                            Weight_of_Food3 = document.data["num3"]
+                            Weight_of_Food4 = document.data["num4"]
+                            Weight_of_Food5 = document.data["num5"]
+                            Weight_of_Food6 = document.data["num6"]
+                            Weight_of_Food7 = document.data["num7"]
+                            Weight_of_Food8 = document.data["num8"]
+                            Weight_of_Food9 = document.data["num9"]
+                            Weight_of_Food10 = document.data["num10"]
+                            Weight_of_Food11 = document.data["num11"]
+                            Weight_of_Food12 = document.data["num12"]
+                            Weight_of_Food13 = document.data["num13"]
+                            Weight_of_Food14 = document.data["num14"]
+                            Weight_of_Food15 = document.data["num15"]
+
+                            if(Weight_of_Food1 == null){
+                                Weight_of_Food1 = 0
+                            }
+                            if(Weight_of_Food2 == null){
+                                Weight_of_Food2 = 0
+                            }
+                            if(Weight_of_Food3 == null){
+                                Weight_of_Food3 = 0
+                            }
+                            if(Weight_of_Food4 == null){
+                                Weight_of_Food4 = 0
+                            }
+                            if(Weight_of_Food5 == null){
+                                Weight_of_Food5 = 0
+                            }
+                            if(Weight_of_Food6 == null){
+                                Weight_of_Food6 = 0
+                            }
+                            if(Weight_of_Food7 == null){
+                                Weight_of_Food7 = 0
+                            }
+                            if(Weight_of_Food8 == null){
+                                Weight_of_Food8 = 0
+                            }
+                            if(Weight_of_Food9 == null){
+                                Weight_of_Food9 = 0
+                            }
+                            if(Weight_of_Food10 == null){
+                                Weight_of_Food10 = 0
+                            }
+                            if(Weight_of_Food11 == null){
+                                Weight_of_Food11 = 0
+                            }
+                            if(Weight_of_Food12 == null){
+                                Weight_of_Food12 = 0
+                            }
+                            if(Weight_of_Food13 == null){
+                                Weight_of_Food13 = 0
+                            }
+                            if(Weight_of_Food14 == null){
+                                Weight_of_Food14 = 0
+                            }
+                            if(Weight_of_Food15 == null){
+                                Weight_of_Food15 = 0
+                            }
+
+                            BeforeGetIngredient("dish1")
+//                            BeforeGetIngredient("dish2")
+//                            BeforeGetIngredient("dish3")
+//                            GetIngredinet(ingre10.toString(), "dish1", Weight_of_Food10.toString())
+                    }
+                }
+            }
+        }
+    }
+
+    fun BeforeGetIngredient(Field_name : String) {
+
+        GetIngredinet(ingre1.toString(), Field_name, Weight_of_Food1.toString())
+        GetIngredinet(ingre2.toString(), Field_name, Weight_of_Food2.toString())
+        GetIngredinet(ingre3.toString(), Field_name, Weight_of_Food3.toString())
+//        GetIngredinet(ingre4.toString(), Field_name, Weight_of_Food4.toString())
+//        GetIngredinet(ingre5.toString(), Field_name, Weight_of_Food5.toString())
+//        GetIngredinet(ingre6.toString(), Field_name, Weight_of_Food6.toString())
+//        GetIngredinet(ingre7.toString(), Field_name, Weight_of_Food7.toString())
+//        GetIngredinet(ingre8.toString(), Field_name, Weight_of_Food8.toString())
+//        GetIngredinet(ingre9.toString(), Field_name, Weight_of_Food9.toString())
+//        GetIngredinet(ingre1.toString(), Field_name, Weight_of_Food1.toString())
+//        GetIngredinet(ingre11.toString(), Field_name, Weight_of_Food11.toString())
+//        GetIngredinet(ingre12.toString(), Field_name, Weight_of_Food12.toString())
+//        GetIngredinet(ingre13.toString(), Field_name, Weight_of_Food13.toString())
+//        GetIngredinet(ingre14.toString(), Field_name, Weight_of_Food14.toString())
+//        GetIngredinet(ingre15.toString(), Field_name, Weight_of_Food15.toString())
+
+
+    }
+
+    fun GetIngredinet(Docu: String, Field: String, gram : String?) {
+
+        if(gram is String){
+            wine0 = gram.toDouble()
+        }
+
         firestore.collection("user")
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
                         if (document.id == "ras") {
-                            var dish_weight = document.data[Field_weight]
+                            var weight1 = document.data[Field]
+                            if(weight1 is String){
+                                weight1 = weight1.toInt()
 
-                            if(dish_weight is String){
-                                Weight_Of_Dish = dish_weight.toDouble()
-                            }
+                                firestore.collection("food")
+                                    .get()
+                                    .addOnCompleteListener { task ->
+                                        if (task.isSuccessful) {
+                                            for (document in task.result!!) {
+                                                if (document.id == Docu) {
+                                                    var tan0 : Any? = document.data["tan"]
+                                                    if(tan0 is String){
+                                                        tan0 = tan0.toDouble()
+                                                        tan0 = tan0 * wine0 / 100
+                                                        tan = tan + tan0
 
+                                                        tan = Math.round(tan).toDouble()
+                                                    }
 
-                            firestore.collection(Coll)
-                                .get()
-                                .addOnCompleteListener { task ->
-                                    if (task.isSuccessful) {
-                                        for (document in task.result!!) {
-                                            if (document.id == Docu) {
-                                                var tan0 = document.data["tan"]
-                                                if (tan0 is String) {
-                                                    tan = tan + tan0.toDouble()
-                                                    tan =  Weight_Of_Dish * tan / 100
-                                                    println(Weight_Of_Dish)
-                                                }
-                                                var dan0 = document.data["dan"]
-                                                if (dan0 is String) {
-                                                    dan = dan + dan0.toDouble()
-                                                }
-                                                var ji0 = document.data["ji"]
-                                                if (ji0 is String) {
-                                                    ji = ji + ji0.toDouble()
-                                                }
-                                                var kcal0 = document.data["kcal"]
-                                                if (kcal0 is String) {
-                                                    kcal = kcal + kcal0.toDouble()
+                                                    var dan0 = document.data["dan"]
+                                                    if(dan0 is String){
+                                                        dan0 = dan0.toDouble()
+                                                        dan0 = dan0 * weight1 / 100
+                                                        dan = dan + dan0
+
+                                                        dan = Math.round(dan).toDouble()
+                                                    }
+
+                                                    var ji0 = document.data["ji"]
+                                                    if(ji0 is String){
+                                                        ji0 = ji0.toDouble()
+                                                        ji0 = ji0 * weight1 / 100
+                                                        ji = ji + ji0
+
+                                                        ji = Math.round(ji).toDouble()
+                                                    }
+
+                                                    var kcal0 = document.data["kcal"]
+                                                    if(kcal0 is String){
+                                                        kcal0 = kcal0.toDouble()
+                                                        kcal0 = kcal0 * weight1 / 100
+                                                        kcal = kcal + kcal0
+
+                                                        kcal = Math.round(kcal).toDouble()
+                                                    }
+
                                                 }
                                             }
-                                        }
-                                    } else {
-                                        Toast.makeText(
-                                            baseContext, "error",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
+                                        } else {
+                                            Toast.makeText(
+                                                baseContext, "니미",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                }
                             }
                         }
                     }

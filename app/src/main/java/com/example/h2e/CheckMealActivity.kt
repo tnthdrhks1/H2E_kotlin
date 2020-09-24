@@ -57,35 +57,35 @@ class CheckMealActivity : AppCompatActivity() {
 
     private fun receiveData() {
 
-        firestore.collection("user")
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    for (document in task.result!!) {
-                        if (document.id == "ras") {
-                            var weight1 = document.data["dish1"]
-                            dish_weight1.setText(weight1.toString())
+                    firestore.collection("user")
+                        .get()
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                for (document in task.result!!) {
+                                    if (document.id == "ras") {
+                                        var weight1 = document.data["dish1"]
+                                        dish_weight1.setText(weight1.toString())
 
-                            var weight2 = document.data["dish2"]
-                            dish_weight2.setText(weight2.toString())
+                                        var weight2 = document.data["dish2"]
+                                        dish_weight2.setText(weight2.toString())
 
-                            var weight3 = document.data["dish3"]
-                            dish_weight3.setText(weight3.toString())
+                                        var weight3 = document.data["dish3"]
+                                        dish_weight3.setText(weight3.toString())
 
-                            var weight4 = document.data["dish4"]
-                            dish_weight4.setText(weight4.toString())
+                                        var weight4 = document.data["dish4"]
+                                        dish_weight4.setText(weight4.toString())
 
-                            var weight5 = document.data["dish5"]
-                            dish_weight5.setText(weight5.toString())
+                                        var weight5 = document.data["dish5"]
+                                        dish_weight5.setText(weight5.toString())
 
-                            var weight6 = document.data["dish6"]
-                            dish_weight6.setText(weight6.toString())
-                        }
-                    }
-                } else {
-                    Toast.makeText(baseContext, "error",
-                        Toast.LENGTH_SHORT).show()
-                }
+                                        var weight6 = document.data["dish6"]
+                                        dish_weight6.setText(weight6.toString())
+                                    }
+                                }
+                            } else {
+                                Toast.makeText(baseContext, "error",
+                                    Toast.LENGTH_SHORT).show()
             }
         }
+    }
 }
