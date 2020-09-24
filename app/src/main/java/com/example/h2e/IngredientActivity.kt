@@ -87,11 +87,11 @@ class IngredientActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ingredient)
 
-        if (intent.hasExtra("device_address")) {
-            dev_address = intent.getStringExtra("device_address")
-        } else {
-            Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show()
-        }
+//        if (intent.hasExtra("device_address")) {
+//            dev_address = intent.getStringExtra("device_address")
+//        } else {
+//            Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show()
+//        }
 
         firestore.collection("user")
             .get()
@@ -245,18 +245,20 @@ class IngredientActivity : AppCompatActivity() {
         GetIngredinet(ingre1.toString(), Field_name, Weight_of_Food1.toString())
         GetIngredinet(ingre2.toString(), Field_name, Weight_of_Food2.toString())
         GetIngredinet(ingre3.toString(), Field_name, Weight_of_Food3.toString())
-//        GetIngredinet(ingre4.toString(), Field_name, Weight_of_Food4.toString())
-//        GetIngredinet(ingre5.toString(), Field_name, Weight_of_Food5.toString())
-//        GetIngredinet(ingre6.toString(), Field_name, Weight_of_Food6.toString())
-//        GetIngredinet(ingre7.toString(), Field_name, Weight_of_Food7.toString())
-//        GetIngredinet(ingre8.toString(), Field_name, Weight_of_Food8.toString())
-//        GetIngredinet(ingre9.toString(), Field_name, Weight_of_Food9.toString())
-//        GetIngredinet(ingre1.toString(), Field_name, Weight_of_Food1.toString())
-//        GetIngredinet(ingre11.toString(), Field_name, Weight_of_Food11.toString())
-//        GetIngredinet(ingre12.toString(), Field_name, Weight_of_Food12.toString())
-//        GetIngredinet(ingre13.toString(), Field_name, Weight_of_Food13.toString())
-//        GetIngredinet(ingre14.toString(), Field_name, Weight_of_Food14.toString())
-//        GetIngredinet(ingre15.toString(), Field_name, Weight_of_Food15.toString())
+        GetIngredinet(ingre4.toString(), Field_name, Weight_of_Food4.toString())
+        GetIngredinet(ingre5.toString(), Field_name, Weight_of_Food5.toString())
+        GetIngredinet(ingre6.toString(), Field_name, Weight_of_Food6.toString())
+        GetIngredinet(ingre7.toString(), Field_name, Weight_of_Food7.toString())
+        GetIngredinet(ingre8.toString(), Field_name, Weight_of_Food8.toString())
+        GetIngredinet(ingre9.toString(), Field_name, Weight_of_Food9.toString())
+        GetIngredinet(ingre10.toString(), Field_name, Weight_of_Food10.toString())
+        GetIngredinet(ingre11.toString(), Field_name, Weight_of_Food11.toString())
+        GetIngredinet(ingre12.toString(), Field_name, Weight_of_Food12.toString())
+        GetIngredinet(ingre13.toString(), Field_name, Weight_of_Food13.toString())
+
+
+
+        
 
 
     }
