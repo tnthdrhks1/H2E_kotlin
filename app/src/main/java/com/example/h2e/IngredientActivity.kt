@@ -22,28 +22,10 @@ var namedish4: Any? = null
 var namedish5: Any? = null
 var namedish6: Any? = null
 
-var dish01: Any? = null
-var dish02: Any? = null
-var dish03: Any? = null
-var dish04: Any? = null
-var dish05: Any? = null
-var dish06: Any? = null
-
 var tan : Double = 0.0
 var dan : Double = 0.0
 var ji : Double = 0.0
 var kcal : Double = 0.0
-
-var Weight_Of_Dish1 : Double = 0.0
-var Weight_Of_Dish2 : Double = 0.0
-var Weight_Of_Dish3 : Double = 0.0
-
-var weight: Any? = null
-var weight2: Any? = null
-var weight3: Any? = null
-var weight4: Any? = null
-var weight5: Any? = null
-var weight6: Any? = null
 
 var ingre1 : Any? = '0'
 var ingre2 : Any? = '0'
@@ -79,8 +61,6 @@ var Weight_of_Food15 : Any? = '0'
 
 var Weight_of_Food_sum : Double  = 0.0
 
-//var wine0 = 0.0
-
 class IngredientActivity : AppCompatActivity() {
 
     val firestore = FirebaseFirestore.getInstance()
@@ -89,11 +69,11 @@ class IngredientActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ingredient)
 
-//        if (intent.hasExtra("device_address")) {
-//            dev_address = intent.getStringExtra("device_address")
-//        } else {
-//            Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show()
-//        }
+        if (intent.hasExtra("device_address")) {
+            dev_address = intent.getStringExtra("device_address")
+        } else {
+            Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show()
+        }
 
         firestore.collection("user")
             .get()
@@ -246,16 +226,10 @@ class IngredientActivity : AppCompatActivity() {
                             +Weight_of_Food12.toString().toDouble() + Weight_of_Food13.toString().toDouble() + Weight_of_Food14.toString().toDouble() + Weight_of_Food15.toString().toDouble()
 
                             BeforeGetIngredient(dish) // 라즈베리파이 무게 가져오기
-//                            BeforeGetIngredient(dish)
-//                            BeforeGetIngredient("dish3")
-//                            BeforeGetIngredient("dish4")
-//                            BeforeGetIngredient("dish5")
-//                            BeforeGetIngredient("dish6")
-
-                        }
                     }
                 }
             }
+        }
     }
 
     fun BeforeGetIngredient(Field_name: String) {
@@ -279,8 +253,6 @@ class IngredientActivity : AppCompatActivity() {
 
         if (gram is String) {
             var wine0 = gram.toDouble()
-
-            println("wine0 = $wine0")
 
             firestore.collection("user")
                 .get()
@@ -346,13 +318,13 @@ class IngredientActivity : AppCompatActivity() {
                                                     baseContext, "니미",
                                                     Toast.LENGTH_SHORT
                                                 ).show()
-                                            }
-                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
+            }
         }
     }
 }

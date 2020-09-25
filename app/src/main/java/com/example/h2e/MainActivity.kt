@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_signup.*
 
 class MainActivity : AppCompatActivity() {
@@ -72,7 +73,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if(currentUser != null){
-            startActivity(Intent(this, ProfileActivity::class.java))
+            val nextIntent = Intent(this, ProfileActivity::class.java)
+            nextIntent.putExtra("mainid", main_id.text.toString())
+            startActivity(nextIntent)
         }
         else{
             Toast.makeText(baseContext, "login failed.",

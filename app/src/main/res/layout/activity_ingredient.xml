@@ -24,12 +24,14 @@
             android:layout_width="180dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
+            android:background="@null"
             android:text="탄수화물"></EditText>
 
         <EditText
             android:id="@+id/dish_weight1"
             android:layout_width="180dp"
             android:layout_height="50dp"
+
             android:layout_marginRight="10dp"
             android:layout_marginLeft="30dp">
         </EditText>
@@ -48,6 +50,7 @@
             android:layout_width="180dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
+            android:background="@null"
             android:text="단백질"></EditText>
 
         <EditText
@@ -72,6 +75,7 @@
             android:layout_width="180dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
+            android:background="@null"
             android:text="지방"></EditText>
 
         <EditText
@@ -96,6 +100,7 @@
             android:layout_width="180dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
+            android:background="@null"
             android:text="칼로리"></EditText>
 
         <EditText
@@ -119,6 +124,7 @@
             android:id="@+id/dish5"
             android:layout_marginLeft="10dp"
             android:layout_width="180dp"
+            android:background="@null"
             android:layout_height="50dp">
         </EditText>
 
@@ -143,7 +149,8 @@
             android:id="@+id/dish6"
             android:layout_marginLeft="10dp"
             android:layout_width="180dp"
-            android:layout_height="50dp">
+            android:layout_height="50dp"
+            android:background="@null">
         </EditText>
 
         <EditText
