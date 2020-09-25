@@ -81,7 +81,7 @@ class ProfileActivity : AppCompatActivity() {
             bmi.toString(),
             gender
         )
-        firestore?.collection("user")?.document(user)?.set(userdata)
+        firestore?.collection("user")?.document(text_dev.text.toString() + user)?.set(userdata)
 
     }
 

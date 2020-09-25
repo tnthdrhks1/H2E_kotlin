@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IngredientActivity">
+    tools:context=".DayActivity">
 
     <!--    #########################################-->
     <!--    #              음식이름 작성              -->
@@ -171,7 +171,7 @@
         android:layout_marginBottom="128dp"
         android:text="영양성분"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/ingredient_button_next"
+        app:layout_constraintBottom_toTopOf="@+id/ButtonNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.863"
         app:layout_constraintStart_toEndOf="@+id/button_login" />
@@ -188,7 +188,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ingredient_button_next"
+        android:id="@+id/ButtonNext"
         android:layout_width="124dp"
         android:layout_height="48dp"
         android:layout_marginBottom="16dp"

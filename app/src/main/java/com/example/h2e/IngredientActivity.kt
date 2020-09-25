@@ -69,12 +69,6 @@ class IngredientActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ingredient)
 
-        if (intent.hasExtra("device_address")) {
-            dev_address = intent.getStringExtra("device_address")
-        } else {
-            Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show()
-        }
-
         firestore.collection("user")
             .get()
             .addOnCompleteListener { task ->
@@ -88,20 +82,11 @@ class IngredientActivity : AppCompatActivity() {
                             namedish5 = document.data["nameDish5"]
                             namedish6 = document.data["nameDish6"]
 
-                            Toast.makeText(
-                                baseContext, "success",
-                                Toast.LENGTH_SHORT
-                            ).show()
-
-                        } else {
-                            Toast.makeText(
-                                baseContext, "miss",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
                     }
                 }
             }
+        }
+
 
         ButtonCal.setOnClickListener {
 
@@ -132,6 +117,10 @@ class IngredientActivity : AppCompatActivity() {
             dish_weight2.setText(dan.toString())
             dish_weight3.setText(ji.toString())
             dish_weight4.setText(kcal.toString())
+        }
+
+        ingredient_button_next.setOnClickListener {
+            startActivity(Intent(this, DayActivity::class.java))
         }
     }
 
@@ -309,15 +298,9 @@ class IngredientActivity : AppCompatActivity() {
                                                             kcal = kcal + kcal0
 
                                                             kcal = Math.round(kcal).toDouble()
-                                                        }
-
-                                                    }
                                                 }
-                                            } else {
-                                                Toast.makeText(
-                                                    baseContext, "니미",
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
+                                            }
+                                        }
                                     }
                                 }
                             }
