@@ -312,7 +312,8 @@ class IngredientActivity : AppCompatActivity() {
                                                         var dan0 = document.data["dan"]
                                                         if (dan0 is String) {
                                                             dan0 = dan0.toDouble()
-                                                            dan0 = dan0 * weight1 / 100
+                                                            dan0 = dan0 * wine0 / 100
+                                                            dan0 = dan0  / Weight_of_Food_sum * weight1
                                                             dan = dan + dan0
 
                                                             dan = Math.round(dan).toDouble()
@@ -321,7 +322,8 @@ class IngredientActivity : AppCompatActivity() {
                                                         var ji0 = document.data["ji"]
                                                         if (ji0 is String) {
                                                             ji0 = ji0.toDouble()
-                                                            ji0 = ji0 * weight1 / 100
+                                                            ji0 = ji0 * wine0 / 100
+                                                            ji0 = ji0  / Weight_of_Food_sum * weight1
                                                             ji = ji + ji0
 
                                                             ji = Math.round(ji).toDouble()
@@ -330,7 +332,8 @@ class IngredientActivity : AppCompatActivity() {
                                                         var kcal0 = document.data["kcal"]
                                                         if (kcal0 is String) {
                                                             kcal0 = kcal0.toDouble()
-                                                            kcal0 = kcal0 * weight1 / 100
+                                                            kcal0 = kcal0 * wine0 / 100
+                                                            kcal0 = kcal0  / Weight_of_Food_sum * weight1
                                                             kcal = kcal + kcal0
 
                                                             kcal = Math.round(kcal).toDouble()
