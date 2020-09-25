@@ -15,11 +15,15 @@ class ProfileActivity : AppCompatActivity() {
     val firestore = FirebaseFirestore.getInstance()
     var naver = "naver"
 
-    var bmi : Double = 0.0
-    var height : Double = 0.0
-    var weight : Double = 0.0
-    var age : Double = 0.0
-    lateinit var gender : String
+    var bmi: Double = 0.0
+    var height: Double = 0.0
+    var weight: Double = 0.0
+    var age: Double = 0.0
+    lateinit var gender: String
+    var CanEatKcal: Double = 0.0
+    lateinit var bmigroup: Any
+
+    //can_eat_kcal = real_bmi - ((weight - want_kg)*7700 / want_day)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +40,13 @@ class ProfileActivity : AppCompatActivity() {
         button_woman.setOnClickListener {
             bmi_woman()
         }
+
         button_next.setOnClickListener {
             val nextIntent = Intent(this, CheckMealActivity::class.java)
-            nextIntent.putExtra("device_address", text_dev.text.toString()) //key: "email", value: inputEmail
+            nextIntent.putExtra(
+                "device_address",
+                text_dev.text.toString()
+            ) //key: "email", value: inputEmail
             startActivity(nextIntent)
         }
     }
@@ -49,9 +57,11 @@ class ProfileActivity : AppCompatActivity() {
         var age = EditText_age.text.toString().toInt()
         gender = "남자"
 
-        bmi = 66.47 + (13.75*weight) + (5*height) - (6.76*age)
+        bmi = 66.47 + (13.75 * weight) + (5 * height) - (6.76 * age)
         bmi = Math.round(bmi).toDouble()
-        firestore?.collection("user")?.document(text_dev.text.toString())?.update("bmi", bmi.toString(), "gender" , gender)
+
+        firestore?.collection("user")?.document(text_dev.text.toString())
+            ?.update("bmi", bmi.toString(), "gender", gender)
     }
 
     private fun bmi_woman() {
@@ -60,14 +70,61 @@ class ProfileActivity : AppCompatActivity() {
         var age = EditText_age.text.toString().toInt()
         gender = "여자"
 
-        bmi = 655.1 + (9.56*weight) + (1.85*height) - (4.68*age)
+        bmi = 655.1 + (9.56 * weight) + (1.85 * height) - (4.68 * age)
         bmi = Math.round(bmi).toDouble()
-        firestore?.collection("user")?.document(text_dev.text.toString())?.update("bmi", bmi.toString(), "gender", gender)
+        firestore?.collection("user")?.document(text_dev.text.toString())
+            ?.update("bmi", bmi.toString(), "gender", gender)
     }
 
     private fun send_dev_data() {
-        var userdata = userData(EditText_height.text.toString(), EditText_weight.text.toString(), EditText_age.text.toString(), bmi.toString(), gender)
-        firestore?.collection("user")?.document(text_dev.text.toString())?.set(userdata)
+        var userdata = userData(
+            EditText_height.text.toString(),
+            EditText_weight.text.toString(),
+            EditText_age.text.toString(),
+            bmi.toString(),
+            gender
+        )
 
-        }
+        firestore?.collection("user")?.document(text_dev.text.toString())?.set(userdata)
     }
+
+    private fun CalCanEatBmi() {
+        CanEatKcal = bmi - ((EditText_weight.text.toString().toDouble() - EditText_want_day.text.toString().toDouble()) * 7700 / EditText_day.text.toString().toDouble())
+
+        CalBmi()
+    }
+
+    private fun CalBmi() {
+        if (1200 <= CanEatKcal && CanEatKcal < 1300) {
+            bmigroup = BmiGroup(8, 0, 1, 6, 3, 0.0, 1)
+        } else if (1300 <= CanEatKcal && CanEatKcal < 1400) {
+            bmigroup = BmiGroup(9, 0, 1, 6, 3, 0.0, 1)
+        } else if (1400 <= CanEatKcal && CanEatKcal < 1500) {
+            bmigroup = BmiGroup(9, 0, 1, 7, 4, 0.5, 1)
+        } else if (1500 <= CanEatKcal && CanEatKcal < 1600) {
+            bmigroup = BmiGroup(10, 0, 1, 7, 4, 0.5, 1)
+        } else if (1600 <= CanEatKcal && CanEatKcal < 1700) {
+            bmigroup = BmiGroup(10, 0, 1, 8, 5, 0.5, 2)
+        } else if (1700 <= CanEatKcal && CanEatKcal < 1800) {
+            bmigroup = BmiGroup(11, 0, 1, 8, 5, 0.5, 2)
+        } else if (1800 <= CanEatKcal && CanEatKcal < 1900) {
+            bmigroup = BmiGroup(11, 0, 2, 8, 5, 0.5, 2)
+        } else if (1900 <= CanEatKcal && CanEatKcal < 2000) {
+            bmigroup = BmiGroup(12, 0, 2, 8, 5, 0.5, 2)
+        } else if (2000 <= CanEatKcal && CanEatKcal < 2100) {
+            bmigroup = BmiGroup(12, 0, 2, 9, 6, 0.5, 3)
+        } else if (2100 <= CanEatKcal && CanEatKcal < 2200) {
+            bmigroup = BmiGroup(13, 0, 2, 9, 6, 0.5, 3)
+        } else if (2200 <= CanEatKcal && CanEatKcal < 2300) {
+            bmigroup = BmiGroup(14, 0, 2, 9, 6, 0.5, 3)
+        } else if (2300 <= CanEatKcal && CanEatKcal < 2400) {
+            bmigroup = BmiGroup(14, 0, 3, 9, 7, 0.5, 3)
+        } else if (2400 <= CanEatKcal && CanEatKcal < 2500) {
+            bmigroup = BmiGroup(15, 0, 3, 9, 7, 0.5, 3)
+        } else if (2500 <= CanEatKcal && CanEatKcal < 2600) {
+            bmigroup = BmiGroup(16, 0, 3, 9, 7, 0.5, 3)
+        }
+
+        firestore?.collection("user")?.document("hello")?.set(bmigroup)
+    }
+}

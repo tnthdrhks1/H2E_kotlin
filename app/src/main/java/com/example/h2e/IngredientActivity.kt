@@ -125,7 +125,12 @@ class IngredientActivity : AppCompatActivity() {
 
         ButtonCal.setOnClickListener {
 
-            FindIngredient(namedish1.toString())
+            FindIngredient(namedish1.toString(), "dish1")
+            FindIngredient(namedish2.toString(), "dish2")
+            FindIngredient(namedish3.toString(), "dish3")
+            FindIngredient(namedish4.toString(), "dish4")
+            FindIngredient(namedish5.toString(), "dish5")
+            FindIngredient(namedish6.toString(), "dish6")
 
             dish_weight1.setText(tan.toString())
             dish_weight2.setText(dan.toString())
@@ -150,7 +155,7 @@ class IngredientActivity : AppCompatActivity() {
         }
     }
 
-    private fun FindIngredient(FoodName: Any?) {
+    private fun FindIngredient(FoodName: Any? , dish : String) {
         firestore.collection("meal")
             .get()
             .addOnCompleteListener { task ->
@@ -190,16 +195,16 @@ class IngredientActivity : AppCompatActivity() {
                             Weight_of_Food15 = document.data["num15"]
 
                             if (Weight_of_Food1 == null) {
-                                Weight_of_Food1 = 1
+                                Weight_of_Food1 = 0
                             }
                             if (Weight_of_Food2 == null) {
-                                Weight_of_Food2 = 1
+                                Weight_of_Food2 = 0
                             }
                             if (Weight_of_Food3 == null) {
-                                Weight_of_Food3 = 1
+                                Weight_of_Food3 = 0
                             }
                             if (Weight_of_Food4 == null) {
-                                Weight_of_Food4 = 1
+                                Weight_of_Food4 = 0
                             }
                             if (Weight_of_Food5 == null) {
                                 Weight_of_Food5 = 0
@@ -235,22 +240,18 @@ class IngredientActivity : AppCompatActivity() {
                                 Weight_of_Food15 = 0
                             }
 
-                            Weight_of_Food_sum =
-                                Weight_of_Food1.toString().toDouble() + Weight_of_Food2.toString()
-                                    .toDouble() + Weight_of_Food3.toString().toDouble()
-                            +Weight_of_Food4.toString().toDouble() + Weight_of_Food5.toString()
-                                .toDouble() + Weight_of_Food6.toString()
-                                .toDouble() + Weight_of_Food7.toString().toDouble()
-                            +Weight_of_Food8.toString().toDouble() + Weight_of_Food9.toString()
-                                .toDouble() + Weight_of_Food10.toString()
-                                .toDouble() + Weight_of_Food11.toString().toDouble()
-                            +Weight_of_Food12.toString().toDouble() + Weight_of_Food13.toString()
-                                .toDouble() + Weight_of_Food14.toString()
-                                .toDouble() + Weight_of_Food15.toString().toDouble()
+                            Weight_of_Food_sum = Weight_of_Food1.toString().toDouble() + Weight_of_Food2.toString().toDouble() + Weight_of_Food3.toString().toDouble()
+                            +Weight_of_Food4.toString().toDouble() + Weight_of_Food5.toString().toDouble() + Weight_of_Food6.toString().toDouble() + Weight_of_Food7.toString().toDouble()
+                            +Weight_of_Food8.toString().toDouble() + Weight_of_Food9.toString().toDouble() + Weight_of_Food10.toString().toDouble() + Weight_of_Food11.toString().toDouble()
+                            +Weight_of_Food12.toString().toDouble() + Weight_of_Food13.toString().toDouble() + Weight_of_Food14.toString().toDouble() + Weight_of_Food15.toString().toDouble()
 
-                            BeforeGetIngredient("dish1")
-//                            BeforeGetIngredient("dish2")
+                            BeforeGetIngredient(dish) // 라즈베리파이 무게 가져오기
+//                            BeforeGetIngredient(dish)
 //                            BeforeGetIngredient("dish3")
+//                            BeforeGetIngredient("dish4")
+//                            BeforeGetIngredient("dish5")
+//                            BeforeGetIngredient("dish6")
+
                         }
                     }
                 }
@@ -303,7 +304,6 @@ class IngredientActivity : AppCompatActivity() {
                                                             tan0 = tan0 * wine0 / 100
                                                             tan0 = tan0  / Weight_of_Food_sum * weight1
                                                             tan = tan + tan0
-
                                                             tan = Math.round(tan).toDouble()
 
                                                             println("tan0 = $tan0")

@@ -11,7 +11,7 @@
         android:layout_width="130dp"
         android:layout_height="50dp"
         android:text=" 기기번호"
-        android:textSize="25dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/button_height"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/text_dev"
@@ -22,9 +22,8 @@
         android:layout_width="130dp"
         android:layout_height="48dp"
         android:text=" 키"
-        android:textSize="25dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/button_weight"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/EditText_height"
         app:layout_constraintTop_toBottomOf="@id/textView6"/>
@@ -34,10 +33,10 @@
         android:layout_width="130dp"
         android:layout_height="48dp"
         android:text=" 몸무게"
-        android:textSize="25dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/text_age"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/button_weight"
+        app:layout_constraintRight_toLeftOf="@id/EditText_weight"
         app:layout_constraintTop_toBottomOf="@id/button_height"/>
 
     <androidx.appcompat.widget.AppCompatAutoCompleteTextView
@@ -45,17 +44,44 @@
         android:layout_width="130dp"
         android:layout_height="48dp"
         android:text=" 나이"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_man"
+        android:textSize="20dp"
+        app:layout_constraintRight_toLeftOf="@id/EditText_age"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/text_age"
-        app:layout_constraintTop_toBottomOf="@id/button_weight"/>
+        app:layout_constraintTop_toBottomOf="@id/button_weight"
+        app:layout_constraintBottom_toTopOf="@id/text_day"/>
+
+
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/text_day"
+        android:layout_width="130dp"
+        android:layout_height="48dp"
+        android:text="감량기간"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="6dp"
+        app:layout_constraintRight_toLeftOf="@id/EditText_day"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_age"
+        app:layout_constraintBottom_toTopOf="@id/text_want_day"/>
+
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/text_want_day"
+        android:layout_width="130dp"
+        android:layout_height="48dp"
+        android:text=" 희망 몸무게"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="468dp"
+        app:layout_constraintRight_toLeftOf="@id/EditText_want_day"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_day"
+        app:layout_constraintBottom_toTopOf="@id/button_man"/>
 
     <EditText
         android:id="@+id/text_dev"
         android:layout_width="260dp"
         android:layout_height="50dp"
-        android:textSize="25dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/EditText_height"
         app:layout_constraintLeft_toRightOf="@id/textView6"
         app:layout_constraintRight_toRightOf="parent"
@@ -65,7 +91,7 @@
         android:id="@+id/EditText_height"
         android:layout_width="260dp"
         android:layout_height="50dp"
-        android:textSize="25dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/EditText_weight"
         app:layout_constraintLeft_toRightOf="@id/button_height"
         app:layout_constraintRight_toRightOf="parent"
@@ -75,7 +101,7 @@
         android:id="@+id/EditText_weight"
         android:layout_width="260dp"
         android:layout_height="50dp"
-        android:textSize="25dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/EditText_age"
         app:layout_constraintLeft_toRightOf="@id/button_weight"
         app:layout_constraintRight_toRightOf="parent"
@@ -85,49 +111,68 @@
         android:id="@+id/EditText_age"
         android:layout_width="260dp"
         android:layout_height="50dp"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_woman"
+        android:textSize="20dp"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintLeft_toRightOf="@id/text_age"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EditText_weight"/>
+        app:layout_constraintBottom_toTopOf="@id/EditText_day"
+        app:layout_constraintTop_toBottomOf="@id/EditText_weight" />
+
+    <EditText
+        android:id="@+id/EditText_day"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toRightOf="@id/text_day"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/EditText_age"
+        app:layout_constraintBottom_toTopOf="@id/EditText_want_day"/>
+
+    <EditText
+        android:id="@+id/EditText_want_day"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toRightOf="@id/text_want_day"
+        app:layout_constraintBottom_toTopOf="@id/button_woman"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/EditText_day"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/appCompatButton"
         android:layout_width="100dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="52dp"
         android:text="send"
         android:textSize="20dp"
-        tools:layout_editor_absoluteX="156dp"
-        tools:layout_editor_absoluteY="653dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="80dp"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_woman"
         android:layout_width="100dp"
         android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="76dp"
         android:text="여자"
         android:textSize="20dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/button_man"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EditText_age"/>
+        app:layout_constraintTop_toBottomOf="@id/EditText_want_day"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_man"
         android:layout_width="100dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="80dp"
         android:text="남자"
         android:textSize="20dp"
-        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/button_woman"
-        app:layout_constraintTop_toBottomOf="@id/text_age"/>
+        app:layout_constraintTop_toBottomOf="@id/text_want_day"
+        app:layout_constraintRight_toLeftOf="@id/button_woman" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_next"
