@@ -8,8 +8,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_check_meal.*
 import kotlinx.android.synthetic.main.activity_profile.*
 
-var dev_address = "null"
-
 class CheckMealActivity : AppCompatActivity() {
 
     val firestore = FirebaseFirestore.getInstance()
@@ -28,14 +26,6 @@ class CheckMealActivity : AppCompatActivity() {
 
         ButtonNext.setOnClickListener {
             startActivity(Intent(this, IngredientActivity::class.java))
-        }
-
-
-        if (intent.hasExtra("device_address")) {
-            dev_address = intent.getStringExtra("device_address")
-        }
-        else {
-            Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show()
         }
     }
 

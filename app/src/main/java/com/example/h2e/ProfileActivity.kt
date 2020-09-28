@@ -79,14 +79,17 @@ class ProfileActivity : AppCompatActivity() {
             EditText_weight.text.toString(),
             EditText_age.text.toString(),
             bmi.toString(),
-            gender
+            gender,
+            EditText_day.text.toString(),
+            EditText_want_day.text.toString()
         )
-        firestore?.collection("user")?.document(text_dev.text.toString() + user)?.set(userdata)
+        firestore?.collection(user)?.document("profile")?.set(userdata)
 
     }
 
     private fun CalCanEatBmi() {
         CanEatKcal = bmi - ((EditText_weight.text.toString().toDouble() - EditText_want_day.text.toString().toDouble()) * 7700 / EditText_day.text.toString().toDouble())
+        CanEatKcal = Math.round(CanEatKcal).toDouble()
 
         println(CanEatKcal)
         CalBmi()
@@ -126,6 +129,6 @@ class ProfileActivity : AppCompatActivity() {
         else{
             bmigroup = BmiGroup(1600, 0, 3, 9, 7, 0.5, 3, CanEatKcal)
         }
-        firestore?.collection("user")?.document(user)?.set(bmigroup)
+        firestore?.collection(user)?.document("profile_ingre")?.set(bmigroup)
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_check_meal.*
 import kotlinx.android.synthetic.main.activity_ingredient.*
@@ -12,8 +13,8 @@ import kotlinx.android.synthetic.main.activity_ingredient.dish_weight1
 import kotlinx.android.synthetic.main.activity_ingredient.dish_weight2
 import kotlinx.android.synthetic.main.activity_ingredient.dish_weight3
 import kotlinx.android.synthetic.main.activity_ingredient.dish_weight4
-import kotlinx.android.synthetic.main.activity_ingredient.dish_weight5
-import kotlinx.android.synthetic.main.activity_ingredient.dish_weight6
+import java.time.LocalDate
+import kotlin.math.roundToInt
 
 var namedish1: Any? = null
 var namedish2: Any? = null
@@ -61,13 +62,32 @@ var Weight_of_Food15 : Any? = '0'
 
 var Weight_of_Food_sum : Double  = 0.0
 
+var gok_data : Double = 0.0
+var uju_data : Double = 0.0
+var ujung_data : Double = 0.0
+var veg_data : Double = 0.0
+var fruit_data : Double = 0.0
+var milk_data : Double = 0.0
+var fat_data : Double = 0.0
+
 class IngredientActivity : AppCompatActivity() {
 
     val firestore = FirebaseFirestore.getInstance()
 
+    lateinit var Meal : String
+
+    private val mAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
+    var user = mAuth.currentUser?.uid.toString()
+
+    var onlyDate: LocalDate = LocalDate.now()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ingredient)
+
+        if (intent.hasExtra("meal")) {
+            Meal = intent.getStringExtra("meal")
+        }
 
         firestore.collection("user")
             .get()
@@ -101,6 +121,11 @@ class IngredientActivity : AppCompatActivity() {
             dish_weight2.setText(dan.toString())
             dish_weight3.setText(ji.toString())
             dish_weight4.setText(kcal.toString())
+
+            gok_data = 0.0
+
+            GiveData()
+
             tan = 0.0
             dan = 0.0
             ji = 0.0
@@ -266,8 +291,6 @@ class IngredientActivity : AppCompatActivity() {
                                                             tan0 = tan0  / Weight_of_Food_sum * weight1
                                                             tan = tan + tan0
                                                             tan = Math.round(tan).toDouble()
-
-                                                            println("tan0 = $tan0")
                                                         }
 
                                                         var dan0 = document.data["dan"]
@@ -298,7 +321,55 @@ class IngredientActivity : AppCompatActivity() {
                                                             kcal = kcal + kcal0
 
                                                             kcal = Math.round(kcal).toDouble()
-                                                }
+                                                             }
+
+
+                                                        if (document.data["group"] == "곡류군"){
+                                                            var gok_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 100
+                                                            gok_data = gok_data + gok_data0
+                                                            gok_data = (gok_data*100).roundToInt() / 100.0
+                                                            }
+                                                        else if (document.data["group"] == "저지방 어육류군"){
+                                                            var uju_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 50
+                                                            uju_data = uju_data + uju_data0
+                                                            uju_data = (uju_data*100).roundToInt() / 100.0
+                                                            }
+                                                        else if (document.data["group"] == "중지방 어육류군"){
+                                                            var ujung_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 75
+                                                            ujung_data = ujung_data + ujung_data0
+                                                            ujung_data = (ujung_data*100).roundToInt() / 100.0
+                                                            }
+                                                        else if (document.data["group"] == "고지방 어육류군"){
+                                                            var ugo_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 100
+                                                            ujung_data = ujung_data + ugo_data0
+                                                            ujung_data = (ujung_data*100).roundToInt() / 100.0
+                                                            }
+                                                        else if (document.data["group"] == "채소군"){
+                                                            var veg_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 20
+                                                            veg_data = veg_data + veg_data0
+                                                            veg_data = (veg_data*100).roundToInt() / 100.0
+                                                            }
+                                                        else if (document.data["group"] == "지방군"){
+                                                            var fat_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 45
+                                                            fat_data = fat_data + fat_data0
+                                                            fat_data = (fat_data*100).roundToInt() / 100.0
+                                                            }
+                                                        else if (document.data["group"] == "지방군"){
+                                                            var fat_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 45
+                                                            fat_data = fat_data + fat_data0
+                                                            fat_data = (fat_data*100).roundToInt() / 100.0
+                                                            }
+                                                        else if (document.data["group"] == "우유군"){
+                                                            var milk_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 125
+                                                            milk_data = milk_data + milk_data0
+                                                            milk_data = (milk_data*100).roundToInt() / 100.0
+                                                            }
+                                                        else if (document.data["group"] == "과일군"){
+                                                            var fruit_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 125
+                                                            fruit_data = fruit_data + fruit_data0
+                                                            fruit_data = (fruit_data*100).roundToInt() / 100.0
+                                                            }
+
                                             }
                                         }
                                     }
@@ -309,5 +380,11 @@ class IngredientActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun GiveData(){
+        var setmealdata = SetMeatData(namedish1.toString(), namedish2.toString(), namedish3.toString(), namedish4.toString(), namedish5.toString(), namedish6.toString(),
+        kcal, tan, dan, ji, gok_data, uju_data, ujung_data, veg_data, fat_data, milk_data, fruit_data)
+        firestore?.collection(user)?.document(onlyDate.toString() + Meal)?.set(setmealdata)
     }
 }
