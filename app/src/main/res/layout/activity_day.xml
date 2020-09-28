@@ -6,126 +6,328 @@
     android:layout_height="match_parent"
     tools:context=".DayActivity">
 
-    <!--    #########################################-->
-    <!--    #              음식이름 작성              -->
-    <!--    #########################################-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:background="@drawable/box"
-        android:gravity="center"
-        android:onClick="get_morning"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="88dp"
+                android:background="@drawable/box"
+                android:gravity="center"
+                android:onClick="get_morning"
+                android:layout_marginLeft="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/morning"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:text="아침"
-            android:textColor="#000000"
-            android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/morning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:text="아침"
+                    android:textColor="#000000"
+                    android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/morning_meal"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:layout_gravity="right"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="20dp"
-            android:gravity="right"></androidx.appcompat.widget.AppCompatTextView>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/morning_meal"
+                    android:layout_width="300dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"></androidx.appcompat.widget.AppCompatTextView>
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/box"
-        android:gravity="center"
-        android:onClick="get_lunch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/box"
+                android:gravity="center"
+                android:onClick="get_lunch"
+                android:layout_marginLeft="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/lunch"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:text="점심"
-            android:textColor="#000000"
-            android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lunch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:text="점심"
+                    android:textColor="#000000"
+                    android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/lunch_meal"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="20dp"></androidx.appcompat.widget.AppCompatTextView>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lunch_meal"
+                    android:layout_width="300dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:background="@drawable/box"
-        android:gravity="center"
-        android:onClick="get_dinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21dp"
+                android:background="@drawable/box"
+                android:gravity="center"
+                android:onClick="get_dinner"
+                android:layout_marginLeft="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/dinner"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:text="저녁"
-            android:textColor="#000000"
-            android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/dinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:text="저녁"
+                    android:textColor="#000000"
+                    android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/dinner_meal"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="20dp"></androidx.appcompat.widget.AppCompatTextView>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/dinner_meal"
+                    android:layout_width="300dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/Button_next_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="next"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.805" />
+            <LinearLayout
+                android:id="@+id/ProgressBar1"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginRight="10dp"
+                >
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/gok"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="30dp"
+                    android:text="곡류"
+                    android:textColor="#000000"
+                    android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
 
-    <!--    #########################################-->
-    <!--    #           음식무게 가져오기         -->
-    <!--    #########################################-->
+                <ProgressBar
+                    android:id="@+id/ProgressBar_gok"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ProgressBar2"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginRight="10dp"
+                >
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/uju"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:text="어육류 저지방"
+                    android:layout_marginRight="30dp"
+                    android:textColor="#000000"
+                    android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
 
+                <ProgressBar
+                    android:id="@+id/ProgressBar_uju"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ProgressBar3"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginRight="10dp"
+                >
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ujung"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:text="어육류 중지방"
+                    android:layout_marginRight="30dp"
+                    android:textColor="#000000"
+                    android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
+
+
+                <ProgressBar
+                    android:id="@+id/ProgressBar_ujung"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ProgressBar4"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginRight="10dp"
+                >
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/veg"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:text="채소"
+                    android:layout_marginRight="30dp"
+                    android:textColor="#000000"
+                    android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
+
+
+                <ProgressBar
+                    android:id="@+id/ProgressBar_veg"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ProgressBar5"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginRight="10dp"
+                >
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/fat"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:text="지방"
+                    android:layout_marginRight="30dp"
+                    android:textColor="#000000"
+                    android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
+
+
+                <ProgressBar
+                    android:id="@+id/ProgressBar_fat"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ProgressBar6"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginRight="10dp"
+                >
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/milk"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:text="우유"
+                    android:layout_marginRight="30dp"
+                    android:textColor="#000000"
+                    android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
+
+
+                <ProgressBar
+                    android:id="@+id/ProgressBar_milk"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ProgressBar7"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginRight="10dp"
+                >
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/fruit"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:text="과일"
+                    android:layout_marginRight="30dp"
+                    android:textColor="#000000"
+                    android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
+
+
+                <ProgressBar
+                    android:id="@+id/ProgressBar_fruit"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/Button_next_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="50dp"
+                android:text="next"
+                android:textSize="20dp"
+                android:layout_marginRight="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+                app:layout_constraintVertical_bias="0.805" />
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
