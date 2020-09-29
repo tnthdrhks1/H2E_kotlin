@@ -122,9 +122,15 @@ class IngredientActivity : AppCompatActivity() {
             dish_weight3.setText(ji.toString())
             dish_weight4.setText(kcal.toString())
 
-            gok_data = 0.0
-
             GiveData()
+
+            gok_data = 0.0
+            uju_data = 0.0
+            ujung_data = 0.0
+            veg_data = 0.0
+            fruit_data = 0.0
+            milk_data = 0.0
+            fat_data= 0.0
 
             tan = 0.0
             dan = 0.0
@@ -316,60 +322,50 @@ class IngredientActivity : AppCompatActivity() {
                                                         var kcal0 = document.data["kcal"]
                                                         if (kcal0 is String) {
                                                             kcal0 = kcal0.toDouble()
-                                                            kcal0 = kcal0 * wine0 / 100
-                                                            kcal0 = kcal0  / Weight_of_Food_sum * weight1
-                                                            kcal = kcal + kcal0
+                                                            var kcal10 = kcal0 * wine0 / 100
+                                                            kcal10 = kcal10 / Weight_of_Food_sum * weight1
+                                                            kcal = kcal + kcal10
 
                                                             kcal = Math.round(kcal).toDouble()
-                                                             }
 
-
-                                                        if (document.data["group"] == "곡류군"){
-                                                            var gok_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 100
-                                                            gok_data = gok_data + gok_data0
-                                                            gok_data = (gok_data*100).roundToInt() / 100.0
-                                                            }
-                                                        else if (document.data["group"] == "저지방 어육류군"){
-                                                            var uju_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 50
-                                                            uju_data = uju_data + uju_data0
-                                                            uju_data = (uju_data*100).roundToInt() / 100.0
-                                                            }
-                                                        else if (document.data["group"] == "중지방 어육류군"){
-                                                            var ujung_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 75
-                                                            ujung_data = ujung_data + ujung_data0
-                                                            ujung_data = (ujung_data*100).roundToInt() / 100.0
-                                                            }
-                                                        else if (document.data["group"] == "고지방 어육류군"){
-                                                            var ugo_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 100
-                                                            ujung_data = ujung_data + ugo_data0
-                                                            ujung_data = (ujung_data*100).roundToInt() / 100.0
-                                                            }
-                                                        else if (document.data["group"] == "채소군"){
-                                                            var veg_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 20
-                                                            veg_data = veg_data + veg_data0
-                                                            veg_data = (veg_data*100).roundToInt() / 100.0
-                                                            }
-                                                        else if (document.data["group"] == "지방군"){
-                                                            var fat_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 45
-                                                            fat_data = fat_data + fat_data0
-                                                            fat_data = (fat_data*100).roundToInt() / 100.0
-                                                            }
-                                                        else if (document.data["group"] == "지방군"){
-                                                            var fat_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 45
-                                                            fat_data = fat_data + fat_data0
-                                                            fat_data = (fat_data*100).roundToInt() / 100.0
-                                                            }
-                                                        else if (document.data["group"] == "우유군"){
-                                                            var milk_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 125
-                                                            milk_data = milk_data + milk_data0
-                                                            milk_data = (milk_data*100).roundToInt() / 100.0
-                                                            }
-                                                        else if (document.data["group"] == "과일군"){
-                                                            var fruit_data0 : Double = wine0 * weight1 / Weight_of_Food_sum / 125
-                                                            fruit_data = fruit_data + fruit_data0
-                                                            fruit_data = (fruit_data*100).roundToInt() / 100.0
+                                                            if (document.data["group"] == "곡류군") {
+                                                                var gok_data0: Double = kcal0 / 100 * wine0 / Weight_of_Food_sum * weight1 / 100
+                                                                gok_data = gok_data + gok_data0
+                                                                gok_data = (gok_data * 100).roundToInt() / 100.0
                                                             }
 
+                                                            else if (document.data["group"] == "저지방 어육류군") {
+                                                                var uju_data0: Double = kcal0 / 100 * wine0 / Weight_of_Food_sum * weight1 / 50
+                                                                uju_data = uju_data + uju_data0
+                                                                uju_data = (uju_data * 100).roundToInt() / 100.0
+                                                            }
+
+                                                            else if (document.data["group"] == "중지방 어육류군") {
+                                                                var ujung_data0: Double = kcal / 100 * wine0 / Weight_of_Food_sum * weight1 / 75
+                                                                ujung_data = ujung_data + ujung_data0
+                                                                ujung_data = (ujung_data * 100).roundToInt() / 100.0
+                                                            } else if (document.data["group"] == "고지방 어육류군") {
+                                                                var ugo_data0: Double = kcal / 100 * wine0 / Weight_of_Food_sum * weight1 / 100
+                                                                ujung_data = ujung_data + ugo_data0
+                                                                ujung_data = (ujung_data * 100).roundToInt() / 100.0
+                                                            } else if (document.data["group"] == "채소군") {
+                                                                var veg_data0: Double = kcal0 / 100 * wine0 / Weight_of_Food_sum * weight1 / 20
+                                                                veg_data = veg_data + veg_data0
+                                                                veg_data = (veg_data0 * 100).roundToInt() / 100.0
+                                                            } else if (document.data["group"] == "지방군") {
+                                                                var fat_data0: Double = kcal / 100 * wine0 / Weight_of_Food_sum * weight1 / 45
+                                                                fat_data = fat_data + fat_data0
+                                                                fat_data = (fat_data * 100).roundToInt() / 100.0
+                                                            } else if (document.data["group"] == "우유군") {
+                                                                var milk_data0: Double = kcal / 100 * wine0 / Weight_of_Food_sum * weight1 / 125
+                                                                milk_data = milk_data + milk_data0
+                                                                milk_data = (milk_data * 100).roundToInt() / 100.0
+                                                            } else if (document.data["group"] == "과일군") {
+                                                                var fruit_data0: Double = kcal / 100 * wine0 / Weight_of_Food_sum * weight1 / 50
+                                                                fruit_data = fruit_data + fruit_data0
+                                                                fruit_data = (fruit_data * 100).roundToInt() / 100.0
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -384,7 +380,9 @@ class IngredientActivity : AppCompatActivity() {
 
     fun GiveData(){
         var setmealdata = SetMeatData(namedish1.toString(), namedish2.toString(), namedish3.toString(), namedish4.toString(), namedish5.toString(), namedish6.toString(),
-        kcal, tan, dan, ji, gok_data, uju_data, ujung_data, veg_data, fat_data, milk_data, fruit_data)
+        kcal.toString(), tan.toString(), dan.toString(), ji.toString(), gok_data.toString(), uju_data.toString(), ujung_data.toString(), veg_data.toString(), fat_data.toString(),
+            milk_data.toString(), fruit_data.toString())
+
         firestore?.collection(user)?.document(onlyDate.toString() + Meal)?.set(setmealdata)
     }
 }

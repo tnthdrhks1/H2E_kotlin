@@ -97,37 +97,37 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun CalBmi() {
         if (1200 <= CanEatKcal && CanEatKcal < 1300) {
-            bmigroup = BmiGroup(8, 0, 1, 6, 3, 0.0, 1, CanEatKcal)
+            bmigroup = BmiGroup("8", "0", "1", "6", "3", "0", "1", CanEatKcal.toString())
         }
         else if (1300 <= CanEatKcal && CanEatKcal < 1400) {
-            bmigroup = BmiGroup(9, 0, 1, 6, 3, 0.0, 1, CanEatKcal)
+            bmigroup = BmiGroup("9", "0", "1", "6", "3", "0", "1", CanEatKcal.toString())
         } else if (1400 <= CanEatKcal && CanEatKcal < 1500) {
-            bmigroup = BmiGroup(9, 0, 1, 7, 4, 0.5, 1, CanEatKcal)
+            bmigroup = BmiGroup("9", "0", "1", "7", "4", "0.5", "1", CanEatKcal.toString())
         } else if (1500 <= CanEatKcal && CanEatKcal < 1600) {
-            bmigroup = BmiGroup(10, 0, 1, 7, 4, 0.5, 1, CanEatKcal)
+            bmigroup = BmiGroup("10", "0", "1", "7", "4", "0.5", "1", CanEatKcal.toString())
         } else if (1600 <= CanEatKcal && CanEatKcal < 1700) {
-            bmigroup = BmiGroup(10, 0, 1, 8, 5, 0.5, 2, CanEatKcal)
+            bmigroup = BmiGroup("10", "0", "1", "8", "5", "0.5", "2", CanEatKcal.toString())
         } else if (1700 <= CanEatKcal && CanEatKcal < 1800) {
-            bmigroup = BmiGroup(11, 0, 1, 8, 5, 0.5, 2, CanEatKcal)
+            bmigroup = BmiGroup("11", "0", "1", "8", "5", "0.5", "2", CanEatKcal.toString())
         } else if (1800 <= CanEatKcal && CanEatKcal < 1900) {
-            bmigroup = BmiGroup(11, 0, 2, 8, 5, 0.5, 2, CanEatKcal)
+            bmigroup = BmiGroup("11", "0", "2", "8", "5", "0.5", "2", CanEatKcal.toString())
         } else if (1900 <= CanEatKcal && CanEatKcal < 2000) {
-            bmigroup = BmiGroup(12, 0, 2, 8, 5, 0.5, 2, CanEatKcal)
+            bmigroup = BmiGroup("12", "0", "2", "8", "5", "0.5", "2", CanEatKcal.toString())
         } else if (2000 <= CanEatKcal && CanEatKcal < 2100) {
-            bmigroup = BmiGroup(12, 0, 2, 9, 6, 0.5, 3, CanEatKcal)
+            bmigroup = BmiGroup("12", "0", "2", "9", "6", "0.5", "3", CanEatKcal.toString())
         } else if (2100 <= CanEatKcal && CanEatKcal < 2200) {
-            bmigroup = BmiGroup(13, 0, 2, 9, 6, 0.5, 3, CanEatKcal)
+            bmigroup = BmiGroup("13", "0", "2", "9", "6", "0.5", "3", CanEatKcal.toString())
         } else if (2200 <= CanEatKcal && CanEatKcal < 2300) {
-            bmigroup = BmiGroup(14, 0, 2, 9, 6, 0.5, 3, CanEatKcal)
+            bmigroup = BmiGroup("14", "0", "2", "9", "6", "0.5", "3", CanEatKcal.toString())
         } else if (2300 <= CanEatKcal && CanEatKcal < 2400) {
-            bmigroup = BmiGroup(14, 0, 3, 9, 7, 0.5, 3, CanEatKcal)
+            bmigroup = BmiGroup("14", "0", "3", "9", "7", "0.5", "3", CanEatKcal.toString())
         } else if (2400 <= CanEatKcal && CanEatKcal < 2500) {
-            bmigroup = BmiGroup(15, 0, 3, 9, 7, 0.5, 3, CanEatKcal)
+            bmigroup = BmiGroup("15", "0", "3", "9", "7", "0.5", "3", CanEatKcal.toString())
         } else if (2500 <= CanEatKcal && CanEatKcal < 2600) {
-            bmigroup = BmiGroup(16, 0, 3, 9, 7, 0.5, 3, CanEatKcal)
+            bmigroup = BmiGroup("16", "0", "3", "9", "7", "0.5", "3", CanEatKcal.toString())
         }
         else{
-            bmigroup = BmiGroup(1600, 0, 3, 9, 7, 0.5, 3, CanEatKcal)
+            bmigroup = BmiGroup("1600", "0", "3", "9", "7", "0.5", "3", CanEatKcal.toString())
         }
         firestore?.collection(user)?.document("profile_ingre")?.set(bmigroup)
     }

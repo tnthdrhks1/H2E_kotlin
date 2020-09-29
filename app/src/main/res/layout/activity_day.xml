@@ -8,21 +8,24 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-138dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
                 android:id="@+id/linearLayout1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="88dp"
                 android:background="@drawable/box"
                 android:gravity="center"
                 android:onClick="get_morning"
-                android:layout_marginLeft="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -54,11 +57,11 @@
                 android:id="@+id/linearLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/box"
                 android:gravity="center"
                 android:onClick="get_lunch"
-                android:layout_marginLeft="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
@@ -87,11 +90,11 @@
                 android:id="@+id/linearLayout3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="21dp"
                 android:background="@drawable/box"
                 android:gravity="center"
                 android:onClick="get_dinner"
-                android:layout_marginLeft="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
@@ -117,22 +120,50 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ProgressBar1"
-                android:layout_marginTop="30dp"
+                android:id="@+id/ProgressBar_kcal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
-                >
+                android:gravity="left">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/Kcal"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="30dp"
+                    android:gravity="center_vertical"
+                    android:text="칼로리"
+                    android:textColor="#000000"
+                    android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
+
+
+                <ProgressBar
+                    android:id="@+id/ProgressBar_Kcal"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="250dp"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ProgressBar1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="10dp"
+                android:gravity="left">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/gok"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
-                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="30dp"
+                    android:gravity="center_vertical"
                     android:text="곡류"
                     android:textColor="#000000"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
@@ -142,26 +173,25 @@
                     android:id="@+id/ProgressBar_gok"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="250dp"
-                    android:layout_height="40dp"/>
+                    android:layout_height="40dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ProgressBar2"
-                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
-                >
+                android:gravity="left">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/uju"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
-                    android:text="어육류 저지방"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="30dp"
+                    android:text="어육류 저지방"
                     android:textColor="#000000"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
@@ -170,26 +200,25 @@
                     android:id="@+id/ProgressBar_uju"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="250dp"
-                    android:layout_height="40dp"/>
+                    android:layout_height="40dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ProgressBar3"
-                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
-                >
+                android:gravity="left">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/ujung"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
-                    android:text="어육류 중지방"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="30dp"
+                    android:text="어육류 중지방"
                     android:textColor="#000000"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
@@ -198,26 +227,25 @@
                     android:id="@+id/ProgressBar_ujung"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="250dp"
-                    android:layout_height="40dp"/>
+                    android:layout_height="40dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ProgressBar4"
-                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
-                >
+                android:gravity="left">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/veg"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
-                    android:text="채소"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="30dp"
+                    android:text="채소"
                     android:textColor="#000000"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
@@ -226,26 +254,25 @@
                     android:id="@+id/ProgressBar_veg"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="250dp"
-                    android:layout_height="40dp"/>
+                    android:layout_height="40dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ProgressBar5"
-                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
-                >
+                android:gravity="left">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/fat"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
-                    android:text="지방"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="30dp"
+                    android:text="지방"
                     android:textColor="#000000"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
@@ -254,26 +281,25 @@
                     android:id="@+id/ProgressBar_fat"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="250dp"
-                    android:layout_height="40dp"/>
+                    android:layout_height="40dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ProgressBar6"
-                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
-                >
+                android:gravity="left">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/milk"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
-                    android:text="우유"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="30dp"
+                    android:text="우유"
                     android:textColor="#000000"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
@@ -282,26 +308,25 @@
                     android:id="@+id/ProgressBar_milk"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="250dp"
-                    android:layout_height="40dp"/>
+                    android:layout_height="40dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ProgressBar7"
-                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
-                >
+                android:gravity="left">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/fruit"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
-                    android:text="과일"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="30dp"
+                    android:text="과일"
                     android:textColor="#000000"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
@@ -310,7 +335,7 @@
                     android:id="@+id/ProgressBar_fruit"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="250dp"
-                    android:layout_height="40dp"/>
+                    android:layout_height="40dp" />
             </LinearLayout>
 
             <Button
@@ -319,9 +344,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="50dp"
+                android:layout_marginRight="10dp"
                 android:text="next"
                 android:textSize="20dp"
-                android:layout_marginRight="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.95"
