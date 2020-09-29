@@ -85,8 +85,8 @@ class IngredientActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ingredient)
 
-        if (intent.hasExtra("meal")) {
-            Meal = intent.getStringExtra("meal")
+        if (intent.hasExtra("meal_time")) {
+            Meal = intent.getStringExtra("meal_time")
         }
 
         firestore.collection("user")

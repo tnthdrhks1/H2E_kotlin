@@ -10,11 +10,17 @@ import kotlinx.android.synthetic.main.activity_profile.*
 
 class CheckMealActivity : AppCompatActivity() {
 
+    lateinit var Meal_time : String
     val firestore = FirebaseFirestore.getInstance()
+    lateinit var Meal0: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_check_meal)
+
+        if (intent.hasExtra("meal")) {
+            Meal_time = intent.getStringExtra("meal")
+        }
 
         ButtonCal.setOnClickListener {
             receiveData()
@@ -25,7 +31,10 @@ class CheckMealActivity : AppCompatActivity() {
         }
 
         ButtonNext.setOnClickListener {
-            startActivity(Intent(this, IngredientActivity::class.java))
+            Meal0 = Intent(this, IngredientActivity::class.java)
+            Meal0.putExtra("meal_time", Meal_time)
+
+            startActivity(Meal0)
         }
     }
 

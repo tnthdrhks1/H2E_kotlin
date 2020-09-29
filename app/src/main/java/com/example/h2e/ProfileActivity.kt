@@ -44,12 +44,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         button_next.setOnClickListener {
-            val nextIntent = Intent(this, CheckMealActivity::class.java)
-            nextIntent.putExtra(
-                "device_address",
-                text_dev.text.toString()
-            ) //key: "email", value: inputEmail
-            startActivity(nextIntent)
+            startActivity(Intent(this, DayActivity::class.java))
         }
     }
 

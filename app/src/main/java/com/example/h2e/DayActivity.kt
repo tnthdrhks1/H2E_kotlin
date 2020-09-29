@@ -20,6 +20,7 @@ var Veg_dan_sum: Double = 0.0
 var Fat_dan_sum: Double = 0.0
 var Milk_dan_sum: Double = 0.0
 var Fruit_dan_sum: Double = 0.0
+var kcal_sum: Double = 0.0
 
 var gok_gun0 = 0.0
 var uju_gun0 = 0.0
@@ -28,6 +29,7 @@ var veg_gun0 = 0.0
 var fat_gun0 = 0.0
 var milk_gun0 = 0.0
 var fruit_gun0 = 0.0
+var CanEatKcal0 = 0.0
 
 class DayActivity : AppCompatActivity() {
 
@@ -60,16 +62,18 @@ class DayActivity : AppCompatActivity() {
         ProgressBar_fat.setProgress(Fat_dan_sum.toInt())
         ProgressBar_milk.setProgress(Milk_dan_sum.toInt())
         ProgressBar_fruit.setProgress(Fruit_dan_sum.toInt())
+        ProgressBar_Kcal.setProgress(kcal_sum.toInt())
 
         Gok_dan_sum = 0.0
         Uju_dan_sum = 0.0
         Veg_dan_sum = 0.0
+        kcal_sum = 0.0
 
     }
 
     fun get_morning(v: View) {
         time = "morning"
-        Meal = Intent(this, IngredientActivity::class.java)
+        Meal = Intent(this, CheckMealActivity::class.java)
         Meal.putExtra("meal", time)
 
         startActivity(Meal)
@@ -77,7 +81,7 @@ class DayActivity : AppCompatActivity() {
 
     fun get_lunch(v: View) {
         time = "lunch"
-        Meal = Intent(this, IngredientActivity::class.java)
+        Meal = Intent(this, CheckMealActivity::class.java)
         Meal.putExtra("meal", time)
 
         startActivity(Meal)
@@ -85,7 +89,7 @@ class DayActivity : AppCompatActivity() {
 
     fun get_dinner(v: View) {
         time = "dinner"
-        Meal = Intent(this, IngredientActivity::class.java)
+        Meal = Intent(this, CheckMealActivity::class.java)
         Meal.putExtra("meal", time)
 
         startActivity(Meal)
@@ -110,6 +114,7 @@ class DayActivity : AppCompatActivity() {
                             var fat_gun = document.data["fat"]
                             var milk_gun = document.data["milk"]
                             var fruit_gun = document.data["fruit"]
+                            var CanEatKcal = document.data["canEatKcal"]
 
                             if (gok_gun is String) {
                                 gok_gun0 = gok_gun.toDouble()
@@ -132,6 +137,9 @@ class DayActivity : AppCompatActivity() {
                             if (fruit_gun is String) {
                                 fruit_gun0 = fruit_gun.toDouble()
                             }
+                            if(CanEatKcal is String){
+                                CanEatKcal0 = CanEatKcal.toDouble()
+                            }
 
                             firestore.collection(user)
                                 .get()
@@ -146,6 +154,7 @@ class DayActivity : AppCompatActivity() {
                                                 var Fat_dan0 = document.data["fat_data"]
                                                 var Milk_dan0 = document.data["milk_data"]
                                                 var Fruit_dan0 = document.data["fruit_data"]
+                                                var kcal_frag = document.data["kcal"]
 
                                                 if (Gok_dan0 is String) {
                                                     Gok_dan0 = Gok_dan0.toDouble()
@@ -174,6 +183,10 @@ class DayActivity : AppCompatActivity() {
                                                 if (Fruit_dan0 is String) {
                                                     Fruit_dan0 = Fruit_dan0.toDouble()
                                                     Fruit_dan_sum = Fruit_dan_sum + Fruit_dan0 / fruit_gun0 * 100
+                                                }
+                                                if(kcal_frag is String){
+                                                    kcal_frag = kcal_frag.toDouble()
+                                                    kcal_sum = kcal_sum + kcal_frag / CanEatKcal0 * 100
                                                 }
                                     }
                                 }
