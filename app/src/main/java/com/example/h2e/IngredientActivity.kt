@@ -72,9 +72,9 @@ var fat_data : Double = 0.0
 
 class IngredientActivity : AppCompatActivity() {
 
-    val firestore = FirebaseFirestore.getInstance()
-
     lateinit var Meal : String
+
+    val firestore = FirebaseFirestore.getInstance()
 
     private val mAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
     var user = mAuth.currentUser?.uid.toString()

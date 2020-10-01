@@ -76,8 +76,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, ProfileActivity::class.java))
         }
         else{
-            Toast.makeText(baseContext, "login failed.",
-                Toast.LENGTH_SHORT).show()
+            Toast.makeText(baseContext, "login failed.", Toast.LENGTH_SHORT).show()
         }
     }
 }

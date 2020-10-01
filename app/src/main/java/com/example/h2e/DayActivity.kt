@@ -48,6 +48,10 @@ class DayActivity : AppCompatActivity() {
         setContentView(R.layout.activity_day)
 
         FillProgressBar()
+
+        Button_next_2.setOnClickListener {
+            startActivity(Intent(this, RecyclerActivity::class.java))
+        }
     }
 
     private fun FillProgressBar() {
