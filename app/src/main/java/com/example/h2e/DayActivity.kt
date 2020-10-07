@@ -52,6 +52,8 @@ class DayActivity : AppCompatActivity() {
 
         FillProgressBar()
 
+//        FillUserData()
+
         btnDetailMorning.setOnClickListener {
             var DetailView = (Intent(this, DetailActivity::class.java))
             DetailView.putExtra("whichtime", "morning")
@@ -78,17 +80,6 @@ class DayActivity : AppCompatActivity() {
         GetData("morning", morningKcal_text, morninggram_text)
         GetData("lunch", lunchKcal_text, lunchgram_text)
         GetData("dinner",dinnerKcal_text, dinnergram_text )
-
-        ProgressBar_gok.setProgress(Gok_dan_sum.toInt())
-        ProgressBar_uju.setProgress(Uju_dan_sum.toInt())
-        ProgressBar_ujung.setProgress(Ujung_dan_sum.toInt())
-        ProgressBar_veg.setProgress(Veg_dan_sum.toInt())
-        ProgressBar_fat.setProgress(Fat_dan_sum.toInt())
-        ProgressBar_milk.setProgress(Milk_dan_sum.toInt())
-        ProgressBar_fruit.setProgress(Fruit_dan_sum.toInt())
-        ProgressBar_Kcal.setProgress(kcal_sum.toInt())
-
-        println("Ujung_dan_sum = $Ujung_dan_sum")
 
         Gok_dan_sum = 0.0
         Ujung_dan_sum = 0.0
@@ -126,7 +117,7 @@ class DayActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
-                        if (document.id == "profile_ingre") {
+                        if (document.id == "profile_ingre_adopted") {
                             var gok_gun = document.data["gok"]
                             var uju_gun = document.data["uju"]
                             var ujung_gun = document.data["ujung"]
@@ -135,6 +126,21 @@ class DayActivity : AppCompatActivity() {
                             var milk_gun = document.data["milk"]
                             var fruit_gun = document.data["fruit"]
                             var CanEatKcal = document.data["canEatKcal"]
+                            var dietSystem = document.data["dietSystem"]
+                            var username = document.data["name"]
+
+                            gokdetailtext_adopted.setText(gok_gun.toString())
+                            ujudetailtext_adopted.setText(uju_gun.toString())
+                            ujungdetailtext_adopted.setText(ujung_gun.toString())
+                            vegdetailtext_adopted.setText(veg_gun.toString())
+                            milkdetailtext_adopted.setText(milk_gun.toString())
+                            fruitdetailtext_adopted.setText(fruit_gun.toString())
+                            fatdetailtext_adopted.setText(fat_gun.toString())
+                            kcalDetailtext.setText(CanEatKcal.toString())
+                            dishname_adopted.setText(dietSystem.toString())
+                            UserName.setText(username.toString())
+
+
 
                             if (gok_gun is String) {
                                 gok_gun0 = gok_gun.toDouble()
@@ -214,6 +220,15 @@ class DayActivity : AppCompatActivity() {
                                                         Ujung_dan0.toString().toDouble()  + Veg_dan0.toString().toDouble()  +
                                                         Fat_dan0.toString().toDouble()  + Milk_dan0.toString().toDouble()  +
                                                         Fruit_dan0.toString().toDouble()
+
+                                                ProgressBar_gok.setProgress(Gok_dan_sum.toInt())
+                                                ProgressBar_uju.setProgress(Uju_dan_sum.toInt())
+                                                ProgressBar_ujung.setProgress(Ujung_dan_sum.toInt())
+                                                ProgressBar_veg.setProgress(Veg_dan_sum.toInt())
+                                                ProgressBar_fat.setProgress(Fat_dan_sum.toInt())
+                                                ProgressBar_milk.setProgress(Milk_dan_sum.toInt())
+                                                ProgressBar_fruit.setProgress(Fruit_dan_sum.toInt())
+                                                ProgressBar_Kcal.setProgress(kcal_sum.toInt())
 
                                                 KcalText.setText(kcal_frag.toString())
                                                 DanTextView.setText(IngreSum.toString())

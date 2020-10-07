@@ -21,6 +21,207 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/UserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:id="@+id/UserCanEatKcal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="님의 섭취가능 칼로리"
+                    android:textSize="20dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/wrapLinear_adopted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/dishLayoutKcal_adopted"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/dishname_adopted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:textSize="20dp"
+                            android:gravity="center"
+                            android:layout_marginRight="20dp"/>
+
+                        <TextView
+                            android:id="@+id/kcalDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="kcal : "
+                            android:textSize="20dp"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/kcalDetailtext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:textSize="20dp"
+                            android:gravity="center" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/gokdetail_adopted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="곡류 : "
+                            android:textSize="20dp"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/gokdetailtext_adopted"
+                            android:layout_width="55dp"
+                            android:layout_height="40dp"
+                            android:textSize="20dp"
+                            android:layout_marginRight="20dp"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/ujudetail_adopted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="어육류 저지방 : "
+                            android:textSize="20dp"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/ujudetailtext_adopted"
+                            android:layout_width="55dp"
+                            android:layout_height="40dp"
+                            android:textSize="20dp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/vegdetail_adopted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="채소 : "
+                            android:textSize="20dp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/vegdetailtext_adopted"
+                            android:layout_width="55dp"
+                            android:layout_height="40dp"
+                            android:textSize="20dp"
+                            android:layout_marginRight="20dp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/ujungdetail_adopted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="어육류 중지방 : "
+                            android:textSize="20dp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/ujungdetailtext_adopted"
+                            android:layout_width="55dp"
+                            android:layout_height="40dp"
+                            android:textSize="20dp"
+                            android:gravity="center"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/fatdetail_adopted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="  지방 : "
+                            android:textSize="20dp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/fatdetailtext_adopted"
+                            android:layout_width="55dp"
+                            android:layout_height="40dp"
+                            android:textSize="20dp"
+                            android:layout_marginRight="20dp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/milkdetail_adopted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="우유 : "
+                            android:textSize="20dp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/milkdetailtext_adopted"
+                            android:layout_width="55dp"
+                            android:layout_height="40dp"
+                            android:textSize="20dp"
+                            android:layout_marginRight="20dp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/fruitdetail_adopted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="과일 : "
+                            android:textSize="20dp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/fruitdetailtext_adopted"
+                            android:layout_width="55dp"
+                            android:layout_height="40dp"
+                            android:textSize="20dp"
+                            android:gravity="center"/>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/linearLayout1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,7 +281,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/morningKcal_text"
-                        android:layout_width="60dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="40dp"
                         android:layout_marginLeft="80dp"
@@ -94,7 +295,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/morninggram_text"
-                        android:layout_width="60dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="75dp"
                         android:layout_marginBottom="12dp"
@@ -175,7 +376,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/lunchKcal_text"
-                        android:layout_width="60dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="40dp"
                         android:layout_marginLeft="80dp"
@@ -189,7 +390,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/lunchgram_text"
-                        android:layout_width="60dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="75dp"
                         android:layout_marginBottom="12dp"
@@ -271,7 +472,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/dinnerKcal_text"
-                        android:layout_width="60dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="40dp"
                         android:layout_marginLeft="80dp"
@@ -285,7 +486,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/dinnergram_text"
-                        android:layout_width="60dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="75dp"
                         android:layout_marginBottom="12dp"
