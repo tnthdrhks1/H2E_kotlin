@@ -11,6 +11,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_profile.*
 
+class userData (var height: String? = null, var weight: String? = null , var age: String? = null, var bmi: String? = null, var gender : String?,var want_day : String?, var want_weight : String? )
+
+class BmiGroup(val Name : String? = null ,val DietSystem : String? = null, var gok: String? = null, var uju: String? = null, var ujung: String? = null, var veg: String? = null,
+               var fat: String? = null, var milk: String? = null, var fruit: String? = null, var CanEatKcal : String?)
+
 class ProfileActivity : AppCompatActivity() {
 
     val firestore = FirebaseFirestore.getInstance()

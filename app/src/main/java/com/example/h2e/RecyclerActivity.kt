@@ -17,6 +17,8 @@ import kotlinx.android.synthetic.main.activity_recycler.*
 import kotlinx.android.synthetic.main.custom_recycle.*
 import kotlinx.android.synthetic.main.custom_recycle.view.*
 
+class MyMeal (val Aname : String? = null)
+
 class RecyclerActivity : AppCompatActivity() {
 
     var DishName : String? = null
