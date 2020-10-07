@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.protobuf.Empty
 import kotlinx.android.synthetic.main.activity_check_meal.*
 import kotlinx.android.synthetic.main.activity_ingredient.*
 import kotlinx.android.synthetic.main.activity_ingredient.ButtonCal
@@ -70,6 +71,17 @@ var fruit_data : Double = 0.0
 var milk_data : Double = 0.0
 var fat_data : Double = 0.0
 
+var gok_data_detail : Double = 0.0
+var uju_data_detail : Double = 0.0
+var ujung_data_detail : Double = 0.0
+var veg_data_detail : Double = 0.0
+var fruit_data_detail : Double = 0.0
+var milk_data_detail : Double = 0.0
+var fat_data_detail : Double = 0.0
+
+class MealDetailClass (var Dish : String? = null, var Kcal : String? = null, var Gok_data : String? = null, var Uju_data : String? = null, var Ujung_data : String? = null,
+                       var Veg_data : String? = null, var Fat_data : String? = null, var Milk_data : String? = null, var Fruit_data : String? = null)
+
 class IngredientActivity : AppCompatActivity() {
 
     lateinit var Meal : String
@@ -110,12 +122,29 @@ class IngredientActivity : AppCompatActivity() {
 
         ButtonCal.setOnClickListener {
 
-            FindIngredient(namedish1.toString(), "dish1")
-            FindIngredient(namedish2.toString(), "dish2")
-            FindIngredient(namedish3.toString(), "dish3")
-            FindIngredient(namedish4.toString(), "dish4")
-            FindIngredient(namedish5.toString(), "dish5")
-            FindIngredient(namedish6.toString(), "dish6")
+            if(namedish1.toString().isNotEmpty()) {
+                IngreDetail(namedish1.toString(), "dish1", Meal)
+            } else{}
+
+            if(namedish2.toString().isNotEmpty()) {
+                IngreDetail(namedish2.toString(), "dish2", Meal)
+            } else{}
+
+            if(namedish3.toString().isNotEmpty()) {
+                IngreDetail(namedish3.toString(), "dish3", Meal)
+            } else{}
+
+            if(namedish4.toString().isNotEmpty()) {
+                IngreDetail(namedish4.toString(), "dish4", Meal)
+            } else{}
+
+            if(namedish5.toString().isNotEmpty()) {
+                IngreDetail(namedish5.toString(), "dish5", Meal)
+            } else{}
+
+            if(namedish6.toString().isNotEmpty()) {
+                IngreDetail(namedish6.toString(), "dish6", Meal)
+            } else{}
 
             dish_weight1.setText(tan.toString())
             dish_weight2.setText(dan.toString())
@@ -153,6 +182,23 @@ class IngredientActivity : AppCompatActivity() {
         ingredient_button_next.setOnClickListener {
             startActivity(Intent(this, DayActivity::class.java))
         }
+    }
+
+    private fun IngreDetail(DishName : String,Dish : String, Time : String) {
+        FindIngredient(namedish1.toString(), Dish)
+
+        var mealdetaildata = MealDetailClass(namedish1.toString(),  kcal.toString(), gok_data_detail.toString(), uju_data_detail.toString(),
+            ujung_data_detail.toString(), veg_data_detail.toString(), fat_data_detail.toString(), milk_data_detail.toString(), fruit_data_detail.toString())
+
+        firestore.collection(user + Time).document(DishName + Dish).set(mealdetaildata)
+
+        gok_data_detail = 0.0
+        uju_data_detail = 0.0
+        ujung_data_detail = 0.0
+        veg_data_detail = 0.0
+        fruit_data_detail = 0.0
+        milk_data_detail = 0.0
+        fat_data_detail = 0.0
     }
 
     private fun FindIngredient(FoodName: Any? , dish : String) {
@@ -245,31 +291,31 @@ class IngredientActivity : AppCompatActivity() {
                             +Weight_of_Food8.toString().toDouble() + Weight_of_Food9.toString().toDouble() + Weight_of_Food10.toString().toDouble() + Weight_of_Food11.toString().toDouble()
                             +Weight_of_Food12.toString().toDouble() + Weight_of_Food13.toString().toDouble() + Weight_of_Food14.toString().toDouble() + Weight_of_Food15.toString().toDouble()
 
-                            BeforeGetIngredient(dish) // 라즈베리파이 무게 가져오기
+                            BeforeGetIngredient(FoodName, dish) // 라즈베리파이 무게 가져오기
                     }
                 }
             }
         }
     }
 
-    fun BeforeGetIngredient(Field_name: String) {
+    fun BeforeGetIngredient(FoodName : String, Field_name: String) {
 
-        GetIngredinet(ingre1.toString(), Field_name, Weight_of_Food1.toString())
-        GetIngredinet(ingre2.toString(), Field_name, Weight_of_Food2.toString())
-        GetIngredinet(ingre3.toString(), Field_name, Weight_of_Food3.toString())
-        GetIngredinet(ingre4.toString(), Field_name, Weight_of_Food4.toString())
-        GetIngredinet(ingre5.toString(), Field_name, Weight_of_Food5.toString())
-        GetIngredinet(ingre6.toString(), Field_name, Weight_of_Food6.toString())
-        GetIngredinet(ingre7.toString(), Field_name, Weight_of_Food7.toString())
-        GetIngredinet(ingre8.toString(), Field_name, Weight_of_Food8.toString())
-        GetIngredinet(ingre9.toString(), Field_name, Weight_of_Food9.toString())
-        GetIngredinet(ingre10.toString(), Field_name, Weight_of_Food10.toString())
-        GetIngredinet(ingre11.toString(), Field_name, Weight_of_Food11.toString())
-        GetIngredinet(ingre12.toString(), Field_name, Weight_of_Food12.toString())
-        GetIngredinet(ingre13.toString(), Field_name, Weight_of_Food13.toString())
+        GetIngredinet(FoodName, ingre1.toString(), Field_name, Weight_of_Food1.toString())
+        GetIngredinet(FoodName, ingre2.toString(), Field_name, Weight_of_Food2.toString())
+        GetIngredinet(FoodName, ingre3.toString(), Field_name, Weight_of_Food3.toString())
+        GetIngredinet(FoodName, ingre4.toString(), Field_name, Weight_of_Food4.toString())
+        GetIngredinet(FoodName, ingre5.toString(), Field_name, Weight_of_Food5.toString())
+        GetIngredinet(FoodName, ingre6.toString(), Field_name, Weight_of_Food6.toString())
+        GetIngredinet(FoodName, ingre7.toString(), Field_name, Weight_of_Food7.toString())
+        GetIngredinet(FoodName, ingre8.toString(), Field_name, Weight_of_Food8.toString())
+        GetIngredinet(FoodName, ingre9.toString(), Field_name, Weight_of_Food9.toString())
+        GetIngredinet(FoodName, ingre10.toString(), Field_name, Weight_of_Food10.toString())
+        GetIngredinet(FoodName, ingre11.toString(), Field_name, Weight_of_Food11.toString())
+        GetIngredinet(FoodName, ingre12.toString(), Field_name, Weight_of_Food12.toString())
+        GetIngredinet(FoodName, ingre13.toString(), Field_name, Weight_of_Food13.toString())
     }
 
-    fun GetIngredinet(Docu: String?, Field: String, gram: String) {
+    fun GetIngredinet(FoodName : String, Docu: String?, Field: String, gram: String) {
 
         if (gram is String) {
             var wine0 = gram.toDouble()
@@ -279,8 +325,9 @@ class IngredientActivity : AppCompatActivity() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         for (document in task.result!!) {
-                            if (document.id == "ras") {
+                            if (document.id == "rasbian") {
                                 var weight1 = document.data[Field]
+
                                 if (weight1 is String) {
                                     weight1 = weight1.toDouble()
 
@@ -290,6 +337,7 @@ class IngredientActivity : AppCompatActivity() {
                                             if (task.isSuccessful) {
                                                 for (document in task.result!!) {
                                                     if (document.id == Docu) {
+
                                                         var tan0: Any? = document.data["tan"]
                                                         if (tan0 is String) {
                                                             tan0 = tan0.toDouble()
@@ -330,41 +378,79 @@ class IngredientActivity : AppCompatActivity() {
 
                                                             if (document.data["group"] == "곡류군") {
                                                                 var gok_data0: Double = kcal0 / 100 * wine0 / Weight_of_Food_sum * weight1 / 100
+
                                                                 gok_data = gok_data + gok_data0
                                                                 gok_data = (gok_data * 100).roundToInt() / 100.0
+
+                                                                gok_data_detail += gok_data0
+                                                                gok_data_detail = (gok_data_detail * 100).roundToInt() / 100.0
                                                             }
 
                                                             else if (document.data["group"] == "저지방 어육류군") {
                                                                 var uju_data0: Double = kcal0 / 100 * wine0 / Weight_of_Food_sum * weight1 / 50
+
                                                                 uju_data = uju_data + uju_data0
                                                                 uju_data = (uju_data * 100).roundToInt() / 100.0
+
+                                                                uju_data_detail = uju_data_detail + uju_data0
+                                                                uju_data_detail = (uju_data_detail * 100).roundToInt() / 100.0
                                                             }
 
                                                             else if (document.data["group"] == "중지방 어육류군") {
                                                                 var ujung_data0: Double = kcal / 100 * wine0 / Weight_of_Food_sum * weight1 / 75
+
                                                                 ujung_data = ujung_data + ujung_data0
                                                                 ujung_data = (ujung_data * 100).roundToInt() / 100.0
+
+                                                                ujung_data_detail = ujung_data_detail + ujung_data0
+                                                                ujung_data_detail = (ujung_data_detail * 100).roundToInt() / 100.0
+
                                                             } else if (document.data["group"] == "고지방 어육류군") {
                                                                 var ugo_data0: Double = kcal / 100 * wine0 / Weight_of_Food_sum * weight1 / 100
+
                                                                 ujung_data = ujung_data + ugo_data0
                                                                 ujung_data = (ujung_data * 100).roundToInt() / 100.0
+
+                                                                ujung_data_detail = ujung_data_detail + ugo_data0
+                                                                ujung_data_detail = (ujung_data_detail * 100).roundToInt() / 100.0
+
                                                             } else if (document.data["group"] == "채소군") {
                                                                 var veg_data0: Double = kcal0 / 100 * wine0 / Weight_of_Food_sum * weight1 / 20
+
                                                                 veg_data = veg_data + veg_data0
                                                                 veg_data = (veg_data0 * 100).roundToInt() / 100.0
+
+                                                                veg_data_detail = veg_data_detail + veg_data0
+                                                                veg_data_detail = (veg_data_detail * 100).roundToInt() / 100.0
+
                                                             } else if (document.data["group"] == "지방군") {
                                                                 var fat_data0: Double = kcal / 100 * wine0 / Weight_of_Food_sum * weight1 / 45
+
                                                                 fat_data = fat_data + fat_data0
                                                                 fat_data = (fat_data * 100).roundToInt() / 100.0
+
+                                                                fat_data_detail = fat_data_detail + fat_data0
+                                                                fat_data_detail = (fat_data_detail * 100).roundToInt() / 100.0
+
                                                             } else if (document.data["group"] == "우유군") {
                                                                 var milk_data0: Double = kcal / 100 * wine0 / Weight_of_Food_sum * weight1 / 125
+
                                                                 milk_data = milk_data + milk_data0
                                                                 milk_data = (milk_data * 100).roundToInt() / 100.0
+
+                                                                milk_data_detail = milk_data_detail + milk_data0
+                                                                milk_data_detail = (milk_data_detail * 100).roundToInt() / 100.0
+
                                                             } else if (document.data["group"] == "과일군") {
                                                                 var fruit_data0: Double = kcal / 100 * wine0 / Weight_of_Food_sum * weight1 / 50
+
                                                                 fruit_data = fruit_data + fruit_data0
                                                                 fruit_data = (fruit_data * 100).roundToInt() / 100.0
-                                                    }
+
+                                                                fruit_data_detail = fruit_data_detail + fruit_data0
+                                                                fruit_data_detail = (fruit_data_detail * 100).roundToInt() / 100.0
+                                                            }
+
                                                 }
                                             }
                                         }

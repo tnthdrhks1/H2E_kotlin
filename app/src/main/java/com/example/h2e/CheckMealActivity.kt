@@ -44,8 +44,21 @@ class CheckMealActivity : AppCompatActivity() {
 
             if (nameDishNumber_out == "nameDish1") {
                 firestore?.collection("user")?.document("DishName")?.update("nameDish1", DishName)
-            } else if (nameDishNumber_out == "nameDish2") {
+            }
+            else if (nameDishNumber_out == "nameDish2") {
                 firestore?.collection("user")?.document("DishName")?.update("nameDish2", DishName)
+            }
+            else if (nameDishNumber_out == "nameDish3") {
+                firestore?.collection("user")?.document("DishName")?.update("nameDish3", DishName)
+            }
+            else if (nameDishNumber_out == "nameDish4") {
+                firestore?.collection("user")?.document("DishName")?.update("nameDish4", DishName)
+            }
+            else if (nameDishNumber_out == "nameDish5") {
+                firestore?.collection("user")?.document("DishName")?.update("nameDish5", DishName)
+            }
+            else if (nameDishNumber_out == "nameDish6") {
+                firestore?.collection("user")?.document("DishName")?.update("nameDish6", DishName)
             }
         } else {
         }
@@ -53,8 +66,14 @@ class CheckMealActivity : AppCompatActivity() {
         ButtonCal.setOnClickListener {
             receiveData()
         }
-        ButtonGet.setOnClickListener {
-            GetNameData()
+
+        ButtonZeroset.setOnClickListener {
+            DishReset(dish1, "nameDish1")
+            DishReset(dish2, "nameDish2")
+            DishReset(dish3, "nameDish3")
+            DishReset(dish4, "nameDish4")
+            DishReset(dish5, "nameDish5")
+            DishReset(dish6, "nameDish6")
         }
 
         ButtonNext.setOnClickListener {
@@ -65,48 +84,39 @@ class CheckMealActivity : AppCompatActivity() {
         }
     }
 
-    fun dish1Onclick1(v: View) {
-        nameDishNumber = "nameDish1"
-        Meal0 = Intent(this, RecyclerActivity::class.java)
-        Meal0.putExtra("meal_time", Meal_time)
-        Meal0.putExtra("nameDishNumber", nameDishNumber)
+    private fun DishReset(dish:TextView, dishnum : String) {
+        dish.setText("")
+        firestore?.collection("user")?.document("DishName")?.update(dishnum, dish.text.toString())
+    }
 
-        startActivity(Meal0)
+    fun dish1Onclick1(v: View) {
+        DishList("nameDish1")
     }
 
     fun dish1Onclick2(v: View) {
-        nameDishNumber = "nameDish2"
+        DishList("nameDish2")
+    }
+    fun dish1Onclick3(v: View) {
+        DishList("nameDish3")
+    }
+    fun dish1Onclick4(v: View) {
+        DishList("nameDish4")
+    }
+    fun dish1Onclick5(v: View) {
+        DishList("nameDish5")
+    }
+    fun dish1Onclick6(v: View) {
+        DishList("nameDish6")
+    }
+
+    private fun DishList(namedish : String) {
+
+        nameDishNumber = namedish
         Meal0 = Intent(this, RecyclerActivity::class.java)
         Meal0.putExtra("meal_time", Meal_time)
         Meal0.putExtra("nameDishNumber", nameDishNumber)
 
         startActivity(Meal0)
-    }
-
-    private fun GetNameData() {
-        var namedata = NameData(
-            dish1.text.toString(),
-            dish2.text.toString(),
-            dish3.text.toString(),
-            dish4.text.toString(),
-            dish5.text.toString(),
-            dish6.text.toString()
-        )
-        firestore?.collection("user")?.document("DishName")?.set(namedata)
-            ?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(
-                        baseContext, "success.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    Toast.makeText(
-                        baseContext, "fail.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                }
-            }
     }
 
     private fun receiveData() {
@@ -115,7 +125,7 @@ class CheckMealActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
-                        if (document.id == "ras") {
+                        if (document.id == "rasbian") {
                             var weight1 = document.data["dish1"]
                             dish_weight1.setText(weight1.toString())
 

@@ -7,10 +7,13 @@
     tools:context=".DayActivity">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-138dp">
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,6 +29,7 @@
                 android:background="@drawable/box"
                 android:gravity="center"
                 android:onClick="get_morning"
+                android:layout_marginRight="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -42,15 +46,74 @@
                     android:textColor="#000000"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/morning_meal"
-                    android:layout_width="300dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/parent1"
+                    android:layout_width="280dp"
                     android:layout_height="100dp"
                     android:layout_gravity="right"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="20dp"
-                    android:gravity="right"></androidx.appcompat.widget.AppCompatTextView>
+                    android:layout_marginRight="0dp">
 
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/morningKcal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="64dp"
+                        android:layout_marginTop="28dp"
+                        android:text="Kcal"
+                        android:textSize="18dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/morningGram"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="28dp"
+                        android:layout_marginRight="72dp"
+                        android:text="교환단위"
+                        android:textSize="18dp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/morningKcal_text"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="40dp"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginEnd="52dp"
+                        android:layout_marginBottom="12dp"
+                        android:textColor="#000"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/morninggram_text"
+                        app:layout_constraintLeft_toLeftOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/morninggram_text"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="75dp"
+                        android:layout_marginBottom="12dp"
+                        android:textColor="#000"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnDetailMorning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_box"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginRight="3dp"
+                    android:text="상세"/>
             </LinearLayout>
 
             <LinearLayout
@@ -59,6 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/box"
                 android:gravity="center"
                 android:onClick="get_lunch"
@@ -77,12 +141,74 @@
                     android:textColor="#000000"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/lunch_meal"
-                    android:layout_width="300dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/parent2"
+                    android:layout_width="280dp"
                     android:layout_height="100dp"
+                    android:layout_gravity="right"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="20dp"></androidx.appcompat.widget.AppCompatTextView>
+                    android:layout_marginRight="0dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lunchKcal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="64dp"
+                        android:layout_marginTop="28dp"
+                        android:text="Kcal"
+                        android:textSize="18dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lunchGram"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="28dp"
+                        android:layout_marginRight="72dp"
+                        android:text="교환단위"
+                        android:textSize="18dp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lunchKcal_text"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="40dp"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginEnd="52dp"
+                        android:layout_marginBottom="12dp"
+                        android:textColor="#000"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/lunchgram_text"
+                        app:layout_constraintLeft_toLeftOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lunchgram_text"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="75dp"
+                        android:layout_marginBottom="12dp"
+                        android:textColor="#000"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnDetailLunch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_box"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginRight="3dp"
+                    android:text="상세"/>
 
             </LinearLayout>
 
@@ -92,6 +218,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="21dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/box"
                 android:gravity="center"
                 android:onClick="get_dinner"
@@ -110,12 +237,74 @@
                     android:textColor="#000000"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/dinner_meal"
-                    android:layout_width="300dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/parent3"
+                    android:layout_width="280dp"
                     android:layout_height="100dp"
+                    android:layout_gravity="right"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="20dp"></androidx.appcompat.widget.AppCompatTextView>
+                    android:layout_marginRight="0dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/dinnerKcal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="64dp"
+                        android:layout_marginTop="28dp"
+                        android:text="Kcal"
+                        android:textSize="18dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/dinnerGram"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="28dp"
+                        android:layout_marginRight="72dp"
+                        android:text="교환단위"
+                        android:textSize="18dp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/dinnerKcal_text"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="40dp"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginEnd="52dp"
+                        android:layout_marginBottom="12dp"
+                        android:textColor="#000"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/dinnergram_text"
+                        app:layout_constraintLeft_toLeftOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/dinnergram_text"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="75dp"
+                        android:layout_marginBottom="12dp"
+                        android:textColor="#000"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnDetailDinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_box"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginRight="3dp"
+                    android:text="상세"/>
 
             </LinearLayout>
 
@@ -144,9 +333,9 @@
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:layout_marginRight="10dp"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
 
@@ -183,9 +372,9 @@
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:layout_marginRight="10dp"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
 
@@ -193,8 +382,8 @@
                     android:id="@+id/ProgressBar_gok"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="220dp"
-                    android:layout_gravity="right"
-                    android:layout_height="40dp" />
+                    android:layout_height="40dp"
+                    android:layout_gravity="right" />
             </LinearLayout>
 
             <LinearLayout
@@ -222,9 +411,9 @@
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:layout_marginRight="10dp"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
 
@@ -260,9 +449,9 @@
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:layout_marginRight="10dp"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
 
@@ -298,9 +487,9 @@
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:layout_marginRight="10dp"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
 
@@ -336,9 +525,9 @@
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:layout_marginRight="10dp"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
 
@@ -374,9 +563,9 @@
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:layout_marginRight="10dp"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
 
@@ -412,9 +601,9 @@
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:layout_marginRight="10dp"
                     android:textSize="20dp"></androidx.appcompat.widget.AppCompatTextView>
 
 
@@ -424,22 +613,6 @@
                     android:layout_width="220dp"
                     android:layout_height="40dp" />
             </LinearLayout>
-
-            <Button
-                android:id="@+id/Button_next_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="10dp"
-                android:text="next"
-                android:textSize="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.95"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-                app:layout_constraintVertical_bias="0.805" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

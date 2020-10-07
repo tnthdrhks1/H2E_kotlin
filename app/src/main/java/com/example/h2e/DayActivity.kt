@@ -5,13 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_day.*
 import java.time.LocalDate
 import java.time.LocalDateTime
-
-var GokPercent = 0.0
 
 var Gok_dan_sum: Double = 0.0
 var Uju_dan_sum: Double = 0.0
@@ -46,18 +45,39 @@ class DayActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_day)
+    }
+
+    override fun onStart() {
+        super.onStart()
 
         FillProgressBar()
 
-        Button_next_2.setOnClickListener {
-            startActivity(Intent(this, RecyclerActivity::class.java))
+        btnDetailMorning.setOnClickListener {
+            var DetailView = (Intent(this, DetailActivity::class.java))
+            DetailView.putExtra("whichtime", "morning")
+
+            startActivity(DetailView)
+        }
+
+        btnDetailLunch.setOnClickListener {
+            var DetailView = (Intent(this, DetailActivity::class.java))
+            DetailView.putExtra("whichtime", "lunch")
+
+            startActivity(DetailView)
+        }
+
+        btnDetailDinner.setOnClickListener {
+            var DetailView = (Intent(this, DetailActivity::class.java))
+            DetailView.putExtra("whichtime", "dinner")
+
+            startActivity(DetailView)
         }
     }
 
-    private fun FillProgressBar() {
-        GetData("morning")
-        GetData("lunch")
-        GetData("dinner")
+    fun FillProgressBar() {
+        GetData("morning", morningKcal_text, morninggram_text)
+        GetData("lunch", lunchKcal_text, lunchgram_text)
+        GetData("dinner",dinnerKcal_text, dinnergram_text )
 
         ProgressBar_gok.setProgress(Gok_dan_sum.toInt())
         ProgressBar_uju.setProgress(Uju_dan_sum.toInt())
@@ -68,11 +88,12 @@ class DayActivity : AppCompatActivity() {
         ProgressBar_fruit.setProgress(Fruit_dan_sum.toInt())
         ProgressBar_Kcal.setProgress(kcal_sum.toInt())
 
+        println("Ujung_dan_sum = $Ujung_dan_sum")
+
         Gok_dan_sum = 0.0
-        Uju_dan_sum = 0.0
+        Ujung_dan_sum = 0.0
         Veg_dan_sum = 0.0
         kcal_sum = 0.0
-
     }
 
     fun get_morning(v: View) {
@@ -99,12 +120,7 @@ class DayActivity : AppCompatActivity() {
         startActivity(Meal)
     }
 
-    private fun GiveData(Time: String) {
-        var IngreGroup = IngreClass(0, 0, 0, 0, 0, 0, 0)
-        firestore?.collection(user)?.document(onlyDate.toString() + Time)?.set(IngreGroup)
-    }
-
-    private fun GetData(Time: String) {
+    private fun GetData(Time: String, KcalText : TextView, DanTextView: TextView) {
         firestore.collection(user)
             .get()
             .addOnCompleteListener { task ->
@@ -141,7 +157,7 @@ class DayActivity : AppCompatActivity() {
                             if (fruit_gun is String) {
                                 fruit_gun0 = fruit_gun.toDouble()
                             }
-                            if(CanEatKcal is String){
+                            if (CanEatKcal is String) {
                                 CanEatKcal0 = CanEatKcal.toDouble()
                             }
 
@@ -158,6 +174,7 @@ class DayActivity : AppCompatActivity() {
                                                 var Fat_dan0 = document.data["fat_data"]
                                                 var Milk_dan0 = document.data["milk_data"]
                                                 var Fruit_dan0 = document.data["fruit_data"]
+
                                                 var kcal_frag = document.data["kcal"]
 
                                                 if (Gok_dan0 is String) {
@@ -166,7 +183,7 @@ class DayActivity : AppCompatActivity() {
                                                 }
                                                 if (Uju_dan0 is String) {
                                                     Uju_dan0 = Uju_dan0.toDouble()
-                                                    Uju_dan_sum = Uju_dan_sum + Uju_dan0 / ujung_gun0 * 100
+                                                    Ujung_dan_sum = Ujung_dan_sum + Uju_dan0 / ujung_gun0 * 100
                                                 }
                                                 if (Ujung_dan0 is String) {
                                                     Ujung_dan0 = Ujung_dan0.toDouble()
@@ -188,10 +205,18 @@ class DayActivity : AppCompatActivity() {
                                                     Fruit_dan0 = Fruit_dan0.toDouble()
                                                     Fruit_dan_sum = Fruit_dan_sum + Fruit_dan0 / fruit_gun0 * 100
                                                 }
-                                                if(kcal_frag is String){
+                                                if (kcal_frag is String) {
                                                     kcal_frag = kcal_frag.toDouble()
                                                     kcal_sum = kcal_sum + kcal_frag / CanEatKcal0 * 100
                                                 }
+
+                                                var IngreSum = Gok_dan0.toString().toDouble() + Uju_dan0.toString().toDouble() +
+                                                        Ujung_dan0.toString().toDouble()  + Veg_dan0.toString().toDouble()  +
+                                                        Fat_dan0.toString().toDouble()  + Milk_dan0.toString().toDouble()  +
+                                                        Fruit_dan0.toString().toDouble()
+
+                                                KcalText.setText(kcal_frag.toString())
+                                                DanTextView.setText(IngreSum.toString())
                                     }
                                 }
                             }
@@ -202,6 +227,7 @@ class DayActivity : AppCompatActivity() {
         }
     }
 }
+
 
 
 

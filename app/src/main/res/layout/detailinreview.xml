@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+
+        <LinearLayout
+            android:id="@+id/wrapLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/dishLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/dishname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="hello world"
+                    android:textSize="20dp"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dishLayoutKcal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/kcalDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="kcal : "
+                    android:textSize="20dp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/kcalDetailtext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="500.0"
+                    android:textSize="20dp"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/gokdetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="곡류 : "
+                    android:textSize="20dp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/gokdetailtext"
+                    android:layout_width="55dp"
+                    android:layout_height="40dp"
+                    android:text="10"
+                    android:textSize="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/ujudetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="어육류 저지방 : "
+                    android:textSize="20dp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/ujudetailtext"
+                    android:layout_width="55dp"
+                    android:layout_height="40dp"
+                    android:text="10"
+                    android:textSize="20dp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/vegdetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="채소 : "
+                    android:textSize="20dp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/vegdetailtext"
+                    android:layout_width="55dp"
+                    android:layout_height="40dp"
+                    android:text="10"
+                    android:textSize="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/ujungdetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="어육류 중지방 : "
+                    android:textSize="20dp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/ujungdetailtext"
+                    android:layout_width="55dp"
+                    android:layout_height="40dp"
+                    android:text="10"
+                    android:textSize="20dp"
+                    android:gravity="center"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/fatdetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="  지방 : "
+                    android:textSize="20dp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/fatdetailtext"
+                    android:layout_width="55dp"
+                    android:layout_height="40dp"
+                    android:text="10"
+                    android:textSize="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/milkdetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="우유 : "
+                    android:textSize="20dp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/milkdetailtext"
+                    android:layout_width="55dp"
+                    android:layout_height="40dp"
+                    android:text="10"
+                    android:textSize="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/fruitdetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="과일 : "
+                    android:textSize="20dp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/fruitdetailtext"
+                    android:layout_width="55dp"
+                    android:layout_height="40dp"
+                    android:text="10"
+                    android:textSize="20dp"
+                    android:gravity="center"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
