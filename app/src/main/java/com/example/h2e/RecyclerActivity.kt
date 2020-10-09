@@ -131,6 +131,8 @@ class RecyclerActivity : AppCompatActivity() {
                     if (snapshot.getString(option)!!.contains(searchWord)) {
                         var item = snapshot.toObject(MyMeal::class.java)
                         MealArray.add(item!!)
+                        print("MealArryList = ")
+                        println(MealArray[0].Aname)
                     }
                 }
                 notifyDataSetChanged()

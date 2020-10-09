@@ -24,6 +24,9 @@ class CheckMealActivity : AppCompatActivity() {
     val firestore = FirebaseFirestore.getInstance()
     lateinit var Meal0: Intent
     var ResultSplit = mutableListOf<List<String>>()
+    var MealNameArray : ArrayList<MyMeal> = arrayListOf()
+    //var MealNameArray = mutableListOf<String>()
+
     var ResultSplitString : String = "null"
 
     var i = 1
@@ -163,34 +166,39 @@ class CheckMealActivity : AppCompatActivity() {
         when (requestCode) {
             10 -> if (resultCode == Activity.RESULT_OK && data != null) {
                 val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-                ResultSplitString = result[0]
+                ResultSplitString = result[0].replace(" ", "")
                 var DishListof = listOf(dish1, dish2, dish3, dish4, dish5, dish6)
 
                 DishMatchUp(FirebasenameDish, dishnumber)
-
-                DishListof[i]!!.text = ResultSplitString
+//                DishListof[i]!!.text = ResultSplitString
             }
         }
     }
 
-    private fun DishMatchUp(firebasenamedish : String,  dishnum: TextView) {
+    private fun DishMatchUp(firebasenamedish : String,  Dishnumer: TextView) {
 
-        firestore.collection("meal").get().addOnSuccessListener { documents ->
-            for (document in documents) {
-                if (document.id == dishnum.text.toString()){
-                    MatchUP = true
-                    break
-                    }else{
-                    MatchUP = false
+        firestore?.collection("meal")
+            ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                MealNameArray.clear()
+                for (snapshot in querySnapshot!!.documents) {
+                    if (snapshot.getString("Aname")!!.contains(ResultSplitString)) {
+                        var item = snapshot.toObject(MyMeal::class.java)
+                        MealNameArray.add(item!!)
+                    }
                 }
-            }
-            when(MatchUP){
-                false -> {
-                    Toast.makeText(baseContext, "데이터베이스에 해당하는 음식이 없습니다", Toast.LENGTH_SHORT).show()
-                    dishnum.error = "데이터베이스에 해당하는 음식이 없습니다"
-                    dishnum.requestFocus()
-                }
-                true -> firestore?.collection("user")?.document("DishName")?.update(firebasenamedish, dishnum.text.toString())
+
+                for (Nuum in 0 .. MealNameArray.size-1) {
+                    if (MealNameArray[Nuum].Aname == ResultSplitString) { // 제육볶음이 있으면
+                        Dishnumer.setText(MealNameArray[Nuum].Aname)
+                        firestore.collection("user").document("DishName").update(firebasenamedish, MealNameArray[Nuum].Aname)
+                    } else { // 제육볶음이 없으면
+                        if (MealNameArray.size != 0) {
+                            Dishnumer.setText(MealNameArray[0].Aname)
+                            firestore.collection("user").document("DishName").update(firebasenamedish, MealNameArray[0].Aname)
+                        } else {
+                            Toast.makeText(baseContext, "매치업 실패.", Toast.LENGTH_SHORT).show()
+                             }
+                        }
             }
         }
     }
