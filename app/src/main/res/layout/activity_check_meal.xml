@@ -20,25 +20,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/Dish1Mic1"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/mic"
+            android:onClick="SpeechBefore1"/>
 
         <TextView
             android:id="@+id/dish1"
             android:layout_width="180dp"
             android:layout_height="50dp"
-            android:hint="1번식탁"
-            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
             android:gravity="center"
+            android:hint="1번식품"
             android:onClick="dish1Onclick1"
-            android:layout_marginLeft="10dp">
-        </TextView>
+            android:textSize="18dp"/>
 
         <EditText
             android:id="@+id/dish_weight1"
-            android:layout_width="180dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="30dp">
-        </EditText>
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"/>
 
     </LinearLayout>
 
@@ -47,13 +51,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/linearLayout1">
+
+        <ImageView
+            android:id="@+id/Dish1Mic2"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/mic"
+            android:onClick="SpeechBefore2"/>
 
         <TextView
             android:id="@+id/dish2"
             android:layout_width="180dp"
             android:layout_height="50dp"
-            android:hint="2번식탁"
+            android:hint="2번식품"
             android:textSize="18dp"
             android:gravity="center"
             android:onClick="dish1Onclick2"
@@ -62,11 +74,10 @@
 
         <EditText
             android:id="@+id/dish_weight2"
-            android:layout_width="180dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="30dp">
-        </EditText>
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"/>
 
     </LinearLayout>
 
@@ -75,13 +86,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/linearLayout2">
+
+        <ImageView
+            android:id="@+id/Dish1Mic3"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/mic"
+            android:onClick="SpeechBefore3"/>
 
         <TextView
             android:id="@+id/dish3"
             android:layout_width="180dp"
             android:layout_height="50dp"
-            android:hint="3번식탁"
+            android:hint="3번식품"
             android:textSize="18dp"
             android:gravity="center"
             android:onClick="dish1Onclick3"
@@ -90,11 +109,10 @@
 
         <EditText
             android:id="@+id/dish_weight3"
-            android:layout_width="180dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="30dp">
-        </EditText>
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"/>
 
     </LinearLayout>
 
@@ -103,13 +121,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/linearLayout3">
+
+        <ImageView
+            android:id="@+id/Dish1Mic4"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/mic"
+            android:onClick="SpeechBefore4"/>
 
         <TextView
             android:id="@+id/dish4"
             android:layout_width="180dp"
             android:layout_height="50dp"
-            android:hint="4번식탁"
+            android:hint="4번식품"
             android:textSize="18dp"
             android:gravity="center"
             android:onClick="dish1Onclick4"
@@ -118,11 +144,10 @@
 
         <EditText
             android:id="@+id/dish_weight4"
-            android:layout_width="180dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="30dp">
-        </EditText>
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"/>
 
     </LinearLayout>
 
@@ -131,13 +156,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/linearLayout4">
+
+        <ImageView
+            android:id="@+id/Dish1Mic5"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/mic"
+            android:onClick="SpeechBefore5"/>
 
         <TextView
             android:id="@+id/dish5"
             android:layout_width="180dp"
             android:layout_height="50dp"
-            android:hint="5번식탁"
+            android:hint="5번식품"
             android:textSize="18dp"
             android:gravity="center"
             android:onClick="dish1Onclick5"
@@ -146,11 +179,10 @@
 
         <EditText
             android:id="@+id/dish_weight5"
-            android:layout_width="180dp"
-            android:layout_marginRight="20dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="30dp">
-        </EditText>
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"/>
 
     </LinearLayout>
 
@@ -159,25 +191,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/linearLayout5">
+
+        <ImageView
+            android:id="@+id/Dish1Mic6"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/mic"
+            android:onClick="SpeechBefore6"/>
 
         <TextView
             android:id="@+id/dish6"
             android:layout_width="180dp"
             android:layout_height="50dp"
-            android:hint="6번식탁"
+            android:hint="6번식품"
             android:textSize="18dp"
             android:gravity="center"
             android:onClick="dish1Onclick6"
             android:layout_marginLeft="10dp">
         </TextView>
+
         <EditText
             android:id="@+id/dish_weight6"
-            android:layout_width="180dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="30dp">
-        </EditText>
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"/>
 
     </LinearLayout>
 
@@ -206,6 +246,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.863"
         app:layout_constraintStart_toEndOf="@+id/button_login" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ButtonSpeech"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:text="speech"
+        android:textSize="20dp"
+        android:onClick="getSpeechInput"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ButtonZeroset"
+        app:layout_constraintVertical_bias="0.192" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/ButtonNext"

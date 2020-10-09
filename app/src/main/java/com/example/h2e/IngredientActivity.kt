@@ -3,6 +3,7 @@ package com.example.h2e
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_ingredient.dish_weight1
 import kotlinx.android.synthetic.main.activity_ingredient.dish_weight2
 import kotlinx.android.synthetic.main.activity_ingredient.dish_weight3
 import kotlinx.android.synthetic.main.activity_ingredient.dish_weight4
+import kotlinx.android.synthetic.main.detailinreview.*
 import java.time.LocalDate
 import kotlin.math.roundToInt
 
@@ -70,6 +72,7 @@ var veg_data : Double = 0.0
 var fruit_data : Double = 0.0
 var milk_data : Double = 0.0
 var fat_data : Double = 0.0
+var Kcal_data : Double = 0.0
 
 var gok_data_detail : Double = 0.0
 var uju_data_detail : Double = 0.0
@@ -78,6 +81,7 @@ var veg_data_detail : Double = 0.0
 var fruit_data_detail : Double = 0.0
 var milk_data_detail : Double = 0.0
 var fat_data_detail : Double = 0.0
+var Kcal_data_detail : Double = 0.0
 
 class SetMeatData (var Dish1 : String? = null, var Dish2 : String? = null, var Dish3 : String? = null, var Dish4 : String? = null, var Dish5 : String? = null, var Dish6 : String? = null,
                    var Kcal : String? = null, var Tan : String? = null, var Dan : String? = null, var Ji : String? = null,
@@ -129,27 +133,26 @@ class IngredientActivity : AppCompatActivity() {
 
             if(namedish1.toString().isNotEmpty()) {
                 IngreDetail(namedish1.toString(), "dish1", Meal)
-            } else{}
-
+            } else{firestore.collection(user + Meal).document("dish1").delete() }
             if(namedish2.toString().isNotEmpty()) {
                 IngreDetail(namedish2.toString(), "dish2", Meal)
-            } else{}
+            } else{firestore.collection(user + Meal).document("dish2").delete()}
 
             if(namedish3.toString().isNotEmpty()) {
                 IngreDetail(namedish3.toString(), "dish3", Meal)
-            } else{}
+            } else{firestore.collection(user + Meal).document("dish3").delete()}
 
             if(namedish4.toString().isNotEmpty()) {
                 IngreDetail(namedish4.toString(), "dish4", Meal)
-            } else{}
+            } else{firestore.collection(user + Meal).document("dish4").delete()}
 
             if(namedish5.toString().isNotEmpty()) {
                 IngreDetail(namedish5.toString(), "dish5", Meal)
-            } else{}
+            } else{firestore.collection(user + Meal).document("dish5").delete()}
 
             if(namedish6.toString().isNotEmpty()) {
                 IngreDetail(namedish6.toString(), "dish6", Meal)
-            } else{}
+            } else{firestore.collection(user + Meal).document("dish6").delete()}
 
             dish_weight1.setText(tan.toString())
             dish_weight2.setText(dan.toString())
@@ -189,14 +192,15 @@ class IngredientActivity : AppCompatActivity() {
         }
     }
 
-    private fun IngreDetail(DishName : String,Dish : String, Time : String) {
-        FindIngredient(namedish1.toString(), Dish)
+    private fun IngreDetail(DishName : String, Dish : String, Time : String) {
+        FindIngredient(DishName, Dish)
 
-        var mealdetaildata = MealDetailClass(namedish1.toString(),  kcal.toString(), gok_data_detail.toString(), uju_data_detail.toString(),
+        var mealdetaildata = MealDetailClass(DishName , Kcal_data.toString(), gok_data_detail.toString(), uju_data_detail.toString(),
             ujung_data_detail.toString(), veg_data_detail.toString(), fat_data_detail.toString(), milk_data_detail.toString(), fruit_data_detail.toString())
 
-        firestore.collection(user + Time).document(DishName + Dish).set(mealdetaildata)
+        firestore.collection(user + Time).document(Dish).set(mealdetaildata)
 
+        Kcal_data = 0.0
         gok_data_detail = 0.0
         uju_data_detail = 0.0
         ujung_data_detail = 0.0
@@ -375,11 +379,14 @@ class IngredientActivity : AppCompatActivity() {
                                                         var kcal0 = document.data["kcal"]
                                                         if (kcal0 is String) {
                                                             kcal0 = kcal0.toDouble()
-                                                            var kcal10 = kcal0 * wine0 / 100
-                                                            kcal10 = kcal10 / Weight_of_Food_sum * weight1
-                                                            kcal = kcal + kcal10
+                                                            kcal0 = kcal0 * wine0 / 100
+                                                            kcal0 = kcal0 / Weight_of_Food_sum * weight1
 
+                                                            kcal = kcal + kcal0
                                                             kcal = Math.round(kcal).toDouble()
+
+                                                            Kcal_data = Kcal_data + kcal0
+                                                            Kcal_data = Math.round(Kcal_data).toDouble()
 
                                                             if (document.data["group"] == "곡류군") {
                                                                 var gok_data0: Double = kcal0 / 100 * wine0 / Weight_of_Food_sum * weight1 / 100

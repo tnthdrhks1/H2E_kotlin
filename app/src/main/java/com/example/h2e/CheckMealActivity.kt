@@ -1,25 +1,36 @@
 package com.example.h2e
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_check_meal.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_profile.*
+import java.util.*
 
 class CheckMealActivity : AppCompatActivity() {
 
     lateinit var Meal_time: String
     lateinit var nameDishNumber: String
     lateinit var nameDishNumber_out: String
+
     var DishName: String = "null"
     val firestore = FirebaseFirestore.getInstance()
     lateinit var Meal0: Intent
+    var ResultSplit = mutableListOf<List<String>>()
+    var ResultSplitString : String = "null"
 
-    lateinit var test: TextView
+    var i = 1
+    lateinit var dishnumber : TextView
+    lateinit var FirebasenameDish : String
+
+    var MatchUP = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +79,7 @@ class CheckMealActivity : AppCompatActivity() {
         }
 
         ButtonZeroset.setOnClickListener {
+
             DishReset(dish1, "nameDish1")
             DishReset(dish2, "nameDish2")
             DishReset(dish3, "nameDish3")
@@ -87,6 +99,100 @@ class CheckMealActivity : AppCompatActivity() {
     private fun DishReset(dish:TextView, dishnum : String) {
         dish.setText("")
         firestore?.collection("user")?.document("DishName")?.update(dishnum, dish.text.toString())
+    }
+
+    ///////////////////////////////
+    ///       음성인식 시작
+    //////////////////////////////
+
+    fun SpeechBefore1(view : View?){
+        i = 0
+        dishnumber = dish1
+        FirebasenameDish = "nameDish1"
+        getSpeechInput()
+    }
+
+    fun SpeechBefore2(view : View?){
+        i = 1
+        dishnumber = dish2
+        FirebasenameDish = "nameDish2"
+        getSpeechInput()
+    }
+
+    fun SpeechBefore3(view : View?){
+        i = 2
+        dishnumber = dish3
+        FirebasenameDish = "nameDish3"
+        getSpeechInput()
+    }
+
+    fun SpeechBefore4(view : View?){
+        i = 3
+        dishnumber = dish4
+        FirebasenameDish = "nameDish4"
+        getSpeechInput()
+    }
+
+    fun SpeechBefore5(view : View?){
+        i = 4
+        dishnumber = dish5
+        FirebasenameDish = "nameDish5"
+        getSpeechInput()
+    }
+
+    fun SpeechBefore6(view : View?){
+        i = 5
+        dishnumber = dish6
+        FirebasenameDish = "nameDish6"
+        getSpeechInput()
+    }
+
+    fun getSpeechInput() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivityForResult(intent, 10) }
+        else { }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            10 -> if (resultCode == Activity.RESULT_OK && data != null) {
+                val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+                ResultSplitString = result[0]
+                var DishListof = listOf(dish1, dish2, dish3, dish4, dish5, dish6)
+
+                DishMatchUp(FirebasenameDish, dishnumber)
+
+                DishListof[i]!!.text = ResultSplitString
+            }
+        }
+    }
+
+    private fun DishMatchUp(firebasenamedish : String,  dishnum: TextView) {
+
+        firestore.collection("meal").get().addOnSuccessListener { documents ->
+            for (document in documents) {
+                if (document.id == dishnum.text.toString()){
+                    MatchUP = true
+                    break
+                    }else{
+                    MatchUP = false
+                }
+            }
+            when(MatchUP){
+                false -> {
+                    Toast.makeText(baseContext, "데이터베이스에 해당하는 음식이 없습니다", Toast.LENGTH_SHORT).show()
+                    dishnum.error = "데이터베이스에 해당하는 음식이 없습니다"
+                    dishnum.requestFocus()
+                }
+                true -> firestore?.collection("user")?.document("DishName")?.update(firebasenamedish, dishnum.text.toString())
+            }
+        }
     }
 
     fun dish1Onclick1(v: View) {
