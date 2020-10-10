@@ -5,11 +5,22 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.RecognizerIntent
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_check_meal.*
+import kotlinx.android.synthetic.main.activity_check_meal.ButtonCal
+import kotlinx.android.synthetic.main.activity_check_meal.dish1
+import kotlinx.android.synthetic.main.activity_check_meal.dish2
+import kotlinx.android.synthetic.main.activity_check_meal.dish3
+import kotlinx.android.synthetic.main.activity_check_meal.dish4
+import kotlinx.android.synthetic.main.activity_check_meal.dish_weight1
+import kotlinx.android.synthetic.main.activity_check_meal.dish_weight2
+import kotlinx.android.synthetic.main.activity_check_meal.dish_weight3
+import kotlinx.android.synthetic.main.activity_check_meal.dish_weight4
+import kotlinx.android.synthetic.main.activity_ingredient.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import java.util.*
@@ -24,7 +35,11 @@ class CheckMealActivity : AppCompatActivity() {
     val firestore = FirebaseFirestore.getInstance()
     lateinit var Meal0: Intent
     var ResultSplit = mutableListOf<List<String>>()
+
+    var ResultSplitList = arrayListOf<String>()
     var MealNameArray : ArrayList<MyMeal> = arrayListOf()
+    lateinit var ResultForSearch : String
+
     //var MealNameArray = mutableListOf<String>()
 
     var ResultSplitString : String = "null"
@@ -167,41 +182,76 @@ class CheckMealActivity : AppCompatActivity() {
             10 -> if (resultCode == Activity.RESULT_OK && data != null) {
                 val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                 ResultSplitString = result[0].replace(" ", "")
-                var DishListof = listOf(dish1, dish2, dish3, dish4, dish5, dish6)
 
                 DishMatchUp(FirebasenameDish, dishnumber)
-//                DishListof[i]!!.text = ResultSplitString
             }
         }
     }
 
     private fun DishMatchUp(firebasenamedish : String,  Dishnumer: TextView) {
+        MealNameArray.clear()
+        ResultSplitList.clear()
 
-        firestore?.collection("meal")
-            ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
-                MealNameArray.clear()
-                for (snapshot in querySnapshot!!.documents) {
-                    if (snapshot.getString("Aname")!!.contains(ResultSplitString)) {
-                        var item = snapshot.toObject(MyMeal::class.java)
-                        MealNameArray.add(item!!)
-                    }
+        for (i in 0..2) {
+            for (j in 0..2) {
+                if ((i == 2 && j == 1) or (i == 2 && j == 2) or (i == 1 && j == 2)) {
+                    break
                 }
 
-                for (Nuum in 0 .. MealNameArray.size-1) {
-                    if (MealNameArray[Nuum].Aname == ResultSplitString) { // 제육볶음이 있으면
-                        Dishnumer.setText(MealNameArray[Nuum].Aname)
-                        firestore.collection("user").document("DishName").update(firebasenamedish, MealNameArray[Nuum].Aname)
-                    } else { // 제육볶음이 없으면
-                        if (MealNameArray.size != 0) {
-                            Dishnumer.setText(MealNameArray[0].Aname)
-                            firestore.collection("user").document("DishName").update(firebasenamedish, MealNameArray[0].Aname)
-                        } else {
-                            Toast.makeText(baseContext, "매치업 실패.", Toast.LENGTH_SHORT).show()
-                             }
+                var ResultForSearch = ResultSplitString.substring(i, ResultSplitString.length.toString().toInt() - j)
+
+                firestore?.collection("meal")
+                    ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                        for (snapshot in querySnapshot!!.documents) {
+                            var add = true
+                            if (snapshot.getString("Aname")!!.contains(ResultForSearch)) {
+                                var item = snapshot.toObject(MyMeal::class.java)
+//                                MealNameArray.add(item!!)
+
+                                if(ResultSplitList.size == 0) {
+                                    //MealNameArray.add(item!!)
+                                    ResultSplitList.add(item?.Aname.toString())
+                                }
+                                else {
+                                    for(q in 0..ResultSplitList.size-1) {
+                                        if (ResultSplitList[q] == item?.Aname.toString()){
+                                            add = false
+                                        }
+                                    }
+                                    if(add){
+                                        ResultSplitList.add(item?.Aname.toString())
+                                    }
+                                }
+                            }
                         }
+
+                        for (Nuum in 0..ResultSplitList.size-1) {
+                            if (ResultSplitList[Nuum] == ResultSplitString) { // 제육볶음이 있으면
+                                Dishnumer.setText(ResultSplitList[Nuum])
+
+                                dish6.setText(ResultSplitList.size.toString())
+                                newDish.setText(ResultSplitList.toString())
+                                firestore.collection("user").document("DishName").update(firebasenamedish, ResultSplitList[Nuum])
+                                break
+                            } else { // 제육볶음이 없으면
+                                dish3.setText("ddbbd")
+                                if (ResultSplitList.size != 0) {
+                                    newDish.setText(ResultSplitList.toString())
+
+                                    Dishnumer.setText(ResultSplitList[0])
+                                    firestore.collection("user").document("DishName").update(firebasenamedish, ResultSplitList[0])
+                                } else {
+                                    Toast.makeText(baseContext, "매치업 실패.", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                        }
+                    }
+                }
             }
         }
     }
+
+
 
     fun dish1Onclick1(v: View) {
         DishList("nameDish1")

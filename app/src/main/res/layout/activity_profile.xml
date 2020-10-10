@@ -9,289 +9,300 @@
     android:orientation="vertical">
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="10dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textView6"
-            android:layout_width="130dp"
-            android:layout_height="50dp"
-            android:text=" 이름"
-            android:textSize="20dp"
-            android:background="@drawable/selection"
-            android:textColor="#000000"
-            android:gravity="center_vertical"
-            app:layout_constraintBottom_toTopOf="@+id/button_height"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/text_dev"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/text_dev"
-            android:layout_width="260dp"
-            android:layout_height="50dp"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/EditText_height"
-            app:layout_constraintLeft_toRightOf="@id/textView6"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/button_height"
-            android:layout_width="130dp"
-            android:layout_height="48dp"
-            android:text=" 키"
-            android:textSize="20dp"
-            android:background="@drawable/box"
-            android:textColor="#000000"
-            android:gravity="center_vertical"
-            app:layout_constraintBottom_toTopOf="@+id/button_weight"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/EditText_height"
-            app:layout_constraintTop_toBottomOf="@id/textView6"/>
-
-        <EditText
-            android:id="@+id/EditText_height"
-            android:layout_width="260dp"
-            android:layout_height="50dp"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/EditText_weight"
-            app:layout_constraintLeft_toRightOf="@id/button_height"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_dev"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/button_weight"
-            android:layout_width="130dp"
-            android:layout_height="48dp"
-            android:text=" 몸무게"
-            android:textSize="20dp"
-            android:background="@null"
-            android:gravity="center_vertical"
-            app:layout_constraintBottom_toTopOf="@+id/text_age"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/EditText_weight"
-            app:layout_constraintTop_toBottomOf="@id/button_height"/>
-
-        <EditText
-            android:id="@+id/EditText_weight"
-            android:layout_width="260dp"
-            android:layout_height="50dp"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/EditText_age"
-            app:layout_constraintLeft_toRightOf="@id/button_weight"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/EditText_height"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_age"
-            android:layout_width="130dp"
-            android:layout_height="48dp"
-            android:text=" 나이"
-            android:textSize="20dp"
-            android:background="@null"
-            android:gravity="center_vertical"
-            app:layout_constraintRight_toLeftOf="@id/EditText_age"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_weight"
-            app:layout_constraintBottom_toTopOf="@id/text_day"/>
-
-        <EditText
-            android:id="@+id/EditText_age"
-            android:layout_width="260dp"
-            android:layout_height="50dp"
-            android:textSize="20dp"
-            app:layout_constraintHorizontal_bias="0.666"
-            app:layout_constraintLeft_toRightOf="@id/text_age"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/EditText_day"
-            app:layout_constraintTop_toBottomOf="@id/EditText_weight" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_day"
-            android:layout_width="130dp"
-            android:layout_height="48dp"
-            android:text="다이어트 기간"
-            android:textSize="20dp"
-            android:background="@null"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="6dp"
-            android:gravity="center_vertical"
-            app:layout_constraintRight_toLeftOf="@id/EditText_day"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_age"
-            app:layout_constraintBottom_toTopOf="@id/text_want_day"/>
-
-        <EditText
-            android:id="@+id/EditText_day"
-            android:layout_width="260dp"
-            android:layout_height="50dp"
-            android:textSize="20dp"
-            app:layout_constraintLeft_toRightOf="@id/text_day"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/EditText_age"
-            app:layout_constraintBottom_toTopOf="@id/EditText_want_day"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_want_day"
-            android:layout_width="130dp"
-            android:layout_height="48dp"
-            android:text=" 목표 몸무게"
-            android:textSize="20dp"
-            android:background="@null"
-            tools:layout_editor_absoluteX="141dp"
-            tools:layout_editor_absoluteY="468dp"
-            android:gravity="center_vertical"
-            app:layout_constraintRight_toLeftOf="@id/EditText_want_day"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_day" />
-
-        <EditText
-            android:id="@+id/EditText_want_day"
-            android:layout_width="260dp"
-            android:layout_height="50dp"
-            android:textSize="20dp"
-            app:layout_constraintLeft_toRightOf="@id/text_want_day"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/EditText_day"/>
-
-    </LinearLayout>
-
-    <RadioGroup
-        android:id="@+id/radioGroup_diet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="97dp"
-        tools:layout_editor_absoluteY="582dp"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center">
-
-        <RadioButton
-            android:id="@+id/radiobasic"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="당뇨학회"
-            android:layout_marginRight="20dp"
-            tools:layout_editor_absoluteX="168dp"
-            tools:layout_editor_absoluteY="555dp" />
+            android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/radiogodan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="고단백"
-            android:layout_marginRight="20dp"
-            tools:layout_editor_absoluteX="168dp"
-            tools:layout_editor_absoluteY="555dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="10dp">
 
-        <RadioButton
-            android:id="@+id/radiowogoji"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="고지방"
-            tools:layout_editor_absoluteX="168dp"
-            tools:layout_editor_absoluteY="555dp" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_day"
+                    android:layout_width="130dp"
+                    android:layout_height="48dp"
+                    android:text="다이어트 기간"
+                    android:textSize="20dp"
+                    android:background="@null"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="6dp"
+                    android:gravity="center_vertical"
+                    app:layout_constraintRight_toLeftOf="@id/EditText_day"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_age"
+                    app:layout_constraintBottom_toTopOf="@id/text_want_day"/>
 
-    </RadioGroup>
+                <EditText
+                    android:id="@+id/EditText_day"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    app:layout_constraintLeft_toRightOf="@id/text_day"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/EditText_age"
+                    app:layout_constraintBottom_toTopOf="@id/EditText_want_day"/>
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="97dp"
-        tools:layout_editor_absoluteY="582dp"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center">
+            </LinearLayout>
 
-        <RadioButton
-            android:id="@+id/radioman"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="140dp"
-            android:text="남자"
-            tools:layout_editor_absoluteX="168dp"
-            tools:layout_editor_absoluteY="555dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
 
-        <RadioButton
-            android:id="@+id/radiowoman"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="여자"
-            tools:layout_editor_absoluteX="168dp"
-            tools:layout_editor_absoluteY="555dp" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_want_day"
+                    android:layout_width="130dp"
+                    android:layout_height="48dp"
+                    android:text=" 목표 몸무게"
+                    android:textSize="20dp"
+                    android:background="@null"
+                    tools:layout_editor_absoluteX="141dp"
+                    tools:layout_editor_absoluteY="468dp"
+                    android:gravity="center_vertical"
+                    app:layout_constraintRight_toLeftOf="@id/EditText_want_day"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_day" />
 
-    </RadioGroup>
+                <EditText
+                    android:id="@+id/EditText_want_day"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    app:layout_constraintLeft_toRightOf="@id/text_want_day"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/EditText_day"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:background="@drawable/custom_box"
-        android:text="send"
-        android:textSize="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        />
+            </LinearLayout>
 
-    <ImageView
-        android:id="@+id/button_next"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="right"
-        android:background="@drawable/next_0"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:textSize="20dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView6"
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:text=" 이름"
+                    android:textSize="20dp"
+                    android:background="@drawable/selection"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/button_height"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/text_dev"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/text_dev"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toTopOf="@+id/EditText_height"
+                    app:layout_constraintLeft_toRightOf="@id/textView6"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/button_height"
+                    android:layout_width="130dp"
+                    android:layout_height="48dp"
+                    android:text=" 키"
+                    android:textSize="20dp"
+                    android:background="@drawable/box"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/button_weight"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/EditText_height"
+                    app:layout_constraintTop_toBottomOf="@id/textView6"/>
+
+                <EditText
+                    android:id="@+id/EditText_height"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toTopOf="@+id/EditText_weight"
+                    app:layout_constraintLeft_toRightOf="@id/button_height"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_dev"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/button_weight"
+                    android:layout_width="130dp"
+                    android:layout_height="48dp"
+                    android:text=" 몸무게"
+                    android:textSize="20dp"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/text_age"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/EditText_weight"
+                    app:layout_constraintTop_toBottomOf="@id/button_height"/>
+
+                <EditText
+                    android:id="@+id/EditText_weight"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toTopOf="@+id/EditText_age"
+                    app:layout_constraintLeft_toRightOf="@id/button_weight"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/EditText_height"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_age"
+                    android:layout_width="130dp"
+                    android:layout_height="48dp"
+                    android:text=" 나이"
+                    android:textSize="20dp"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    app:layout_constraintRight_toLeftOf="@id/EditText_age"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/button_weight"
+                    app:layout_constraintBottom_toTopOf="@id/text_day"/>
+
+                <EditText
+                    android:id="@+id/EditText_age"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    app:layout_constraintHorizontal_bias="0.666"
+                    app:layout_constraintLeft_toRightOf="@id/text_age"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/EditText_day"
+                    app:layout_constraintTop_toBottomOf="@id/EditText_weight" />
+
+            </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:layout_editor_absoluteX="97dp"
+                tools:layout_editor_absoluteY="582dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center">
+
+                <RadioButton
+                    android:id="@+id/radioman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="140dp"
+                    android:text="남자"
+                    tools:layout_editor_absoluteX="168dp"
+                    tools:layout_editor_absoluteY="555dp" />
+
+                <RadioButton
+                    android:id="@+id/radiowoman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="여자"
+                    tools:layout_editor_absoluteX="168dp"
+                    tools:layout_editor_absoluteY="555dp" />
+
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/radioGroup_diet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center">
+
+                <RadioButton
+                    android:id="@+id/radiobasic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="대한 당뇨병 학회 추천식"
+                    android:layout_marginRight="20dp"
+                    tools:layout_editor_absoluteX="168dp"
+                    tools:layout_editor_absoluteY="555dp" />
+
+                <RadioButton
+                    android:id="@+id/radiogodan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="황제 다이어트"
+                    android:layout_marginRight="20dp"
+                    tools:layout_editor_absoluteX="168dp"
+                    tools:layout_editor_absoluteY="555dp" />
+
+                <RadioButton
+                    android:id="@+id/radiowogoji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="고지방 저탄수"
+                    tools:layout_editor_absoluteX="168dp"
+                    tools:layout_editor_absoluteY="555dp" />
+
+            </RadioGroup>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/appCompatButton"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_box"
+                android:text="send"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                />
+
+            <ImageView
+                android:id="@+id/button_next"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:background="@drawable/baseline_chevron_right_black_18dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp" />
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

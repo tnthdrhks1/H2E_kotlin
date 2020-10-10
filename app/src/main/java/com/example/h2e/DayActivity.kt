@@ -140,8 +140,6 @@ class DayActivity : AppCompatActivity() {
                             dishname_adopted.setText(dietSystem.toString())
                             UserName.setText(username.toString())
 
-
-
                             if (gok_gun is String) {
                                 gok_gun0 = gok_gun.toDouble()
                             }
