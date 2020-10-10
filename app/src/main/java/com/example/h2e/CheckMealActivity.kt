@@ -38,11 +38,11 @@ class CheckMealActivity : AppCompatActivity() {
 
     var ResultSplitList = arrayListOf<String>()
     var MealNameArray : ArrayList<MyMeal> = arrayListOf()
-    lateinit var ResultForSearch : String
 
     //var MealNameArray = mutableListOf<String>()
 
     var ResultSplitString : String = "null"
+    var ResultForSearch : String = "null"
 
     var i = 1
     lateinit var dishnumber : TextView
@@ -183,7 +183,25 @@ class CheckMealActivity : AppCompatActivity() {
                 val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                 ResultSplitString = result[0].replace(" ", "")
 
-                DishMatchUp(FirebasenameDish, dishnumber)
+                var IList = listOf(0,0,1,0,1,2)
+                var JList = listOf(0,1,0,2,1,0)
+
+                for (i in 0..5) {
+                    if (ResultSplitString.length <= 2) {
+                        ResultForSearch = ResultSplitString.substring(IList[i], ResultSplitString.length.toString().toInt() - JList[i])
+                        DishMatchUp(FirebasenameDish, dishnumber)
+                        break
+                    } else if (ResultSplitString.length == 3) {
+                        ResultForSearch = ResultSplitString.substring(IList[i], ResultSplitString.length.toString().toInt() - JList[i])
+                        DishMatchUp(FirebasenameDish, dishnumber)
+                        if (i == 2) {
+                            break
+                        }
+                    } else {
+                        ResultForSearch = ResultSplitString.substring(IList[i], ResultSplitString.length.toString().toInt() - JList[i])
+                        DishMatchUp(FirebasenameDish, dishnumber)
+                    }
+                }
             }
         }
     }
@@ -192,24 +210,7 @@ class CheckMealActivity : AppCompatActivity() {
         MealNameArray.clear()
         ResultSplitList.clear()
 
-        var IList = listOf(0,0,1,0,1,2)
-        var JList = listOf(4,3,4,2,3,4)
-
-        for (i in 0..6) {
-            if (ResultSplitString.length <= 2) {
-                break }
-            else if (ResultSplitString.length == 3) {
-                ResultForSearch = ResultSplitString.substring(IList[i], ResultSplitString.length.toString().toInt() - JList[i])
-                if (i == 2) {
-                    break
-                    } }
-            else {
-                ResultForSearch = ResultSplitString.substring(IList[i], ResultSplitString.length.toString().toInt() - JList[i])
-            }
-        }
-
-        firestore?.collection("meal")
-            ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+        firestore?.collection("meal")?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 for (snapshot in querySnapshot!!.documents) {
                     var add = true
                     if (snapshot.getString("Aname")!!.contains(ResultForSearch)) {
