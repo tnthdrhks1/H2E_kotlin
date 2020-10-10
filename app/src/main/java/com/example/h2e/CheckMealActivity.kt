@@ -183,8 +183,11 @@ class CheckMealActivity : AppCompatActivity() {
                 val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                 ResultSplitString = result[0].replace(" ", "")
 
-                var IList = listOf(0,0,1,0,1,2)
-                var JList = listOf(0,1,0,2,1,0)
+                MealNameArray.clear()
+                ResultSplitList.clear()
+
+                var IList = listOf(0,1,0,0,1,2)
+                var JList = listOf(0,0,1,2,1,0)
 
                 for (i in 0..5) {
                     if (ResultSplitString.length <= 2) {
@@ -194,7 +197,8 @@ class CheckMealActivity : AppCompatActivity() {
                     } else if (ResultSplitString.length == 3) {
                         ResultForSearch = ResultSplitString.substring(IList[i], ResultSplitString.length.toString().toInt() - JList[i])
                         DishMatchUp(FirebasenameDish, dishnumber)
-                        if (i == 2) {
+
+                        if (i == 3) {
                             break
                         }
                     } else {
@@ -207,8 +211,6 @@ class CheckMealActivity : AppCompatActivity() {
     }
 
     private fun DishMatchUp(firebasenamedish : String,  Dishnumer: TextView) {
-        MealNameArray.clear()
-        ResultSplitList.clear()
 
         firestore?.collection("meal")?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 for (snapshot in querySnapshot!!.documents) {
