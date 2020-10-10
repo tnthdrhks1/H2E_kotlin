@@ -207,6 +207,7 @@ class CheckMealActivity : AppCompatActivity() {
     }
 
     private fun DishMatchUp(firebasenamedish : String,  Dishnumer: TextView) {
+
         MealNameArray.clear()
         ResultSplitList.clear()
 
@@ -217,38 +218,35 @@ class CheckMealActivity : AppCompatActivity() {
                         var item = snapshot.toObject(MyMeal::class.java)
 //                                MealNameArray.add(item!!)
 
-                        if(ResultSplitList.size == 0) {
+                        if(MealNameArray.size == 0) {
                             //MealNameArray.add(item!!)
-                            ResultSplitList.add(item?.Aname.toString())
+                            MealNameArray.add(item!!)
                         }
                         else {
-                            for(q in 0..ResultSplitList.size-1) {
-                                if (ResultSplitList[q] == item?.Aname.toString()){
+                            for(q in 0..MealNameArray.size-1) {
+                                if (MealNameArray[q].Aname.toString() == item?.Aname.toString()){
                                     add = false
                                 }
                             }
                             if(add){
-                                ResultSplitList.add(item?.Aname.toString())
+                                MealNameArray.add(item!!)
                             }
                         }
                     }
                 }
 
-                for (Nuum in 0..ResultSplitList.size-1) {
-                    if (ResultSplitList[Nuum] == ResultSplitString) { // 제육볶음이 있으면
-                        Dishnumer.setText(ResultSplitList[Nuum])
-
-                        dish6.setText(ResultSplitList.size.toString())
-                        newDish.setText(ResultSplitList.toString())
-                        firestore.collection("user").document("DishName").update(firebasenamedish, ResultSplitList[Nuum])
+                for (Nuum in 0..MealNameArray.size-1) {
+                    if (MealNameArray[Nuum].Aname.toString() == ResultSplitString) { // 제육볶음이 있으면
+                        Dishnumer.setText(MealNameArray[Nuum].Aname.toString())
+                        newDish.setText(MealNameArray.toString())
+                        firestore.collection("user").document("DishName").update(firebasenamedish, MealNameArray[Nuum].Aname.toString())
                         break
                     } else { // 제육볶음이 없으면
-                        dish3.setText("ddbbd")
-                        if (ResultSplitList.size != 0) {
-                            newDish.setText(ResultSplitList.toString())
+                        if (MealNameArray.size != 0) {
+                            newDish.setText(MealNameArray.toString())
 
-                            Dishnumer.setText(ResultSplitList[0])
-                            firestore.collection("user").document("DishName").update(firebasenamedish, ResultSplitList[0])
+                            Dishnumer.setText(MealNameArray[0].Aname.toString())
+                            firestore.collection("user").document("DishName").update(firebasenamedish, MealNameArray[0].Aname.toString())
                         } else {
                             Toast.makeText(baseContext, "매치업 실패.", Toast.LENGTH_SHORT)
                                 .show()
