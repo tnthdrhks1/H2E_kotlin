@@ -28,23 +28,10 @@ import kotlinx.android.synthetic.main.activity_check_meal.dish_weight4
 import kotlinx.android.synthetic.main.activity_ingredient.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.custom_recycle.view.*
 import java.util.*
 
-class CustomViewHolder(v :View) : RecyclerView.ViewHolder(v)
-
-class CustomAdapter : RecyclerView.Adapter<CustomViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
-        val CellForRow = LayoutInflater.from(parent.context).inflate(R.layout.custom_recycle, parent, false)
-        return CustomViewHolder(CellForRow)
-    }
-
-    override fun getItemCount() = 4
-
-    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-
-    }
-}
-
+class MealClass (val Aname : String? = null, var count : String? = null)
 
 class CheckMealActivity : AppCompatActivity() {
 
@@ -58,18 +45,17 @@ class CheckMealActivity : AppCompatActivity() {
     var ResultSplit = mutableListOf<List<String>>()
 
     var ResultSplitList = arrayListOf<String>()
-    var MealNameArray : ArrayList<MyMeal> = arrayListOf()
+    var MealNameArray : ArrayList<MealClass> = arrayListOf()
 
     //var MealNameArray = mutableListOf<String>()
 
     var ResultSplitString : String = "null"
     var ResultForSearch : String = "null"
 
+    var MealCount : Double? = null
     var i = 1
     lateinit var dishnumber : TextView
     lateinit var FirebasenameDish : String
-
-    var MatchUP = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -130,6 +116,35 @@ class CheckMealActivity : AppCompatActivity() {
             startActivity(Meal0)
         }
     }
+
+    inner class CustomViewHolder(v :View) : RecyclerView.ViewHolder(v){
+        val Aname = v.name
+    }
+
+    inner class CustomAdapter(var MealNameArray : ArrayList<MealClass>, val Dishtextview : TextView, val FirebaseDishNumber : String) : RecyclerView.Adapter<CustomViewHolder>() {
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
+            val CellForRow = LayoutInflater.from(parent.context).inflate(R.layout.custom_recycle, parent, false)
+            return CustomViewHolder(CellForRow)
+        }
+
+        override fun getItemCount() = MealNameArray.size
+
+        override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+            holder.Aname.text = MealNameArray[position].Aname
+
+            holder.itemView.setOnClickListener() {
+                Dishtextview.setText(MealNameArray[position].Aname)
+
+                if(MealNameArray[position].count is String){
+                    MealCount = MealNameArray[position].count?.toDouble()?.plus(1)
+                    firestore.collection("meal500").document(MealNameArray[position].Aname.toString()).update("count", MealCount.toString())
+                }
+                firestore.collection("user").document("DishName").update(FirebaseDishNumber, MealNameArray[position].Aname)
+            }
+        }
+    }
+
 
     private fun DishReset(dish:TextView, dishnum : String) {
         dish.setText("")
@@ -206,13 +221,15 @@ class CheckMealActivity : AppCompatActivity() {
         }
     }
 
-    private fun DishMatchUp(firebasenamedish : String,  Dishnumer: TextView) {
+    private fun DishMatchUp(firebasenamedish : String,  DishTextView: TextView) {
 
         MealNameArray.clear()
         ResultSplitList.clear()
 
-        var IList = listOf(0, 1, 0, 0, 1, 2)
-        var JList = listOf(0, 0, 1, 2, 1, 0)
+        var IList = listOf(0, 1, 0, 2, 1, 0)
+        var JList = listOf(0, 0, 1, 0, 1, 2)
+
+        val CountArray = listOf<String>()
 
         for (i in 0..5) {
             if (ResultSplitString.length <= 2 && i == 1) {
@@ -225,50 +242,65 @@ class CheckMealActivity : AppCompatActivity() {
 
             ResultForSearch = ResultSplitString.substring(IList[i], ResultSplitString.length.toString().toInt() - JList[i])
 
-            firestore?.collection("meal")
+            firestore?.collection("meal500")
                 ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                     for (snapshot in querySnapshot!!.documents) {
                         var add = true
                         if (snapshot.getString("Aname")!!.contains(ResultForSearch)) {
-                            var item = snapshot.toObject(MyMeal::class.java)
+                            var item = snapshot.toObject(MealClass::class.java)
 
 //                                MealNameArray.add(item!!)
-
-                            if (ResultSplitList.size == 0) {
+                            if (MealNameArray.size == 0) {
                                 //MealNameArray.add(item!!)
-                                ResultSplitList.add(item?.Aname.toString())
+                                MealNameArray.add(item!!)
                             } else {
-                                for (q in 0..ResultSplitList.size - 1) {
-                                    if (ResultSplitList[q] == item?.Aname.toString()) {
+                                for (q in 0..MealNameArray.size - 1) {
+                                    if (MealNameArray[q].Aname.toString() == item?.Aname.toString()) {
                                         add = false
                                     }
                                 }
                                 if (add) {
-                                    ResultSplitList.add(item?.Aname.toString())
+                                    MealNameArray.add(item!!)
                                 }
                             }
                         }
                     }
+//                    for(A in 0..MealNameArray.size - 1){
+//                        for (B in 0..MealNameArray.size - 1){
+//                            if(MealNameArray[B].count.toString().toDouble() >= MealNameArray[A].count.toString().toDouble()){
+//
+//                            }
+//                        }
+//                    }
 
-                    for (Nuum in 0..ResultSplitList.size - 1) {
-                        if (ResultSplitList[Nuum] == ResultSplitString) { // 제육볶음이 있으면
-                            Dishnumer.setText(ResultSplitList[Nuum])
-                            newDish.setText(ResultSplitList.toString())
+                    for (Nuum in 0..MealNameArray.size - 1) {
+                        if (MealNameArray[Nuum].Aname.toString() == ResultSplitString) { // 제육볶음이 있으면
+                            DishTextView.setText(MealNameArray[Nuum].Aname)
+                            if(MealNameArray[Nuum].count is String){
+                                MealCount = MealNameArray[Nuum].count?.toDouble()?.plus(1)
+                                print(MealCount)
+                            }
+
+                            firestore.collection("user").document("DishName").update(firebasenamedish, MealNameArray[Nuum].Aname.toString())
+                            firestore.collection("user").document("DishName").update("count", MealCount.toString())
 
                             CheckMealRecycler.layoutManager = LinearLayoutManager(this)
-                            CheckMealRecycler.adapter = CustomAdapter()
-
-                            firestore.collection("user").document("DishName").update(firebasenamedish, ResultSplitList[Nuum])
+                            CheckMealRecycler.adapter = CustomAdapter(MealNameArray, DishTextView, firebasenamedish )
                             break
                         } else { // 제육볶음이 없으면
-                            if (ResultSplitList.size != 0) {
-                                newDish.setText(ResultSplitList.toString())
-                                Dishnumer.setText(ResultSplitList[0])
+                            if (MealNameArray.size != 0) {
+                                DishTextView.setText(MealNameArray[0].Aname.toString())
+
+                                if(MealNameArray[Nuum].count is String){
+                                    MealCount = MealNameArray[Nuum].count?.toDouble()?.plus(1)
+                                    print(MealCount)
+                                }
+
+                                firestore.collection("user").document("DishName").update(firebasenamedish, MealNameArray[0].Aname.toString())
+                                firestore.collection("user").document("DishName").update("count", MealCount.toString())
 
                                 CheckMealRecycler.layoutManager = LinearLayoutManager(this)
-                                CheckMealRecycler.adapter = CustomAdapter()
-
-                                firestore.collection("user").document("DishName").update(firebasenamedish, ResultSplitList[0])
+                                CheckMealRecycler.adapter = CustomAdapter(MealNameArray, DishTextView, firebasenamedish)
                         }
                     }
                 }

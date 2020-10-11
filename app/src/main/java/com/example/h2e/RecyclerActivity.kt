@@ -79,7 +79,7 @@ class RecyclerActivity : AppCompatActivity() {
         var MealArray : ArrayList<MyMeal> = arrayListOf()
 
         init {
-            firestore?.collection("meal")?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+            firestore?.collection("meal500")?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 // ArrayList 비워줌
                 MealArray.clear()
 
