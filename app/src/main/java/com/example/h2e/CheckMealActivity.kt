@@ -217,19 +217,7 @@ class CheckMealActivity : AppCompatActivity() {
                         if (snapshot.getString("Aname")!!.contains(ResultForSearch)) {
                             var item = snapshot.toObject(MyMeal::class.java)
 //                                MealNameArray.add(item!!)
-                        if(MealNameArray.size == 0) {
-                            //MealNameArray.add(item!!)
-                            MealNameArray.add(item!!)
-                        }
-                        else {
-                            for(q in 0..MealNameArray.size-1) {
-                                if (MealNameArray[q].Aname.toString() == item?.Aname.toString()){
-                                    add = false
-                                }
-                            }
-                            if(add) {
-                                MealNameArray.add(item!!)
-                            }
+
                             if (ResultSplitList.size == 0) {
                                 //MealNameArray.add(item!!)
                                 ResultSplitList.add(item?.Aname.toString())
@@ -242,28 +230,10 @@ class CheckMealActivity : AppCompatActivity() {
                                 if (add) {
                                     ResultSplitList.add(item?.Aname.toString())
                                 }
->>>>>>> master
                             }
                         }
                     }
 
-<<<<<<< HEAD
-                for (Nuum in 0..MealNameArray.size-1) {
-                    if (MealNameArray[Nuum].Aname.toString() == ResultSplitString) { // 제육볶음이 있으면
-                        Dishnumer.setText(MealNameArray[Nuum].Aname.toString())
-                        newDish.setText(MealNameArray.toString())
-                        firestore.collection("user").document("DishName").update(firebasenamedish, MealNameArray[Nuum].Aname.toString())
-                        break
-                    } else { // 제육볶음이 없으면
-                        if (MealNameArray.size != 0) {
-                            newDish.setText(MealNameArray.toString())
-
-                            Dishnumer.setText(MealNameArray[0].Aname.toString())
-                            firestore.collection("user").document("DishName").update(firebasenamedish, MealNameArray[0].Aname.toString())
-                        } else {
-                            Toast.makeText(baseContext, "매치업 실패.", Toast.LENGTH_SHORT)
-                                .show()
-=======
                     for (Nuum in 0..ResultSplitList.size - 1) {
                         if (ResultSplitList[Nuum] == ResultSplitString) { // 제육볶음이 있으면
                             Dishnumer.setText(ResultSplitList[Nuum])
@@ -278,11 +248,10 @@ class CheckMealActivity : AppCompatActivity() {
                                 firestore.collection("user").document("DishName").update(firebasenamedish, ResultSplitList[0])
                             } else {
                                 Toast.makeText(baseContext, "매치업 실패.", Toast.LENGTH_SHORT).show()
->>>>>>> master
                             }
+                        }
                     }
                 }
-            }
         }
     }
 
@@ -377,9 +346,9 @@ class CheckMealActivity : AppCompatActivity() {
 
                             var nameDish6 = document.data["nameDish6"]
                             dish6.setText(nameDish6.toString())
+                        }
                     }
                 }
             }
-        }
     }
 }
