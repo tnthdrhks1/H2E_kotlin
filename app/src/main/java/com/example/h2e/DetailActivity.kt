@@ -65,8 +65,6 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-
-
     inner class RecyclerViewAdapter(val context : Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var MealArray : ArrayList<DetailIngre> = arrayListOf()
 

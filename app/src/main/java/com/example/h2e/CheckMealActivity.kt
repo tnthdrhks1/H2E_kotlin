@@ -183,25 +183,8 @@ class CheckMealActivity : AppCompatActivity() {
                 val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                 ResultSplitString = result[0].replace(" ", "")
 
-                var IList = listOf(0,0,1,0,1,2)
-                var JList = listOf(0,1,0,2,1,0)
+                DishMatchUp(FirebasenameDish, dishnumber)
 
-                for (i in 0..5) {
-                    if (ResultSplitString.length <= 2) {
-                        ResultForSearch = ResultSplitString.substring(IList[i], ResultSplitString.length.toString().toInt() - JList[i])
-                        DishMatchUp(FirebasenameDish, dishnumber)
-                        break
-                    } else if (ResultSplitString.length == 3) {
-                        ResultForSearch = ResultSplitString.substring(IList[i], ResultSplitString.length.toString().toInt() - JList[i])
-                        DishMatchUp(FirebasenameDish, dishnumber)
-                        if (i == 2) {
-                            break
-                        }
-                    } else {
-                        ResultForSearch = ResultSplitString.substring(IList[i], ResultSplitString.length.toString().toInt() - JList[i])
-                        DishMatchUp(FirebasenameDish, dishnumber)
-                    }
-                }
             }
         }
     }
@@ -211,13 +194,31 @@ class CheckMealActivity : AppCompatActivity() {
         MealNameArray.clear()
         ResultSplitList.clear()
 
-        firestore?.collection("meal")?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
-                for (snapshot in querySnapshot!!.documents) {
-                    var add = true
-                    if (snapshot.getString("Aname")!!.contains(ResultForSearch)) {
-                        var item = snapshot.toObject(MyMeal::class.java)
+        var IList = listOf(0, 1, 0, 0, 1, 2)
+        var JList = listOf(0, 0, 1, 2, 1, 0)
+
+        for (i in 0..6) {
+            if (ResultSplitString.length <= 2 && i == 1) {
+                break
+            } else if (ResultSplitString.length == 3 && i == 3) {
+                break
+            } else if (ResultSplitString.length >= 3 && i == 6) {
+                break
+            }
+
+            ResultForSearch = ResultSplitString.substring(IList[i], ResultSplitString.length.toString().toInt() - JList[i])
+
+            println(ResultForSearch)
+
+            firestore?.collection("meal")
+                ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                    for (snapshot in querySnapshot!!.documents) {
+                        var add = true
+                        if (snapshot.getString("Aname")!!.contains(ResultForSearch)) {
+                            var item = snapshot.toObject(MyMeal::class.java)
 //                                MealNameArray.add(item!!)
 
+<<<<<<< HEAD
                         if(MealNameArray.size == 0) {
                             //MealNameArray.add(item!!)
                             MealNameArray.add(item!!)
@@ -230,11 +231,25 @@ class CheckMealActivity : AppCompatActivity() {
                             }
                             if(add){
                                 MealNameArray.add(item!!)
+=======
+                            if (ResultSplitList.size == 0) {
+                                //MealNameArray.add(item!!)
+                                ResultSplitList.add(item?.Aname.toString())
+                            } else {
+                                for (q in 0..ResultSplitList.size - 1) {
+                                    if (ResultSplitList[q] == item?.Aname.toString()) {
+                                        add = false
+                                    }
+                                }
+                                if (add) {
+                                    ResultSplitList.add(item?.Aname.toString())
+                                }
+>>>>>>> master
                             }
                         }
                     }
-                }
 
+<<<<<<< HEAD
                 for (Nuum in 0..MealNameArray.size-1) {
                     if (MealNameArray[Nuum].Aname.toString() == ResultSplitString) { // 제육볶음이 있으면
                         Dishnumer.setText(MealNameArray[Nuum].Aname.toString())
@@ -250,7 +265,24 @@ class CheckMealActivity : AppCompatActivity() {
                         } else {
                             Toast.makeText(baseContext, "매치업 실패.", Toast.LENGTH_SHORT)
                                 .show()
+=======
+                    for (Nuum in 0..ResultSplitList.size - 1) {
+                        if (ResultSplitList[Nuum] == ResultSplitString) { // 제육볶음이 있으면
+                            Dishnumer.setText(ResultSplitList[Nuum])
+                            newDish.setText(ResultSplitList.toString())
+                            firestore.collection("user").document("DishName").update(firebasenamedish, ResultSplitList[Nuum])
+                            break
+                        } else { // 제육볶음이 없으면
+                            if (ResultSplitList.size != 0) {
+                                newDish.setText(ResultSplitList.toString())
+                                Dishnumer.setText(ResultSplitList[0])
+
+                                firestore.collection("user").document("DishName").update(firebasenamedish, ResultSplitList[0])
+                            } else {
+                                Toast.makeText(baseContext, "매치업 실패.", Toast.LENGTH_SHORT).show()
+>>>>>>> master
                             }
+                    }
                 }
             }
         }
