@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_check_meal.*
 import kotlinx.android.synthetic.main.activity_recycler.*
 import kotlinx.android.synthetic.main.detailinreview.view.*
 
@@ -35,6 +36,7 @@ class DetailActivity : AppCompatActivity() {
         if (intent.hasExtra("whichtime")) {
             whichtime = intent.getStringExtra("whichtime")
         }
+
 
         recyclerView.adapter = RecyclerViewAdapter(this)
         recyclerView.layoutManager = LinearLayoutManager(this)

@@ -17,73 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="10dp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/text_day"
-                    android:layout_width="130dp"
-                    android:layout_height="48dp"
-                    android:text="다이어트 기간"
-                    android:textSize="20dp"
-                    android:background="@null"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="6dp"
-                    android:gravity="center_vertical"
-                    app:layout_constraintRight_toLeftOf="@id/EditText_day"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/text_age"
-                    app:layout_constraintBottom_toTopOf="@id/text_want_day"/>
-
-                <EditText
-                    android:id="@+id/EditText_day"
-                    android:layout_width="260dp"
-                    android:layout_height="50dp"
-                    android:textSize="20dp"
-                    app:layout_constraintLeft_toRightOf="@id/text_day"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/EditText_age"
-                    app:layout_constraintBottom_toTopOf="@id/EditText_want_day"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/text_want_day"
-                    android:layout_width="130dp"
-                    android:layout_height="48dp"
-                    android:text=" 목표 몸무게"
-                    android:textSize="20dp"
-                    android:background="@null"
-                    tools:layout_editor_absoluteX="141dp"
-                    tools:layout_editor_absoluteY="468dp"
-                    android:gravity="center_vertical"
-                    app:layout_constraintRight_toLeftOf="@id/EditText_want_day"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/text_day" />
-
-                <EditText
-                    android:id="@+id/EditText_want_day"
-                    android:layout_width="260dp"
-                    android:layout_height="50dp"
-                    android:textSize="20dp"
-                    app:layout_constraintLeft_toRightOf="@id/text_want_day"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/EditText_day"/>
-
-            </LinearLayout>
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,7 +30,6 @@
                     android:layout_height="50dp"
                     android:text=" 이름"
                     android:textSize="20dp"
-                    android:background="@drawable/selection"
                     android:textColor="#000000"
                     android:gravity="center_vertical"
                     app:layout_constraintBottom_toTopOf="@+id/button_height"
@@ -130,7 +62,6 @@
                     android:layout_height="48dp"
                     android:text=" 키"
                     android:textSize="20dp"
-                    android:background="@drawable/box"
                     android:textColor="#000000"
                     android:gravity="center_vertical"
                     app:layout_constraintBottom_toTopOf="@+id/button_weight"
@@ -163,6 +94,7 @@
                     android:layout_height="48dp"
                     android:text=" 몸무게"
                     android:textSize="20dp"
+                    android:textColor="#000000"
                     android:background="@null"
                     android:gravity="center_vertical"
                     app:layout_constraintBottom_toTopOf="@+id/text_age"
@@ -196,6 +128,7 @@
                     android:text=" 나이"
                     android:textSize="20dp"
                     android:background="@null"
+                    android:textColor="#000000"
                     android:gravity="center_vertical"
                     app:layout_constraintRight_toLeftOf="@id/EditText_age"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -222,14 +155,14 @@
                 android:orientation="horizontal"
                 tools:layout_editor_absoluteX="97dp"
                 tools:layout_editor_absoluteY="582dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center">
 
                 <RadioButton
                     android:id="@+id/radioman"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="140dp"
+                    android:layout_marginRight="250dp"
                     android:text="남자"
                     tools:layout_editor_absoluteX="168dp"
                     tools:layout_editor_absoluteY="555dp" />
@@ -243,6 +176,74 @@
                     tools:layout_editor_absoluteY="555dp" />
 
             </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_day"
+                    android:layout_width="130dp"
+                    android:layout_height="48dp"
+                    android:text="다이어트 기간"
+                    android:textSize="20dp"
+                    android:textColor="#000000"
+                    android:background="@null"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="6dp"
+                    android:gravity="center_vertical"
+                    app:layout_constraintRight_toLeftOf="@id/EditText_day"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_age"
+                    app:layout_constraintBottom_toTopOf="@id/text_want_day"/>
+
+                <EditText
+                    android:id="@+id/EditText_day"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    app:layout_constraintLeft_toRightOf="@id/text_day"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/EditText_age"
+                    app:layout_constraintBottom_toTopOf="@id/EditText_want_day"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_want_day"
+                    android:layout_width="130dp"
+                    android:layout_height="48dp"
+                    android:text=" 목표 몸무게"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:background="@null"
+                    tools:layout_editor_absoluteX="141dp"
+                    tools:layout_editor_absoluteY="468dp"
+                    android:gravity="center_vertical"
+                    app:layout_constraintRight_toLeftOf="@id/EditText_want_day"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_day" />
+
+                <EditText
+                    android:id="@+id/EditText_want_day"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    app:layout_constraintLeft_toRightOf="@id/text_want_day"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/EditText_day"/>
+
+            </LinearLayout>
 
             <RadioGroup
                 android:id="@+id/radioGroup_diet"

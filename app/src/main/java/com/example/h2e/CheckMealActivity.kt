@@ -6,9 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_check_meal.*
 import kotlinx.android.synthetic.main.activity_check_meal.ButtonCal
@@ -24,6 +29,22 @@ import kotlinx.android.synthetic.main.activity_ingredient.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import java.util.*
+
+class CustomViewHolder(v :View) : RecyclerView.ViewHolder(v)
+
+class CustomAdapter : RecyclerView.Adapter<CustomViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
+        val CellForRow = LayoutInflater.from(parent.context).inflate(R.layout.custom_recycle, parent, false)
+        return CustomViewHolder(CellForRow)
+    }
+
+    override fun getItemCount() = 4
+
+    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+
+    }
+}
+
 
 class CheckMealActivity : AppCompatActivity() {
 
@@ -63,10 +84,6 @@ class CheckMealActivity : AppCompatActivity() {
 
         } else {
         }
-
-        //////////////////////////
-        //     음식이름 settext
-        /////////////////////////
 
         if (intent.hasExtra("DishName")) {
             DishName = intent.getStringExtra("DishName")
@@ -197,7 +214,7 @@ class CheckMealActivity : AppCompatActivity() {
         var IList = listOf(0, 1, 0, 0, 1, 2)
         var JList = listOf(0, 0, 1, 2, 1, 0)
 
-        for (i in 0..6) {
+        for (i in 0..5) {
             if (ResultSplitString.length <= 2 && i == 1) {
                 break
             } else if (ResultSplitString.length == 3 && i == 3) {
@@ -208,14 +225,13 @@ class CheckMealActivity : AppCompatActivity() {
 
             ResultForSearch = ResultSplitString.substring(IList[i], ResultSplitString.length.toString().toInt() - JList[i])
 
-            println(ResultForSearch)
-
             firestore?.collection("meal")
                 ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                     for (snapshot in querySnapshot!!.documents) {
                         var add = true
                         if (snapshot.getString("Aname")!!.contains(ResultForSearch)) {
                             var item = snapshot.toObject(MyMeal::class.java)
+
 //                                MealNameArray.add(item!!)
 
                             if (ResultSplitList.size == 0) {
@@ -238,6 +254,10 @@ class CheckMealActivity : AppCompatActivity() {
                         if (ResultSplitList[Nuum] == ResultSplitString) { // 제육볶음이 있으면
                             Dishnumer.setText(ResultSplitList[Nuum])
                             newDish.setText(ResultSplitList.toString())
+
+                            CheckMealRecycler.layoutManager = LinearLayoutManager(this)
+                            CheckMealRecycler.adapter = CustomAdapter()
+
                             firestore.collection("user").document("DishName").update(firebasenamedish, ResultSplitList[Nuum])
                             break
                         } else { // 제육볶음이 없으면
@@ -245,13 +265,14 @@ class CheckMealActivity : AppCompatActivity() {
                                 newDish.setText(ResultSplitList.toString())
                                 Dishnumer.setText(ResultSplitList[0])
 
+                                CheckMealRecycler.layoutManager = LinearLayoutManager(this)
+                                CheckMealRecycler.adapter = CustomAdapter()
+
                                 firestore.collection("user").document("DishName").update(firebasenamedish, ResultSplitList[0])
-                            } else {
-                                Toast.makeText(baseContext, "매치업 실패.", Toast.LENGTH_SHORT).show()
-                            }
                         }
                     }
                 }
+            }
         }
     }
 
@@ -346,9 +367,9 @@ class CheckMealActivity : AppCompatActivity() {
 
                             var nameDish6 = document.data["nameDish6"]
                             dish6.setText(nameDish6.toString())
-                        }
-                    }
+                                }
                 }
             }
+        }
     }
 }
