@@ -217,8 +217,6 @@ class CheckMealActivity : AppCompatActivity() {
                         if (snapshot.getString("Aname")!!.contains(ResultForSearch)) {
                             var item = snapshot.toObject(MyMeal::class.java)
 //                                MealNameArray.add(item!!)
-
-<<<<<<< HEAD
                         if(MealNameArray.size == 0) {
                             //MealNameArray.add(item!!)
                             MealNameArray.add(item!!)
@@ -229,9 +227,9 @@ class CheckMealActivity : AppCompatActivity() {
                                     add = false
                                 }
                             }
-                            if(add){
+                            if(add) {
                                 MealNameArray.add(item!!)
-=======
+                            }
                             if (ResultSplitList.size == 0) {
                                 //MealNameArray.add(item!!)
                                 ResultSplitList.add(item?.Aname.toString())
