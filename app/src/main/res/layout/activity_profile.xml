@@ -269,6 +269,40 @@
             </LinearLayout>
 
             <RadioGroup
+                android:id="@+id/RadioGroupExce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/ExcerVeryLow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="매우 적음"/>
+                <RadioButton
+                    android:id="@+id/ExcerLow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="적음"/>
+                <RadioButton
+                    android:id="@+id/Excernormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="보통"/>
+                <RadioButton
+                    android:id="@+id/Excerhigh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="많음"/>
+                <RadioButton
+                    android:id="@+id/ExcerVeryhigh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="매우 많음"/>
+            </RadioGroup>
+
+            <RadioGroup
                 android:id="@+id/radioGroup_diet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

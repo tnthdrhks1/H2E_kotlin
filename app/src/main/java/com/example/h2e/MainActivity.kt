@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.view.Window
+import android.widget.ImageView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,8 +22,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        println("oncreate")
-
         auth = FirebaseAuth.getInstance()
 
         button_makeid.setOnClickListener {
@@ -31,11 +31,6 @@ class MainActivity : AppCompatActivity() {
         button_login.setOnClickListener {
             dologin()
         } // 로그인버튼을 누르면 로그인 함수로 이동
-    }
-
-    override fun onPause() {
-        super.onPause()
-        auth.signOut()
     }
 
     private fun dologin() {
@@ -71,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         println("onstart")
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        updateUI(currentUser) //이새끼가 에러일으키는 씹새끼임
+        //updateUI(currentUser) //이새끼가 에러일으키는 씹새끼임
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {

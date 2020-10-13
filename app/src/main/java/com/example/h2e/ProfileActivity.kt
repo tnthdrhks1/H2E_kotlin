@@ -25,6 +25,8 @@ class ProfileActivity : AppCompatActivity() {
 
     var bmi: Double = 0.0
     lateinit var gender: String
+    lateinit var exce : String
+
     var CanEatKcal: Double = 0.0
 
     lateinit var system1 : String
@@ -39,8 +41,8 @@ class ProfileActivity : AppCompatActivity() {
 
         radioGroup.setOnCheckedChangeListener { radioGroup, i ->
             when(i){
-                R.id.radioman -> bmi_man()
-                R.id.radiowoman -> bmi_woman()
+                R.id.radioman -> gender = "남자"
+                R.id.radiowoman -> gender = "여자"
             }
         }
 
@@ -51,10 +53,18 @@ class ProfileActivity : AppCompatActivity() {
                 R.id.radiowogoji -> {system1 = "profile_ingre_second"; system2 = "profile_ingre_third"; system3 = "profile_ingre_adopted"}
             }
         }
+        RadioGroupExce.setOnCheckedChangeListener {RadioGroupExce , i ->
+            when(i){
+                R.id.ExcerVeryLow -> exce = "verylow"
+                R.id.ExcerLow -> exce = "low"
+                R.id.Excernormal -> exce = "normal"
+                R.id.Excerhigh -> exce = "high"
+                R.id.ExcerVeryhigh -> exce = "veryhigh"
+            }
+        }
 
         appCompatButton.setOnClickListener {
             send_dev_data()
-            CalCanEatBmi()
         }
 
         button_next.setOnClickListener {
@@ -62,34 +72,18 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun bmi_man() {
-        var height = EditText_height.text.toString().toInt()
-        var weight = EditText_weight.text.toString().toInt()
-        var age = EditText_age.text.toString().toInt()
-        gender = "남자"
-
-        bmi = 66.47 + (13.75 * weight) + (5 * height) - (6.76 * age)
-        bmi = Math.round(bmi).toDouble()
-    }
-
-    private fun bmi_woman() {
-        var height = EditText_height.text.toString().toInt()
-        var weight = EditText_weight.text.toString().toInt()
-        var age = EditText_age.text.toString().toInt()
-        gender = "여자"
-
-        bmi = 655.1 + (9.56 * weight) + (1.85 * height) - (4.68 * age)
-        bmi = Math.round(bmi).toDouble()
-    }
-
     private fun send_dev_data() {
 
-        if(EditText_height.text.toString().isEmpty()){
+        if(text_dev.text.toString().isEmpty() || EditText_height.text.toString().isEmpty() || EditText_weight.text.toString().isEmpty() || EditText_age.text.toString().isEmpty()
+            || EditText_day.text.toString().isEmpty() || EditText_want_day.text.toString().isEmpty()){
+
             EditText_height.error = "id is empty"
             EditText_height.requestFocus()
 
             return
         }
+
+        CalculateBmi()
 
         var userdata = userData(
             EditText_height.text.toString(),
@@ -101,25 +95,32 @@ class ProfileActivity : AppCompatActivity() {
             EditText_want_day.text.toString()
         )
 
-        firestore?.collection(user)?.document("profile")?.set(userdata)
-
-    }
-
-    private fun CalCanEatBmi() {
-
-        if(EditText_height.text.toString().isEmpty()){
-            EditText_height.error = "height is empty"
-            EditText_height.requestFocus()
-
-            return
-        }
-
-        CanEatKcal = bmi - ((EditText_weight.text.toString().toDouble() - EditText_want_day.text.toString().toDouble()) * 7700 / EditText_day.text.toString().toDouble())
-        CanEatKcal = Math.round(CanEatKcal).toDouble()
+        CanEatKcal = Math.round(bmi - ((EditText_weight.text.toString().toDouble() - EditText_want_day.text.toString().toDouble()) * 7700 / EditText_day.text.toString().toDouble())).toDouble()
 
         CalBmi(system1)
         godanCalBmi(system2)
         gojiCalBmi(system3)
+
+        firestore?.collection(user)?.document("profile")?.set(userdata)
+    }
+
+    private fun CalculateBmi() {
+        var height = EditText_height.text.toString().toInt()
+        var weight = EditText_weight.text.toString().toInt()
+        var age = EditText_age.text.toString().toInt()
+
+        when(gender){
+            "남자" -> bmi = Math.round(66.47 + (13.75 * weight) + (5 * height) - (6.76 * age)).toDouble()
+            "여자" -> bmi = Math.round(655.1 + (9.56 * weight) + (1.85 * height) - (4.68 * age)).toDouble()
+        }
+
+        when(exce){
+            "verylow" -> bmi *= 1.2
+            "low" -> bmi *= 1.375
+            "normal" -> bmi *= 1.55
+            "high" -> bmi *= 1.725
+            "veryhigh" -> bmi *= 1.9
+        }
     }
 
     private fun CalBmi(system : String) {
