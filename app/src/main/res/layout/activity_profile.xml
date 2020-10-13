@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginBottom="10dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -148,34 +148,57 @@
 
             </LinearLayout>
 
-            <RadioGroup
-                android:id="@+id/radioGroup"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                tools:layout_editor_absoluteX="97dp"
-                tools:layout_editor_absoluteY="582dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center">
 
-                <RadioButton
-                    android:id="@+id/radioman"
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/button_gender"
+                    android:layout_width="130dp"
+                    android:layout_height="48dp"
+                    android:text=" 성별"
+                    android:textSize="20dp"
+                    android:textColor="#000000"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/text_age"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/EditText_weight"
+                    app:layout_constraintTop_toBottomOf="@id/button_height"/>
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="260dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="250dp"
-                    android:text="남자"
-                    tools:layout_editor_absoluteX="168dp"
-                    tools:layout_editor_absoluteY="555dp" />
+                    android:orientation="horizontal"
+                    tools:layout_editor_absoluteX="97dp"
+                    tools:layout_editor_absoluteY="582dp"
+                    android:layout_gravity="center">
 
-                <RadioButton
-                    android:id="@+id/radiowoman"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="여자"
-                    tools:layout_editor_absoluteX="168dp"
-                    tools:layout_editor_absoluteY="555dp" />
+                    <RadioButton
+                        android:id="@+id/radioman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="남자"
+                        tools:layout_editor_absoluteX="168dp"
+                        tools:layout_editor_absoluteY="555dp" />
 
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/radiowoman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="130dp"
+                        android:text="여자"
+                        tools:layout_editor_absoluteX="168dp"
+                        tools:layout_editor_absoluteY="555dp" />
+
+                </RadioGroup>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -188,7 +211,7 @@
                     android:id="@+id/text_day"
                     android:layout_width="130dp"
                     android:layout_height="48dp"
-                    android:text="다이어트 기간"
+                    android:text=" 다이어트 기간"
                     android:textSize="20dp"
                     android:textColor="#000000"
                     android:background="@null"
@@ -283,11 +306,14 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/appCompatButton"
-                android:layout_width="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/custom_box"
+                android:background="@drawable/boxblue"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:text="send"
                 android:textSize="20dp"
+                android:textColor="#fff"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center"
                 />
@@ -299,7 +325,7 @@
                 android:layout_gravity="right"
                 android:background="@drawable/baseline_chevron_right_black_18dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="50dp"
                 android:textSize="20dp" />
 
 

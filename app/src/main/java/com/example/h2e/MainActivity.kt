@@ -33,10 +33,10 @@ class MainActivity : AppCompatActivity() {
         } // 로그인버튼을 누르면 로그인 함수로 이동
     }
 
-//    override fun onPause() {
-//        super.onPause()
-//        auth.signOut()
-//    }
+    override fun onPause() {
+        super.onPause()
+        auth.signOut()
+    }
 
     private fun dologin() {
         if(main_id.text.toString().isEmpty()){

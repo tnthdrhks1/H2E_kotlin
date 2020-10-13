@@ -227,8 +227,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="88dp"
-                android:background="@drawable/box"
                 android:gravity="center"
+                android:background="@drawable/boxteduriblue"
                 android:onClick="get_morning"
                 android:layout_marginRight="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -310,11 +310,12 @@
                     android:id="@+id/btnDetailMorning"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_box"
+                    android:background="@drawable/customboxblue"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
                     android:layout_marginRight="3dp"
-                    android:text="상세"/>
+                    android:text="상세"
+                    android:textColor="#fff"/>
             </LinearLayout>
 
             <LinearLayout
@@ -324,7 +325,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/box"
+                android:background="@drawable/boxteduriblue"
                 android:gravity="center"
                 android:onClick="get_lunch"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -405,11 +406,12 @@
                     android:id="@+id/btnDetailLunch"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_box"
+                    android:background="@drawable/customboxblue"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
                     android:layout_marginRight="3dp"
-                    android:text="상세"/>
+                    android:text="상세"
+                    android:textColor="#fff"/>
 
             </LinearLayout>
 
@@ -420,7 +422,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="21dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/box"
+                android:background="@drawable/boxteduriblue"
                 android:gravity="center"
                 android:onClick="get_dinner"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -501,11 +503,12 @@
                     android:id="@+id/btnDetailDinner"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_box"
+                    android:background="@drawable/customboxblue"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
                     android:layout_marginRight="3dp"
-                    android:text="상세"/>
+                    android:text="상세"
+                    android:textColor="#fff"/>
 
             </LinearLayout>
 

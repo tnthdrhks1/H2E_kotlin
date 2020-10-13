@@ -237,7 +237,11 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/CheckMealRecycler"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="150dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -245,24 +249,32 @@
                 android:layout_gravity="center"
                 android:gravity="center">
 
-                <androidx.appcompat.widget.AppCompatButton
+                <TextView
                     android:id="@+id/ButtonZeroset"
                     android:layout_width="150dp"
                     android:layout_height="60dp"
                     android:text="초기화"
                     android:textSize="20dp"
-                    android:layout_marginRight="100dp"/>
+                    android:textColor="#fff"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginRight="100dp"
+                    android:background="@drawable/boxblue">
+
+                </TextView>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/ButtonCal"
                     android:layout_width="150dp"
                     android:layout_height="60dp"
                     android:text="무게 가져오기"
+                    android:textColor="#fff"
+                    android:background="@drawable/boxblue"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:textSize="20dp" />
 
             </LinearLayout>
-
-
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/ButtonNext"
@@ -271,6 +283,9 @@
                 android:layout_marginBottom="16dp"
                 android:text="next"
                 android:textSize="20dp"
+                android:background="@drawable/boxblue"
+                android:textColor="#fff"
+                android:gravity="center"
                 android:layout_marginTop="50dp"
                 android:layout_gravity="right"/>
 

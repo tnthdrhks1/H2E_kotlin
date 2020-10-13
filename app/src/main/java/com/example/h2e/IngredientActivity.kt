@@ -26,67 +26,41 @@ var namedish4: Any? = null
 var namedish5: Any? = null
 var namedish6: Any? = null
 
-var tan : Double = 0.0
-var dan : Double = 0.0
-var ji : Double = 0.0
-var kcal : Double = 0.0
+var tan : String = "0"
+var dan : String = "0"
+var ji : String = "0"
+var kcal : String = "0"
 
-var ingre1 : Any? = '0'
-var ingre2 : Any? = '0'
-var ingre3 : Any? = '0'
-var ingre4 : Any? = '0'
-var ingre5 : Any? = '0'
-var ingre6 : Any? = '0'
-var ingre7 : Any? = '0'
-var ingre8 : Any? = '0'
-var ingre9 : Any? = '0'
-var ingre10 : Any? = '0'
-var ingre11 : Any? = '0'
-var ingre12 : Any? = '0'
-var ingre13 : Any? = '0'
-var ingre14 : Any? = '0'
-var ingre15 : Any? = '0'
-
-var Weight_of_Food1 : Any? = "0"
-var Weight_of_Food2 : Any? = '0'
-var Weight_of_Food3 : Any? = '0'
-var Weight_of_Food4 : Any? = '0'
-var Weight_of_Food5 : Any? = '0'
-var Weight_of_Food6 : Any? = '0'
-var Weight_of_Food7 : Any? = '0'
-var Weight_of_Food8 : Any? = '0'
-var Weight_of_Food9 : Any? = '0'
-var Weight_of_Food10 : Any? = '0'
-var Weight_of_Food11 : Any? = '0'
-var Weight_of_Food12 : Any? = '0'
-var Weight_of_Food13 : Any? = '0'
-var Weight_of_Food14 : Any? = '0'
-var Weight_of_Food15 : Any? = '0'
+var tan_data_detail : Double = 0.0
+var dan_data_detail : Double = 0.0
+var ji_data_detail : Double = 0.0
+var kcal_data_detail : Double = 0.0
 
 var Weight_of_Food_sum : Double  = 0.0
 
-var gok_data : Double = 0.0
-var uju_data : Double = 0.0
-var ujung_data : Double = 0.0
-var veg_data : Double = 0.0
-var fruit_data : Double = 0.0
-var milk_data : Double = 0.0
-var fat_data : Double = 0.0
-var Kcal_data : Double = 0.0
+var gok_data : String = "0"
+var uju_data : String = "0"
+var ujung_data : String = "0"
+var ugo_data : String = "0"
+var veg_data : String = "0"
+var fruit_data : String = "0"
+var milk_data : String = "0"
+var fat_data : String = "0"
+var Kcal_data : String = "0"
 
 var gok_data_detail : Double = 0.0
 var uju_data_detail : Double = 0.0
 var ujung_data_detail : Double = 0.0
+var ugo_data_detail : Double = 0.0
 var veg_data_detail : Double = 0.0
 var fruit_data_detail : Double = 0.0
 var milk_data_detail : Double = 0.0
 var fat_data_detail : Double = 0.0
-var Kcal_data_detail : Double = 0.0
 
 class SetMeatData (var Dish1 : String? = null, var Dish2 : String? = null, var Dish3 : String? = null, var Dish4 : String? = null, var Dish5 : String? = null, var Dish6 : String? = null,
                    var Kcal : String? = null, var Tan : String? = null, var Dan : String? = null, var Ji : String? = null,
-                   var Gok_data : String? = null, var Uju_data : String? = null,
-                   var Ujung_data : String? = null, var Veg_data : String? = null, var Fat_data : String? = null, var Milk_data : String? = null, var Fruit_data : String? = null)
+                   var Gok_data : String? = null, var Uju_data : String? = null, var Ujung_data : String? = null, var Veg_data : String? = null,
+                   var Fat_data : String? = null, var Milk_data : String? = null, var Fruit_data : String? = null)
 
 class MealDetailClass (var Dish : String? = null, var Kcal : String? = null, var Gok_data : String? = null, var Uju_data : String? = null, var Ujung_data : String? = null,
                        var Veg_data : String? = null, var Fat_data : String? = null, var Milk_data : String? = null, var Fruit_data : String? = null)
@@ -131,6 +105,7 @@ class IngredientActivity : AppCompatActivity() {
 
         ButtonCal.setOnClickListener {
 
+
             if(namedish1.toString().isNotEmpty()) {
                 IngreDetail(namedish1.toString(), "dish1", Meal)
             } else{firestore.collection(user + Meal).document("dish1").delete() }
@@ -154,319 +129,144 @@ class IngredientActivity : AppCompatActivity() {
                 IngreDetail(namedish6.toString(), "dish6", Meal)
             } else{firestore.collection(user + Meal).document("dish6").delete()}
 
-            dish_weight1.setText(tan.toString())
-            dish_weight2.setText(dan.toString())
-            dish_weight3.setText(ji.toString())
-            dish_weight4.setText(kcal.toString())
+            GetIngredinet(namedish1.toString(), "dish1", Meal)
+            GetIngredinet(namedish2.toString(), "dish2", Meal)
+            GetIngredinet(namedish3.toString(), "dish3", Meal)
+            GetIngredinet(namedish4.toString(), "dish4", Meal)
+            GetIngredinet(namedish5.toString(), "dish5", Meal)
+            GetIngredinet(namedish6.toString(), "dish6", Meal)
+
+
+            dish_weight1.setText(tan_data_detail.toString())
+            dish_weight2.setText(dan_data_detail.toString())
+            dish_weight3.setText(ji_data_detail.toString())
+            dish_weight4.setText(kcal_data_detail.toString())
 
             GiveData()
 
-            gok_data = 0.0
-            uju_data = 0.0
-            ujung_data = 0.0
-            veg_data = 0.0
-            fruit_data = 0.0
-            milk_data = 0.0
-            fat_data= 0.0
+            gok_data_detail = 0.0
+            uju_data_detail  = 0.0
+            ujung_data_detail  = 0.0
+            ugo_data_detail  = 0.0
+            veg_data_detail  = 0.0
+            fruit_data_detail  = 0.0
+            milk_data_detail  = 0.0
+            fat_data_detail  = 0.0
+            tan_data_detail  = 0.0
+            dan_data_detail  = 0.0
+            ji_data_detail  = 0.0
+            kcal_data_detail  = 0.0
 
-            tan = 0.0
-            dan = 0.0
-            ji = 0.0
-            kcal = 0.0
         }
 
         Button_reset.setOnClickListener {
-            tan = 0.0
-            dan = 0.0
-            ji = 0.0
-            kcal = 0.0
+            tan = "0"
+            dan ="0"
+            ji = "0"
+            kcal = "0"
 
-            dish_weight1.setText(tan.toString())
-            dish_weight2.setText(dan.toString())
-            dish_weight3.setText(ji.toString())
-            dish_weight4.setText(kcal.toString())
+            dish_weight1.setText(tan)
+            dish_weight2.setText(dan)
+            dish_weight3.setText(ji)
+            dish_weight4.setText(kcal)
         }
 
         ingredient_button_next.setOnClickListener {
             startActivity(Intent(this, DayActivity::class.java))
         }
     }
-
     private fun IngreDetail(DishName : String, Dish : String, Time : String) {
-        FindIngredient(DishName, Dish)
 
-        var mealdetaildata = MealDetailClass(DishName , Kcal_data.toString(), gok_data_detail.toString(), uju_data_detail.toString(),
+
+        var mealdetaildata = MealDetailClass(DishName , kcal_data_detail.toString(), gok_data_detail.toString(), uju_data_detail.toString(),
             ujung_data_detail.toString(), veg_data_detail.toString(), fat_data_detail.toString(), milk_data_detail.toString(), fruit_data_detail.toString())
 
         firestore.collection(user + Time).document(Dish).set(mealdetaildata)
-
-        Kcal_data = 0.0
-        gok_data_detail = 0.0
-        uju_data_detail = 0.0
-        ujung_data_detail = 0.0
-        veg_data_detail = 0.0
-        fruit_data_detail = 0.0
-        milk_data_detail = 0.0
-        fat_data_detail = 0.0
     }
 
-    private fun FindIngredient(FoodName: Any? , dish : String) {
-        firestore.collection("meal")
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    for (document in task.result!!) {
-                        if (document.id == FoodName) {
-                            ingre1 = document.data["ingre1"]
-                            ingre2 = document.data["ingre2"]
-                            ingre3 = document.data["ingre3"]
-                            ingre4 = document.data["ingre4"]
-                            ingre5 = document.data["ingre5"]
-                            ingre6 = document.data["ingre6"]
-                            ingre7 = document.data["ingre7"]
-                            ingre8 = document.data["ingre8"]
-                            ingre9 = document.data["ingre7"]
-                            ingre10 = document.data["ingre10"]
-                            ingre11 = document.data["ingre11"]
-                            ingre12 = document.data["ingre12"]
-                            ingre13 = document.data["ingre13"]
-                            ingre14 = document.data["ingre14"]
-                            ingre15 = document.data["ingre15"]
 
-                            Weight_of_Food1 = document.data["num1"]
-                            Weight_of_Food2 = document.data["num2"]
-                            Weight_of_Food3 = document.data["num3"]
-                            Weight_of_Food4 = document.data["num4"]
-                            Weight_of_Food5 = document.data["num5"]
-                            Weight_of_Food6 = document.data["num6"]
-                            Weight_of_Food7 = document.data["num7"]
-                            Weight_of_Food8 = document.data["num8"]
-                            Weight_of_Food9 = document.data["num9"]
-                            Weight_of_Food10 = document.data["num10"]
-                            Weight_of_Food11 = document.data["num11"]
-                            Weight_of_Food12 = document.data["num12"]
-                            Weight_of_Food13 = document.data["num13"]
-                            Weight_of_Food14 = document.data["num14"]
-                            Weight_of_Food15 = document.data["num15"]
+    fun GetIngredinet(FoodName : String, Field: String, Time : String) {
 
-                            if (Weight_of_Food1 == null) {
-                                Weight_of_Food1 = 0
-                            }
-                            if (Weight_of_Food2 == null) {
-                                Weight_of_Food2 = 0
-                            }
-                            if (Weight_of_Food3 == null) {
-                                Weight_of_Food3 = 0
-                            }
-                            if (Weight_of_Food4 == null) {
-                                Weight_of_Food4 = 0
-                            }
-                            if (Weight_of_Food5 == null) {
-                                Weight_of_Food5 = 0
-                            }
-                            if (Weight_of_Food6 == null) {
-                                Weight_of_Food6 = 0
-                            }
-                            if (Weight_of_Food7 == null) {
-                                Weight_of_Food7 = 0
-                            }
-                            if (Weight_of_Food8 == null) {
-                                Weight_of_Food8 = 0
-                            }
-                            if (Weight_of_Food9 == null) {
-                                Weight_of_Food9 = 0
-                            }
-                            if (Weight_of_Food10 == null) {
-                                Weight_of_Food10 = 0
-                            }
-                            if (Weight_of_Food11 == null) {
-                                Weight_of_Food11 = 0
-                            }
-                            if (Weight_of_Food12 == null) {
-                                Weight_of_Food12 = 0
-                            }
-                            if (Weight_of_Food13 == null) {
-                                Weight_of_Food13 = 0
-                            }
-                            if (Weight_of_Food14 == null) {
-                                Weight_of_Food14 = 0
-                            }
-                            if (Weight_of_Food15 == null) {
-                                Weight_of_Food15 = 0
-                            }
+        firestore.collection("user").get().addOnSuccessListener { task ->
+            for (document in task) {
+                if (document.id == "rasbian") {
+                    var weight1 = document.data[Field]
 
-                            Weight_of_Food_sum = Weight_of_Food1.toString().toDouble() + Weight_of_Food2.toString().toDouble() + Weight_of_Food3.toString().toDouble()
-                            +Weight_of_Food4.toString().toDouble() + Weight_of_Food5.toString().toDouble() + Weight_of_Food6.toString().toDouble() + Weight_of_Food7.toString().toDouble()
-                            +Weight_of_Food8.toString().toDouble() + Weight_of_Food9.toString().toDouble() + Weight_of_Food10.toString().toDouble() + Weight_of_Food11.toString().toDouble()
-                            +Weight_of_Food12.toString().toDouble() + Weight_of_Food13.toString().toDouble() + Weight_of_Food14.toString().toDouble() + Weight_of_Food15.toString().toDouble()
+                    if (weight1 is String) {
+                        weight1 = weight1.toDouble()
 
-                            BeforeGetIngredient(FoodName, dish) // 라즈베리파이 무게 가져오기
-                    }
-                }
-            }
-        }
-    }
-
-    fun BeforeGetIngredient(FoodName : String, Field_name: String) {
-
-        GetIngredinet(FoodName, ingre1.toString(), Field_name, Weight_of_Food1.toString())
-        GetIngredinet(FoodName, ingre2.toString(), Field_name, Weight_of_Food2.toString())
-        GetIngredinet(FoodName, ingre3.toString(), Field_name, Weight_of_Food3.toString())
-        GetIngredinet(FoodName, ingre4.toString(), Field_name, Weight_of_Food4.toString())
-        GetIngredinet(FoodName, ingre5.toString(), Field_name, Weight_of_Food5.toString())
-        GetIngredinet(FoodName, ingre6.toString(), Field_name, Weight_of_Food6.toString())
-        GetIngredinet(FoodName, ingre7.toString(), Field_name, Weight_of_Food7.toString())
-        GetIngredinet(FoodName, ingre8.toString(), Field_name, Weight_of_Food8.toString())
-        GetIngredinet(FoodName, ingre9.toString(), Field_name, Weight_of_Food9.toString())
-        GetIngredinet(FoodName, ingre10.toString(), Field_name, Weight_of_Food10.toString())
-        GetIngredinet(FoodName, ingre11.toString(), Field_name, Weight_of_Food11.toString())
-        GetIngredinet(FoodName, ingre12.toString(), Field_name, Weight_of_Food12.toString())
-        GetIngredinet(FoodName, ingre13.toString(), Field_name, Weight_of_Food13.toString())
-    }
-
-    fun GetIngredinet(FoodName : String, Docu: String?, Field: String, gram: String) {
-
-        if (gram is String) {
-            var wine0 = gram.toDouble()
-
-            firestore.collection("user")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        for (document in task.result!!) {
-                            if (document.id == "rasbian") {
-                                var weight1 = document.data[Field]
-
-                                if (weight1 is String) {
-                                    weight1 = weight1.toDouble()
-
-                                    firestore.collection("food")
-                                        .get()
-                                        .addOnCompleteListener { task ->
-                                            if (task.isSuccessful) {
-                                                for (document in task.result!!) {
-                                                    if (document.id == Docu) {
-
-                                                        var tan0: Any? = document.data["tan"]
-                                                        if (tan0 is String) {
-                                                            tan0 = tan0.toDouble()
-                                                            tan0 = tan0 * wine0 / 100
-                                                            tan0 = tan0  / Weight_of_Food_sum * weight1
-                                                            tan = tan + tan0
-                                                            tan = Math.round(tan).toDouble()
-                                                        }
-
-                                                        var dan0 = document.data["dan"]
-                                                        if (dan0 is String) {
-                                                            dan0 = dan0.toDouble()
-                                                            dan0 = dan0 * wine0 / 100
-                                                            dan0 = dan0  / Weight_of_Food_sum * weight1
-                                                            dan = dan + dan0
-
-                                                            dan = Math.round(dan).toDouble()
-                                                        }
-
-                                                        var ji0 = document.data["ji"]
-                                                        if (ji0 is String) {
-                                                            ji0 = ji0.toDouble()
-                                                            ji0 = ji0 * wine0 / 100
-                                                            ji0 = ji0  / Weight_of_Food_sum * weight1
-                                                            ji = ji + ji0
-
-                                                            ji = Math.round(ji).toDouble()
-                                                        }
-
-                                                        var kcal0 = document.data["kcal"]
-                                                        if (kcal0 is String) {
-                                                            kcal0 = kcal0.toDouble()
-                                                            kcal0 = kcal0 * wine0 / 100
-                                                            kcal0 = kcal0 / Weight_of_Food_sum * weight1
-
-                                                            kcal = kcal + kcal0
-                                                            kcal = Math.round(kcal).toDouble()
-
-                                                            Kcal_data = Kcal_data + kcal0
-                                                            Kcal_data = Math.round(Kcal_data).toDouble()
-
-                                                            if (document.data["group"] == "곡류군") {
-                                                                var gok_data0: Double = kcal0 / 100 * wine0 / Weight_of_Food_sum * weight1 / 100
-
-                                                                gok_data = gok_data + gok_data0
-                                                                gok_data = (gok_data * 100).roundToInt() / 100.0
-
-                                                                gok_data_detail += gok_data0
-                                                                gok_data_detail = (gok_data_detail * 100).roundToInt() / 100.0
-                                                            }
-
-                                                            else if (document.data["group"] == "저지방 어육류군") {
-                                                                var uju_data0: Double = kcal0 / 100 * wine0 / Weight_of_Food_sum * weight1 / 50
-
-                                                                uju_data = uju_data + uju_data0
-                                                                uju_data = (uju_data * 100).roundToInt() / 100.0
-
-                                                                uju_data_detail = uju_data_detail + uju_data0
-                                                                uju_data_detail = (uju_data_detail * 100).roundToInt() / 100.0
-                                                            }
-
-                                                            else if (document.data["group"] == "중지방 어육류군") {
-                                                                var ujung_data0: Double = kcal / 100 * wine0 / Weight_of_Food_sum * weight1 / 75
-
-                                                                ujung_data = ujung_data + ujung_data0
-                                                                ujung_data = (ujung_data * 100).roundToInt() / 100.0
-
-                                                                ujung_data_detail = ujung_data_detail + ujung_data0
-                                                                ujung_data_detail = (ujung_data_detail * 100).roundToInt() / 100.0
-
-                                                            } else if (document.data["group"] == "고지방 어육류군") {
-                                                                var ugo_data0: Double = kcal / 100 * wine0 / Weight_of_Food_sum * weight1 / 100
-
-                                                                ujung_data = ujung_data + ugo_data0
-                                                                ujung_data = (ujung_data * 100).roundToInt() / 100.0
-
-                                                                ujung_data_detail = ujung_data_detail + ugo_data0
-                                                                ujung_data_detail = (ujung_data_detail * 100).roundToInt() / 100.0
-
-                                                            } else if (document.data["group"] == "채소군") {
-                                                                var veg_data0: Double = kcal0 / 100 * wine0 / Weight_of_Food_sum * weight1 / 20
-
-                                                                veg_data = veg_data + veg_data0
-                                                                veg_data = (veg_data0 * 100).roundToInt() / 100.0
-
-                                                                veg_data_detail = veg_data_detail + veg_data0
-                                                                veg_data_detail = (veg_data_detail * 100).roundToInt() / 100.0
-
-                                                            } else if (document.data["group"] == "지방군") {
-                                                                var fat_data0: Double = kcal / 100 * wine0 / Weight_of_Food_sum * weight1 / 45
-
-                                                                fat_data = fat_data + fat_data0
-                                                                fat_data = (fat_data * 100).roundToInt() / 100.0
-
-                                                                fat_data_detail = fat_data_detail + fat_data0
-                                                                fat_data_detail = (fat_data_detail * 100).roundToInt() / 100.0
-
-                                                            } else if (document.data["group"] == "우유군") {
-                                                                var milk_data0: Double = kcal / 100 * wine0 / Weight_of_Food_sum * weight1 / 125
-
-                                                                milk_data = milk_data + milk_data0
-                                                                milk_data = (milk_data * 100).roundToInt() / 100.0
-
-                                                                milk_data_detail = milk_data_detail + milk_data0
-                                                                milk_data_detail = (milk_data_detail * 100).roundToInt() / 100.0
-
-                                                            } else if (document.data["group"] == "과일군") {
-                                                                var fruit_data0: Double = kcal / 100 * wine0 / Weight_of_Food_sum * weight1 / 50
-
-                                                                fruit_data = fruit_data + fruit_data0
-                                                                fruit_data = (fruit_data * 100).roundToInt() / 100.0
-
-                                                                fruit_data_detail = fruit_data_detail + fruit_data0
-                                                                fruit_data_detail = (fruit_data_detail * 100).roundToInt() / 100.0
-                                                            }
-
-                                                }
-                                            }
-                                        }
+                        firestore.collection("meal500").get().addOnSuccessListener { task ->
+                            for (document in task) {
+                                if (document.id == FoodName) {
+                                    if (document.data["tan"] is String) {
+                                        tan = String.format("%.2f", document.data["tan"].toString().toDouble() / 100 * weight1)
                                     }
+                                    if (document.data["dan"] is String) {
+                                        dan = String.format("%.2f", document.data["dan"].toString().toDouble() / 100 * weight1)
+                                    }
+                                    if (document.data["ji"] is String) {
+                                        ji = String.format("%.2f", document.data["ji"].toString().toDouble() / 100 * weight1)
+                                    }
+                                    if (document.data["kcal_"] is String) {
+                                        kcal = String.format("%.2f", document.data["kcal_"].toString().toDouble() / 100 * weight1)
+                                    }
+                                    if (document.data["gok"] is String) {
+                                        gok_data = String.format("%.2f", document.data["gok"].toString().toDouble() / 100 * weight1)
+                                    }
+                                    if (document.data["uju"] is String) {
+                                        uju_data = String.format("%.2f", document.data["uju"].toString().toDouble() / 100 * weight1)
+                                    }
+                                    if (document.data["ujung"] is String) {
+                                        ujung_data = String.format("%.2f", document.data["ujung"].toString().toDouble() / 100 * weight1)
+                                    }
+                                    if (document.data["ugo"] is String) {
+                                        ugo_data = String.format("%.2f", document.data["ugo"].toString().toDouble() / 100 * weight1)
+                                    }
+                                    if (document.data["veg"] is String) {
+                                        veg_data = String.format("%.2f", document.data["veg"].toString().toDouble() / 100 * weight1)
+                                    }
+                                    if (document.data["fat"] is String) {
+                                        fat_data = String.format("%.2f", document.data["fat"].toString().toDouble() / 100 * weight1)
+                                    }
+                                    if (document.data["milk"] is String) {
+                                        milk_data = String.format("%.2f", document.data["milk"].toString().toDouble() / 100 * weight1)
+                                    }
+                                    if (document.data["fruit"] is String) {
+                                        fruit_data = String.format("%.2f", document.data["fruit"].toString().toDouble() / 100 * weight1)
+                                    }
+
+                                    gok_data_detail += gok_data.toDouble()
+                                    uju_data_detail += uju_data.toDouble()
+                                    ujung_data_detail += ujung_data.toDouble()
+                                    ugo_data_detail += ugo_data.toDouble()
+                                    veg_data_detail += veg_data.toDouble()
+                                    fat_data_detail += fat_data.toDouble()
+                                    milk_data_detail += milk_data.toDouble()
+                                    fruit_data_detail += fruit_data.toDouble()
+
+                                    tan_data_detail += tan.toDouble()
+                                    dan_data_detail += dan.toDouble()
+                                    ji_data_detail += ji.toDouble()
+                                    kcal_data_detail += kcal.toDouble()
+
+                                    ujung_data_detail = String.format("%.2f", ujung_data_detail).toDouble()
+                                    uju_data_detail = String.format("%.2f", uju_data_detail).toDouble()
+                                    ugo_data_detail = String.format("%.2f", ugo_data_detail).toDouble()
+                                    veg_data_detail = String.format("%.2f", veg_data_detail).toDouble()
+                                    fat_data_detail = String.format("%.2f", fat_data_detail).toDouble()
+                                    milk_data_detail = String.format("%.2f", milk_data_detail).toDouble()
+                                    fruit_data_detail = String.format("%.2f", fruit_data_detail).toDouble()
+                                    gok_data_detail = String.format("%.2f", gok_data_detail).toDouble()
+
+                                    tan_data_detail = String.format("%.2f", tan_data_detail).toDouble()
+                                    dan_data_detail = String.format("%.2f", dan_data_detail).toDouble()
+                                    ji_data_detail = String.format("%.2f", ji_data_detail).toDouble()
+                                    kcal_data_detail = String.format("%.2f", kcal_data_detail).toDouble()
+
+                                    var mealdetaildata = MealDetailClass(FoodName , kcal, gok_data, uju_data,
+                                        ujung_data, veg_data, fat_data, milk_data, fruit_data)
+
+                                    firestore.collection(user + Time).document(Field).set(mealdetaildata)
                                 }
                             }
                         }
@@ -478,8 +278,9 @@ class IngredientActivity : AppCompatActivity() {
 
     fun GiveData(){
         var setmealdata = SetMeatData(namedish1.toString(), namedish2.toString(), namedish3.toString(), namedish4.toString(), namedish5.toString(), namedish6.toString(),
-        kcal.toString(), tan.toString(), dan.toString(), ji.toString(), gok_data.toString(), uju_data.toString(), ujung_data.toString(), veg_data.toString(), fat_data.toString(),
-            milk_data.toString(), fruit_data.toString())
+        kcal_data_detail.toString(), tan_data_detail.toString(), dan_data_detail.toString(), ji_data_detail.toString(), gok_data_detail.toString(), uju_data_detail.toString(),
+            ujung_data_detail.toString(), veg_data_detail.toString(), fat_data_detail.toString(),
+            milk_data_detail.toString(), fruit_data_detail.toString())
 
         firestore?.collection(user)?.document(onlyDate.toString() + Meal)?.set(setmealdata)
     }
