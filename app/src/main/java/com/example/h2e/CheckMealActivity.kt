@@ -136,10 +136,10 @@ class CheckMealActivity : AppCompatActivity() {
             holder.itemView.setOnClickListener() {
                 Dishtextview.setText(MealNameArray[position].Aname)
 
-                if(MealNameArray[position].count is String){
-                    MealCount = MealNameArray[position].count?.toDouble()?.plus(1)
-                    firestore.collection("meal500").document(MealNameArray[position].Aname.toString()).update("count", MealCount.toString())
-                }
+//                if(MealNameArray[position].count is String){
+//                    MealCount = MealNameArray[position].count?.toDouble()?.plus(1)
+//                    firestore.collection("meal500").document(MealNameArray[position].Aname.toString()).update("count", MealCount.toString())
+//                }
                 firestore.collection("user").document("DishName").update(FirebaseDishNumber, MealNameArray[position].Aname)
             }
         }
@@ -249,9 +249,7 @@ class CheckMealActivity : AppCompatActivity() {
                         if (snapshot.getString("Aname")!!.contains(ResultForSearch)) {
                             var item = snapshot.toObject(MealClass::class.java)
 
-//                                MealNameArray.add(item!!)
                             if (MealNameArray.size == 0) {
-                                //MealNameArray.add(item!!)
                                 MealNameArray.add(item!!)
                             } else {
                                 for (q in 0..MealNameArray.size - 1) {
@@ -265,24 +263,17 @@ class CheckMealActivity : AppCompatActivity() {
                             }
                         }
                     }
-//                    for(A in 0..MealNameArray.size - 1){
-//                        for (B in 0..MealNameArray.size - 1){
-//                            if(MealNameArray[B].count.toString().toDouble() >= MealNameArray[A].count.toString().toDouble()){
-//
-//                            }
-//                        }
-//                    }
 
                     for (Nuum in 0..MealNameArray.size - 1) {
                         if (MealNameArray[Nuum].Aname.toString() == ResultSplitString) { // 제육볶음이 있으면
                             DishTextView.setText(MealNameArray[Nuum].Aname)
-                            if(MealNameArray[Nuum].count is String){
-                                MealCount = MealNameArray[Nuum].count?.toDouble()?.plus(1)
-                                print(MealCount)
-                            }
+//                            if(MealNameArray[Nuum].count is String){
+//                                MealCount = MealNameArray[Nuum].count?.toDouble()?.plus(1)
+//                                print(MealCount)
+//                            }
 
                             firestore.collection("user").document("DishName").update(firebasenamedish, MealNameArray[Nuum].Aname.toString())
-                            firestore.collection("user").document("DishName").update("count", MealCount.toString())
+                            //firestore.collection("user").document("DishName").update("count", MealCount.toString())
 
                             CheckMealRecycler.layoutManager = LinearLayoutManager(this)
                             CheckMealRecycler.adapter = CustomAdapter(MealNameArray, DishTextView, firebasenamedish )
@@ -291,13 +282,13 @@ class CheckMealActivity : AppCompatActivity() {
                             if (MealNameArray.size != 0) {
                                 DishTextView.setText(MealNameArray[0].Aname.toString())
 
-                                if(MealNameArray[Nuum].count is String){
-                                    MealCount = MealNameArray[Nuum].count?.toDouble()?.plus(1)
-                                    print(MealCount)
-                                }
+//                                if(MealNameArray[Nuum].count is String){
+//                                    MealCount = MealNameArray[Nuum].count?.toDouble()?.plus(1)
+//                                    print(MealCount)
+//                                }
 
                                 firestore.collection("user").document("DishName").update(firebasenamedish, MealNameArray[0].Aname.toString())
-                                firestore.collection("user").document("DishName").update("count", MealCount.toString())
+                                //firestore.collection("user").document("DishName").update("count", MealCount.toString())
 
                                 CheckMealRecycler.layoutManager = LinearLayoutManager(this)
                                 CheckMealRecycler.adapter = CustomAdapter(MealNameArray, DishTextView, firebasenamedish)
@@ -344,23 +335,23 @@ class CheckMealActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
-                        if (document.id == "rasbian") {
-                            var weight1 = document.data["dish1"]
+                        if (document.id == "H2E") {
+                            var weight1 = document.data["dishstart1"].toString().toDouble() - document.data["dishstop1"].toString().toDouble()
                             dish_weight1.setText(weight1.toString())
 
-                            var weight2 = document.data["dish2"]
+                            var weight2 = document.data["dishstart2"].toString().toDouble() - document.data["dishstop2"].toString().toDouble()
                             dish_weight2.setText(weight2.toString())
 
-                            var weight3 = document.data["dish3"]
+                            var weight3 = document.data["dishstart3"].toString().toDouble() - document.data["dishstop3"].toString().toDouble()
                             dish_weight3.setText(weight3.toString())
 
-                            var weight4 = document.data["dish4"]
+                            var weight4 = document.data["dishstart4"].toString().toDouble() - document.data["dishstop4"].toString().toDouble()
                             dish_weight4.setText(weight4.toString())
 
-                            var weight5 = document.data["dish5"]
+                            var weight5 = document.data["dishstart5"].toString().toDouble() - document.data["dishstop5"].toString().toDouble()
                             dish_weight5.setText(weight5.toString())
 
-                            var weight6 = document.data["dish6"]
+                            var weight6 = document.data["dishstart6"].toString().toDouble() - document.data["dishstop6"].toString().toDouble()
                             dish_weight6.setText(weight6.toString())
                         }
                     }

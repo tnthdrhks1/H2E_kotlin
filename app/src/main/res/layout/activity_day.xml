@@ -111,7 +111,7 @@
                             android:id="@+id/ujudetail_adopted"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
-                            android:text="어육류 저지방 : "
+                            android:text="저지방 어육류 : "
                             android:textSize="20dp"
                             android:gravity="center" />
 
@@ -148,7 +148,7 @@
                             android:id="@+id/ujungdetail_adopted"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
-                            android:text="어육류 중지방 : "
+                            android:text="중지방 어육류  : "
                             android:textSize="20dp"
                             android:gravity="center"/>
 
@@ -182,6 +182,29 @@
                             android:textSize="20dp"
                             android:layout_marginRight="20dp"
                             android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/ugodetail_adopted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="고지방 어육류 : "
+                            android:textSize="20dp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/ugodetailtext_adopted"
+                            android:layout_width="55dp"
+                            android:layout_height="40dp"
+                            android:textSize="20dp"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center">
 
                         <TextView
                             android:id="@+id/milkdetail_adopted"
@@ -221,12 +244,21 @@
 
             </LinearLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/DayRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp" />
+
             <LinearLayout
                 android:id="@+id/linearLayout1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="88dp"
+                android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:background="@drawable/boxteduriblue"
                 android:onClick="get_morning"

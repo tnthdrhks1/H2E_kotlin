@@ -10,11 +10,13 @@ import com.google.firebase.firestore.Exclude
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_profile.*
+import java.time.LocalDate
 
 class userData (var height: String? = null, var weight: String? = null , var age: String? = null, var bmi: String? = null, var gender : String?,var want_day : String?, var want_weight : String? )
 
-class BmiGroup(val Name : String? = null ,val DietSystem : String? = null, var gok: String? = null, var uju: String? = null, var ujung: String? = null, var veg: String? = null,
-               var fat: String? = null, var milk: String? = null, var fruit: String? = null, var CanEatKcal : String?)
+class BmiGroup(val Name : String? = null ,val DietSystem : String? = null, var gok: String? = null, var uju: String? = null, var ujung: String? = null, var ugo: String? = null,
+               var veg: String? = null, var fat: String? = null, var milk: String? = null, var fruit: String? = null, var CanEatKcal : String?)
+class updateweight(val LoseWeight : String? = null, val LoseDate : String? = null)
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -34,6 +36,7 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var system3 : String
 
     lateinit var bmigroup : Any
+    var onlyDate: LocalDate = LocalDate.now()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,13 +98,20 @@ class ProfileActivity : AppCompatActivity() {
             EditText_want_day.text.toString()
         )
 
-        CanEatKcal = Math.round(bmi - ((EditText_weight.text.toString().toDouble() - EditText_want_day.text.toString().toDouble()) * 7700 / EditText_day.text.toString().toDouble())).toDouble()
+        CanEatKcal = Math.round(bmi - ((EditText_weight.text.toString().toDouble() - EditText_want_day.text.toString().toDouble()) * 6600 / EditText_day.text.toString().toDouble())).toDouble()
+
+        for(i in 0..EditText_day.text.toString().toInt()) {
+            var LoseWeight = (EditText_weight.text.toString().toDouble() - EditText_want_day.text.toString().toDouble()) * 6600 / EditText_day.text.toString().toDouble() / 6600
+            var loseweight = updateweight( String.format("%.2f", EditText_weight.text.toString().toDouble() - LoseWeight * i ) , onlyDate.plusDays(i.toLong()).toString())
+            firestore.collection( user + "DayWeight").document(onlyDate.plusDays(i.toLong()).toString()).set(loseweight)
+        }
 
         CalBmi(system1)
         godanCalBmi(system2)
         gojiCalBmi(system3)
 
         firestore?.collection(user)?.document("profile")?.set(userdata)
+        firestore.collection( user + "DayWeight").document(onlyDate.toString()).update("RealWeight" , EditText_weight.text.toString())
     }
 
     private fun CalculateBmi() {
@@ -125,108 +135,108 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun CalBmi(system : String) {
         if (1200 <= CanEatKcal && CanEatKcal < 1300) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"8", "0", "1", "6", "3", "0", "1", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"8", "0", "1", "0", "6", "3", "0", "1", CanEatKcal.toString())
         } else if (1300 <= CanEatKcal && CanEatKcal < 1400) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"9", "0", "1", "6", "3", "0", "1", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"9", "0", "1", "0", "6", "3", "0", "1", CanEatKcal.toString())
         } else if (1400 <= CanEatKcal && CanEatKcal < 1500) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"9", "0", "1", "7", "4", "0.5", "1", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"9", "0", "1", "0", "7", "4", "0.5", "1", CanEatKcal.toString())
         } else if (1500 <= CanEatKcal && CanEatKcal < 1600) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"10", "0", "1", "7", "4", "0.5", "1", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"10", "0", "1", "0", "7", "4", "0.5", "1", CanEatKcal.toString())
         } else if (1600 <= CanEatKcal && CanEatKcal < 1700) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"10", "0", "1", "8", "5", "0.5", "2", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"10", "0", "1", "0", "8", "5", "0.5", "2", CanEatKcal.toString())
         } else if (1700 <= CanEatKcal && CanEatKcal < 1800) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"11", "0", "1", "8", "5", "0.5", "2", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"11", "0", "1", "0", "8", "5", "0.5", "2", CanEatKcal.toString())
         } else if (1800 <= CanEatKcal && CanEatKcal < 1900) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"11", "0", "2", "8", "5", "0.5", "2", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"11", "0", "2", "0", "8", "5", "0.5", "2", CanEatKcal.toString())
         } else if (1900 <= CanEatKcal && CanEatKcal < 2000) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"12", "0", "2", "8", "5", "0.5", "2", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"12", "0", "2", "0", "8", "5", "0.5", "2", CanEatKcal.toString())
         } else if (2000 <= CanEatKcal && CanEatKcal < 2100) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"12", "0", "2", "9", "6", "0.5", "3", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"12", "0", "2", "0", "9", "6", "0.5", "3", CanEatKcal.toString())
         } else if (2100 <= CanEatKcal && CanEatKcal < 2200) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"13", "0", "2", "9", "6", "0.5", "3", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"13", "0", "2", "0", "9", "6", "0.5", "3", CanEatKcal.toString())
         } else if (2200 <= CanEatKcal && CanEatKcal < 2300) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"14", "0", "2", "9", "6", "0.5", "3", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"14", "0", "2", "0", "9", "6", "0.5", "3", CanEatKcal.toString())
         } else if (2300 <= CanEatKcal && CanEatKcal < 2400) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"14", "0", "3", "9", "7", "0.5", "3", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"14", "0", "3", "0", "9", "7", "0.5", "3", CanEatKcal.toString())
         } else if (2400 <= CanEatKcal && CanEatKcal < 2500) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"15", "0", "3", "9", "7", "0.5", "3", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"15", "0", "3", "0", "9", "7", "0.5", "3", CanEatKcal.toString())
         } else if (2500 <= CanEatKcal && CanEatKcal < 2600) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"16", "0", "3", "9", "7", "0.5", "3", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" ,"16", "0", "3", "0", "9", "7", "0.5", "3", CanEatKcal.toString())
         }
         else{
-            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" , "1600", "0", "3", "9", "7", "0.5", "3", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "당뇨병학회 방식" , "16", "0", "3", "0", "9", "7", "0.5", "3", CanEatKcal.toString())
         }
         firestore?.collection(user)?.document(system)?.set(bmigroup)
     }
 
     private fun godanCalBmi(system : String) {
         if (1200 <= CanEatKcal && CanEatKcal < 1300) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","4", "0", "9", "3", "0", "0", "1", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","4", "0", "6", "3","3", "0", "0", "1", CanEatKcal.toString())
         } else if (1300 <= CanEatKcal && CanEatKcal < 1400) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","5", "0", "9", "3", "0", "0", "1", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","5", "0", "6", "3","3", "0", "0", "1", CanEatKcal.toString())
         } else if (1400 <= CanEatKcal && CanEatKcal < 1500) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","5", "0", "10", "4", "0", "0", "1", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","5", "0", "7", "3","4", "0", "0", "1", CanEatKcal.toString())
         } else if (1500 <= CanEatKcal && CanEatKcal < 1600) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","5", "0", "10", "4", "1", "0.5", "2", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","5", "0", "7", "3","4", "1", "0.5", "2", CanEatKcal.toString())
         } else if (1600 <= CanEatKcal && CanEatKcal < 1700) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","6", "0", "10", "4", "1", "0.5", "2", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","6", "0", "7", "3","4", "1", "0.5", "2", CanEatKcal.toString())
         } else if (1700 <= CanEatKcal && CanEatKcal < 1800) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","6", "0", "11", "5", "1", "0.5", "2", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","6", "0", "8", "3","5", "1", "0.5", "2", CanEatKcal.toString())
         } else if (1800 <= CanEatKcal && CanEatKcal < 1900) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","6", "0", "11", "5", "1", "1", "3", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","6", "0", "8", "3","5", "1", "1", "3", CanEatKcal.toString())
         } else if (1900 <= CanEatKcal && CanEatKcal < 2000) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","6", "0", "12", "6", "1", "1", "3", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","6", "0", "9", "4","6", "1", "1", "3", CanEatKcal.toString())
         } else if (2000 <= CanEatKcal && CanEatKcal < 2100) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","7", "0", "12", "6", "1", "1", "3", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","7", "0", "9", "4","6", "1", "1", "3", CanEatKcal.toString())
         } else if (2100 <= CanEatKcal && CanEatKcal < 2200) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","7", "0", "13", "7", "1", "1", "3", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","7", "0", "10", "4","7", "1", "1", "3", CanEatKcal.toString())
         } else if (2200 <= CanEatKcal && CanEatKcal < 2300) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","7", "0", "14", "7", "2", "1", "3", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","7", "0", "11", "4","7", "2", "1", "3", CanEatKcal.toString())
         } else if (2300 <= CanEatKcal && CanEatKcal < 2400) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","8", "0", "14", "7", "2", "1", "3", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","8", "0", "11", "4","7", "2", "1", "3", CanEatKcal.toString())
         } else if (2400 <= CanEatKcal && CanEatKcal < 2500) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","8", "0", "15", "7", "2", "1", "3", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","8", "0", "12", "4","7", "2", "1", "3", CanEatKcal.toString())
         } else if (2500 <= CanEatKcal && CanEatKcal < 2600) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","8", "0", "15", "8", "2", "1.5", "4", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","8", "0", "11", "4","8", "2", "1.5", "4", CanEatKcal.toString())
         }
         else{
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","8", "0", "15", "8", "2", "1.5", "4", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 저지방","8", "0", "15", "4","8", "2", "1.5", "4", CanEatKcal.toString())
         }
         firestore?.collection(user)?.document(system)?.set(bmigroup)
     }
 
     private fun gojiCalBmi(system : String) {
         if (1200 <= CanEatKcal && CanEatKcal < 1300) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "0", "7", "1", "8", "0", "0", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "0", "7", "3","1", "8", "0", "0", CanEatKcal.toString())
         } else if (1300 <= CanEatKcal && CanEatKcal < 1400) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "0", "8", "1", "8", "0", "0", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "0", "8", "3","1", "8", "0", "0", CanEatKcal.toString())
         } else if (1400 <= CanEatKcal && CanEatKcal < 1500) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "1", "8", "2", "9", "0", "0", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "1", "8", "3","2", "9", "0", "0", CanEatKcal.toString())
         } else if (1500 <= CanEatKcal && CanEatKcal < 1600) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "1", "9", "2", "9", "0", "0", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "1", "9", "3","2", "9", "0", "0", CanEatKcal.toString())
         } else if (1600 <= CanEatKcal && CanEatKcal < 1700) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "1", "9", "2", "9", "0.5", "1", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "1", "9", "3","2", "9", "0.5", "1", CanEatKcal.toString())
         } else if (1700 <= CanEatKcal && CanEatKcal < 1800) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "1", "10", "2", "9", "0.5", "1", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "1", "10", "3","2", "9", "0.5", "1", CanEatKcal.toString())
         } else if (1800 <= CanEatKcal && CanEatKcal < 1900) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "2", "10", "3", "10", "0.5", "1", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "2", "10", "3","3", "10", "0.5", "1", CanEatKcal.toString())
         } else if (1900 <= CanEatKcal && CanEatKcal < 2000) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "2", "11", "3", "10", "0.5", "1", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "2", "11", "3","3", "10", "0.5", "1", CanEatKcal.toString())
         } else if (2000 <= CanEatKcal && CanEatKcal < 2100) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "2", "11", "3", "11", "1", "1", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "2", "11", "3","3", "11", "1", "1", CanEatKcal.toString())
         } else if (2100 <= CanEatKcal && CanEatKcal < 2200) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "2", "12", "3", "11", "1", "1", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "2", "12", "3","3", "11", "1", "1", CanEatKcal.toString())
         } else if (2200 <= CanEatKcal && CanEatKcal < 2300) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "2", "12", "3", "12", "1", "2", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "2", "12", "3","3", "12", "1", "2", CanEatKcal.toString())
         } else if (2300 <= CanEatKcal && CanEatKcal < 2400) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "2", "13", "3", "12", "1", "2", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "2", "13", "3","3", "12", "1", "2", CanEatKcal.toString())
         } else if (2400 <= CanEatKcal && CanEatKcal < 2500) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "3", "13", "4", "13", "1", "2", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "3", "13", "3","4", "13", "1", "2", CanEatKcal.toString())
         } else if (2500 <= CanEatKcal && CanEatKcal < 2600) {
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "3", "14", "4", "13", "1", "2", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "1", "3", "14", "3","4", "13", "1", "2", CanEatKcal.toString())
         }
         else{
-            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "8", "0", "15", "8", "2", "1.5", "4", CanEatKcal.toString())
+            bmigroup = BmiGroup(text_dev.text.toString(), "고단백 고지방", "8", "0", "15", "3","8", "2", "1.5", "4", CanEatKcal.toString())
         }
         firestore?.collection(user)?.document(system)?.set(bmigroup)
     }

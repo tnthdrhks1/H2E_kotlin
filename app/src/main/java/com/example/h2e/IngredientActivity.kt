@@ -59,10 +59,10 @@ var fat_data_detail : Double = 0.0
 
 class SetMeatData (var Dish1 : String? = null, var Dish2 : String? = null, var Dish3 : String? = null, var Dish4 : String? = null, var Dish5 : String? = null, var Dish6 : String? = null,
                    var Kcal : String? = null, var Tan : String? = null, var Dan : String? = null, var Ji : String? = null,
-                   var Gok_data : String? = null, var Uju_data : String? = null, var Ujung_data : String? = null, var Veg_data : String? = null,
+                   var Gok_data : String? = null, var Uju_data : String? = null, var Ujung_data : String? = null, var Ugo_data : String? = null, var Veg_data : String? = null,
                    var Fat_data : String? = null, var Milk_data : String? = null, var Fruit_data : String? = null)
 
-class MealDetailClass (var Dish : String? = null, var Kcal : String? = null, var Gok_data : String? = null, var Uju_data : String? = null, var Ujung_data : String? = null,
+class MealDetailClass (var Dish : String? = null, var Kcal : String? = null, var Gok_data : String? = null, var Uju_data : String? = null, var Ujung_data : String? = null, var Ugo_data : String? = null,
                        var Veg_data : String? = null, var Fat_data : String? = null, var Milk_data : String? = null, var Fruit_data : String? = null)
 
 class IngredientActivity : AppCompatActivity() {
@@ -129,12 +129,12 @@ class IngredientActivity : AppCompatActivity() {
                 IngreDetail(namedish6.toString(), "dish6", Meal)
             } else{firestore.collection(user + Meal).document("dish6").delete()}
 
-            GetIngredinet(namedish1.toString(), "dish1", Meal)
-            GetIngredinet(namedish2.toString(), "dish2", Meal)
-            GetIngredinet(namedish3.toString(), "dish3", Meal)
-            GetIngredinet(namedish4.toString(), "dish4", Meal)
-            GetIngredinet(namedish5.toString(), "dish5", Meal)
-            GetIngredinet(namedish6.toString(), "dish6", Meal)
+            GetIngredinet(namedish1.toString(), "dishstart1", "dishstop1", "dish1", Meal)
+            GetIngredinet(namedish2.toString(), "dishstart2", "dishstop2", "dish2", Meal)
+            GetIngredinet(namedish3.toString(), "dishstart3", "dishstop3", "dish3", Meal)
+            GetIngredinet(namedish4.toString(), "dishstart4", "dishstop4", "dish4", Meal)
+            GetIngredinet(namedish5.toString(), "dishstart5", "dishstop5", "dish5", Meal)
+            GetIngredinet(namedish6.toString(), "dishstart6", "dishstop6", "dish6", Meal)
 
 
             dish_weight1.setText(tan_data_detail.toString())
@@ -185,15 +185,11 @@ class IngredientActivity : AppCompatActivity() {
     }
 
 
-    fun GetIngredinet(FoodName : String, Field: String, Time : String) {
-
+    fun GetIngredinet(FoodName : String, FieldStart: String, FieldStop: String, Field : String,  Time : String) {
         firestore.collection("user").get().addOnSuccessListener { task ->
             for (document in task) {
-                if (document.id == "rasbian") {
-                    var weight1 = document.data[Field]
-
-                    if (weight1 is String) {
-                        weight1 = weight1.toDouble()
+                if (document.id == "H2E") {
+                    var weight1 = document.data[FieldStart].toString().toDouble() - document.data[FieldStop].toString().toDouble()
 
                         firestore.collection("meal500").get().addOnSuccessListener { task ->
                             for (document in task) {
@@ -264,7 +260,7 @@ class IngredientActivity : AppCompatActivity() {
                                     kcal_data_detail = String.format("%.2f", kcal_data_detail).toDouble()
 
                                     var mealdetaildata = MealDetailClass(FoodName , kcal, gok_data, uju_data,
-                                        ujung_data, veg_data, fat_data, milk_data, fruit_data)
+                                        ujung_data, ugo_data, veg_data, fat_data, milk_data, fruit_data)
 
                                     firestore.collection(user + Time).document(Field).set(mealdetaildata)
                                 }
@@ -274,12 +270,11 @@ class IngredientActivity : AppCompatActivity() {
                 }
             }
         }
-    }
 
     fun GiveData(){
         var setmealdata = SetMeatData(namedish1.toString(), namedish2.toString(), namedish3.toString(), namedish4.toString(), namedish5.toString(), namedish6.toString(),
         kcal_data_detail.toString(), tan_data_detail.toString(), dan_data_detail.toString(), ji_data_detail.toString(), gok_data_detail.toString(), uju_data_detail.toString(),
-            ujung_data_detail.toString(), veg_data_detail.toString(), fat_data_detail.toString(),
+            ujung_data_detail.toString(), ugo_data_detail.toString(), veg_data_detail.toString(), fat_data_detail.toString(),
             milk_data_detail.toString(), fruit_data_detail.toString())
 
         firestore?.collection(user)?.document(onlyDate.toString() + Meal)?.set(setmealdata)

@@ -1,14 +1,23 @@
 package com.example.h2e
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_day.*
+import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.detailinreview.view.*
+import kotlinx.android.synthetic.main.detailinreview.view.dishname
+import kotlinx.android.synthetic.main.showweight.view.*
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -30,6 +39,8 @@ var milk_gun0 = 0.0
 var fruit_gun0 = 0.0
 var CanEatKcal0 = 0.0
 
+class WatchYourWeight (val loseWeight : String? = null, val RealWeight : String? = null, val loseDate : String? = null )
+
 class DayActivity : AppCompatActivity() {
 
     lateinit var time: String
@@ -45,6 +56,48 @@ class DayActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_day)
+
+        DayRecycler.adapter = loseViewAdapter(this)
+        DayRecycler.layoutManager = LinearLayoutManager(this).also { it.orientation = LinearLayoutManager.HORIZONTAL }
+    }
+
+    inner class loseViewAdapter(val context : Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+        var WeightArray: ArrayList<WatchYourWeight> = arrayListOf()
+
+        init {
+            firestore?.collection(user + "DayWeight")
+                ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+
+                    WeightArray.clear()
+
+                    for (snapshot in querySnapshot!!.documents) {
+                        var item = snapshot.toObject(WatchYourWeight::class.java)
+                        WeightArray.add(item!!)
+                    }
+                    notifyDataSetChanged()
+                }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+            var view = LayoutInflater.from(parent.context).inflate(R.layout.showweight, parent, false)
+            return ViewHolder(view)
+        }
+
+        inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+
+        }
+
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+            var viewHolder = (holder as ViewHolder).itemView
+
+            viewHolder.predictweight.text = WeightArray[position].loseWeight
+            viewHolder.realweight.text = WeightArray[position].RealWeight
+            viewHolder.DietDate.text = WeightArray[position].loseDate
+        }
+
+        override fun getItemCount(): Int {
+            return WeightArray.size
+        }
     }
 
     override fun onStart() {
@@ -75,6 +128,8 @@ class DayActivity : AppCompatActivity() {
             startActivity(DetailView)
         }
     }
+
+
 
     fun FillProgressBar() {
         GetData("morning", morningKcal_text, morninggram_text)
@@ -121,6 +176,7 @@ class DayActivity : AppCompatActivity() {
                             var gok_gun = document.data["gok"]
                             var uju_gun = document.data["uju"]
                             var ujung_gun = document.data["ujung"]
+                            var ugo_gun = document.data["ugo"]
                             var veg_gun = document.data["veg"]
                             var fat_gun = document.data["fat"]
                             var milk_gun = document.data["milk"]
@@ -132,6 +188,7 @@ class DayActivity : AppCompatActivity() {
                             gokdetailtext_adopted.setText(gok_gun.toString())
                             ujudetailtext_adopted.setText(uju_gun.toString())
                             ujungdetailtext_adopted.setText(ujung_gun.toString())
+                            ugodetailtext_adopted.setText(ugo_gun.toString())
                             vegdetailtext_adopted.setText(veg_gun.toString())
                             milkdetailtext_adopted.setText(milk_gun.toString())
                             fruitdetailtext_adopted.setText(fruit_gun.toString())

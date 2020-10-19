@@ -90,7 +90,7 @@
                     android:id="@+id/ujudetail"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:text="어육류 저지방 : "
+                    android:text="저지방 어육류 : "
                     android:textSize="20dp"
                     android:gravity="center" />
 
@@ -129,7 +129,7 @@
                     android:id="@+id/ujungdetail"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:text="어육류 중지방 : "
+                    android:text="중지방 어육류 : "
                     android:textSize="20dp"
                     android:gravity="center"/>
 
@@ -165,6 +165,29 @@
                     android:textSize="20dp"
                     android:layout_marginRight="20dp"
                     android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/ugodetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="고지방 어육류 : "
+                    android:textSize="20dp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/ugodetailtext"
+                    android:layout_width="55dp"
+                    android:layout_height="40dp"
+                    android:text="10"
+                    android:textSize="20dp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
                 <TextView
                     android:id="@+id/milkdetail"

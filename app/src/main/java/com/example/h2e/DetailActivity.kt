@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_recycler.*
 import kotlinx.android.synthetic.main.detailinreview.view.*
 
 class DetailIngre (val dish : String? = null, val gok_data : String? = null, val uju_data : String? = null, val veg_data : String? = null,
-                   val ujung_data : String? = null, val fat_data : String? = null, val milk_data : String? = null, val fruit_data : String? = null, val kcal : String? = null)
+                   val ujung_data : String? = null, val ugo_data : String? = null, val fat_data : String? = null, val milk_data : String? = null, val fruit_data : String? = null, val kcal : String? = null)
 
 class DetailActivity : AppCompatActivity() {
 
@@ -99,6 +99,7 @@ class DetailActivity : AppCompatActivity() {
             viewHolder.gokdetailtext.text = MealArray[position].gok_data
             viewHolder.ujudetailtext.text = MealArray[position].uju_data
             viewHolder.ujungdetailtext.text = MealArray[position].ujung_data
+            viewHolder.ugodetailtext.text = MealArray[position].ugo_data
             viewHolder.vegdetailtext.text = MealArray[position].veg_data
             viewHolder.fatdetailtext.text = MealArray[position].fat_data
             viewHolder.milkdetailtext.text = MealArray[position].milk_data
