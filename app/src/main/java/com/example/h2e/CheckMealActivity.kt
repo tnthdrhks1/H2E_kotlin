@@ -213,6 +213,7 @@ class CheckMealActivity : AppCompatActivity() {
         when (requestCode) {
             10 -> if (resultCode == Activity.RESULT_OK && data != null) {
                 val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+
                 ResultSplitString = result[0].replace(" ", "")
 
                 DishMatchUp(FirebasenameDish, dishnumber)

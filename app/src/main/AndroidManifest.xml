@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".CheckSugarActivity"></activity>
+        <activity android:name=".UserActivity" />
+        <activity android:name=".Profile2Activity" />
+        <activity android:name=".ErgometerActivity" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".RecyclerActivity" />
         <activity android:name=".DayActivity" />
