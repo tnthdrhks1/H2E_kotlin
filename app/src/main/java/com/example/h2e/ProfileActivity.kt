@@ -61,20 +61,6 @@ class ProfileActivity : AppCompatActivity() {
         var thelist =listOf(0, 1, 0, 2, 1, 0)
         var name00 = mutableListOf<String>()
 
-        firestore.collection("xcorps").get().addOnSuccessListener { task ->
-            for (document in task) {
-                if (document.id == "hearth") {
-                    var listsu = document.data.size
-                    for (i in 0..listsu - 1) {
-                        arrlist = document.data["$i"].toString()
-                        name00.add(arrlist)
-                     }
-                }
-            }
-            text_dev.setText(name00.toString())
-        }
-
-
         radioGroup.setOnCheckedChangeListener { radioGroup, i ->
             when(i){
                 R.id.radioman -> gender = "남자"
