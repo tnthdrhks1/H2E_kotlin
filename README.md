@@ -6,7 +6,7 @@ Screenshot
 
 <div>
 
-<img width="200" scr="![H2E-KOTLIN (1)](https://user-images.githubusercontent.com/68096127/101733586-75f69600-3b02-11eb-997e-9029db231d62.png)"
+<img width="200" scr="https://user-images.githubusercontent.com/68096127/101733586-75f69600-3b02-11eb-997e-9029db231d62.png">
 ![H2E-KOTLIN (2)](https://user-images.githubusercontent.com/68096127/101733590-768f2c80-3b02-11eb-9288-35a727b702d4.png)
 ![H2E-KOTLIN (3)](https://user-images.githubusercontent.com/68096127/101733592-7727c300-3b02-11eb-8c90-1683671f44b2.png)
 ![H2E-KOTLIN (4)](https://user-images.githubusercontent.com/68096127/101733593-77c05980-3b02-11eb-8641-4ea87a844a19.png)
