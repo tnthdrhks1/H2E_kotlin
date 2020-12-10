@@ -6,7 +6,7 @@ Screenshot
 
 <div>
 
-<img width="200" scr="https://user-images.githubusercontent.com/68096127/101733586-75f69600-3b02-11eb-997e-9029db231d62.png">
+<img width="200" src="https://user-images.githubusercontent.com/68096127/101733586-75f69600-3b02-11eb-997e-9029db231d62.png">
 
 </div>
 
